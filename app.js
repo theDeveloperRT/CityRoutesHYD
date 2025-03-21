@@ -145,11 +145,18 @@ let newUISource = getId('newUISource');
 let newUIDestination = getId('newUIDestination');
 
 // Referance Arrays and Variables
-let starting, destination, upRouteArray, downRouteArray, direction, routeNumberRef;
+let starting, destination, upRouteArray, downRouteArray, direction, routeNumberRef, secBad_SS_UP, secBad_SS_DN;
 let JunctionStop, backState, JunctionStopState;
 let junctionStopsStopName;
 let suggessionsArray = routesArray;
 let feature = 1;
+
+// SUBSTOP VARIABLE
+let BSH_SS = "Blue Sea Hotel (East Metro Stn.)";
+let RSA_SS = "Railways Station (Alpha Hotel)";
+let RTF_SS = "Rethifile Bus Station";
+let GRD_SS = "Gurudwara Bus Stop";
+let CLG_SS = "Chilkalguda X Roads";
 
 
 // DETAILED ROUTE ARRAYS
@@ -707,6 +714,12 @@ let DetailedRoutesUP = [
     ["8A/178G"].concat(
         getStops(MDCL_MHRM, "SECUNDERABAD", "CHANDRAYANGUTTA X ROADS"),
         SHD[103], "ISMAIL NAGAR", "GHOUSE NAGAR"
+    ),
+    ["8A/252S"].concat(
+        getStops(MDCL_MHRM, 'SECUNDERABAD', 'OSMANGUNJ'),
+        getStops(KSR_SHMB, 'AFZALGUNJ', 'SHAMSHABAD'),
+        'KISHANGUDA',
+        getStops(OSK_Stops, 'RASHEEDGUDA', 'SHANKARAPURAM')
     ),
     ["8A/532"].concat(
         getStops(MDCL_MHRM, "SECUNDERABAD", "OSMANGUNJ"),
@@ -1602,7 +1615,8 @@ let DetailedRoutesUP = [
         getStops(GTKS_PTCR, 'BODUPPAL X ROADS', 'UPPAL RING ROAD'),
         getStops(IBP_DNGL, 'UPPAL RING ROAD', 'SECUNDERABAD'),
         getStops(CRPL_LGPL, "PATNY", "PANJAGUTTA"),
-        getStops(KOTI_MCRL, 'ANDHRA JYOTHI', 'JUBLIE HILLS CHECK POST'),
+        getStops(KOTI_MCRL, 'ANDHRA JYOTHI', 'JOURNLIST COLONY'),
+        getStops(TailsUP, 'ROAD NO. 45', 'AOU UNIVERSITY')
     ),
     ["18/272G"].concat(
         getStops(GTKS_PTCR, 'UPPAL', 'UPPAL RING ROAD'),
@@ -2167,6 +2181,15 @@ let DetailedRoutesUP = [
         getStops(TailsUP, 'VINAYAK NAGAR GATE', 'OFFICERs COLONY'),
         getStops(GWRL_HCLX, 'SHARADA', 'ECIL X ROADS')
     ),
+    ["47U/18"].concat(
+        getStops(TailsDOWN, 'AOU UNIVERSITY', 'ROAD NO. 45'),
+        getStops(MCRL_KOTI, 'JUBLIE HILLS CHECK POST', 'ANDHRA JYOTHI'),
+        getStops(LGPL_CRPL, "PANJAGUTTA", "PATNY"),
+        getStops(DNGL_IBP, 'SECUNDERABAD', 'UPPAL RING ROAD'),
+        getStops(PTCR_GTKS, 'UPPAL GANDHI STATUE', 'BODUPPAL X ROADS'),
+        getStops(TailsUP, 'NTR STATUE (BDUPL)', 'INDIRA NAGAR X ROADS'),
+        SHD[144]
+    ),
     ["47W/16A"].concat(
         w47_DN,
         getStops(LGPL_CRPL, "ALUGADDA BHAVI", "METTUGUDA"),
@@ -2269,6 +2292,12 @@ let DetailedRoutesUP = [
     ["49M/92A"].concat(
         getStops(CRPL_LGPL, 'SECUNDERABAD', 'MEHDIPATNAM'),
         getStops(SKPL_SECB, 'RETHIBOWLI', 'ARAMGHAR')
+    ),
+    ["49M/188B"].concat(
+        getStops(CRPL_LGPL, 'SECUNDERABAD', 'MEHDIPATNAM'),
+        getStops(SRPT_MNBD, "RETHIBOWLI", "TK BRIDGE"),
+        getStops(RMNG_DRFM, 'SAI RAM NAGAR (SUNCITY)', 'HYDERSHAKOTE X ROADS'),
+        "GANDHAMGUDA", "BAIRAGIGUDA"
     ),
     ["49M/229"].concat(
         getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PARADISE'),
@@ -2611,6 +2640,11 @@ let DetailedRoutesUP = [
         getStops(SKPL_SECB, 'BABUL REDDY NAGAR', 'DURGA NAGAR'),
         getStops(TailsUP, 'KATEDAN', 'SRI RAM COLONY')
     ),
+    ["95M"].concat(
+        getStops(KSR_SHMB, 'KOTI MEDICAL COLLEGE', 'ARAMGHAR'),
+        getStops(SKPL_SECB, 'BABUL REDDY NAGAR', 'DURGA NAGAR'),
+        "LAXMIGUDA", "WAMBAY COLONY", "JALPALLY",
+    ),
 
     // 100 SERIES
     ["100/299"].concat(
@@ -2631,7 +2665,6 @@ let DetailedRoutesUP = [
         getStops(LGRH_KTGD, "KOTI WOMENS COLLEGE", "KOTHAPET"),
         SHD[626], SHD[597], SHD[554]
     ),
-
 
     // 102 SERIES
     ["102"].concat(
@@ -2773,6 +2806,20 @@ let DetailedRoutesUP = [
         getStops(BLNR_MLPT, 'PANDURANGA NAGAR', 'MOTHI NAGAR'),
         SHD[152]
     ),
+    ["113IM"].concat(
+        getStops(GTKS_PTCR, 'UPPAL', 'AMBERPET'),
+        getStops(GWRL_HCLX, 'CHEY NUMBER', 'VIDYA NAGAR'),
+        SHD[1075], SHD[167], SHD[856], SHD[67], SHD[723], SHD[821],
+        getStops(SRPT_MNBD, 'BIRLA MANDIR', 'MEHDIPATNAM')
+
+    ),
+    ["113IMZ"].concat(
+        getStops(GTKS_PTCR, 'UPPAL', 'AMBERPET'),
+        getStops(GWRL_HCLX, 'CHEY NUMBER', 'VIDYA NAGAR'),
+        SHD[1075], SHD[167], SHD[856], SHD[67], SHD[723], SHD[821],
+        getStops(SRPT_MNBD, 'BIRLA MANDIR', 'MEHDIPATNAM')
+
+    ),
     ["113K"].concat(
         getStops(GTKS_PTCR, 'UPPAL', 'AMBERPET'),
         getStops(TailsUP, 'CHEY NUMBER', 'LIBERTY'),
@@ -2808,6 +2855,15 @@ let DetailedRoutesUP = [
         getStops(SRPT_MNBD, 'SECRETARIATE', 'MEHDIPATNAM'),
         getStops(CRPL_LGPL, 'RETHIBOWLI', 'GACHIBOWLI DLF'),
         getStops(MLPT_BLNR, 'INFOSYS', 'WAVEROCK')
+    ),
+    ["113M/120"].concat(
+        SHD[144],
+        getStops(TailsDOWN, 'INDIRA NAGAR X ROADS', 'NTR STATUE (BDUPL)'),
+        getStops(GTKS_PTCR, 'BODUPPAL X ROADS', 'AMBERPET'),
+        getStops(TailsUP, 'CHEY NUMBER', 'LIBERTY'),
+        getStops(SRPT_MNBD, 'SECRETARIATE', 'MEHDIPATNAM'),
+        getStops(SECB_SKPL, 'RETHIBOWLI', 'MANCHIREVULA X ROADS'),
+        SHD[595]
     ),
     ["113M/281"].concat(
         SHD[496],
@@ -2881,6 +2937,19 @@ let DetailedRoutesUP = [
 
 
     // 116 SERIES
+    ["116/220K"].concat(
+        getStops(GTKS_PTCR, 'CITY BUS STATION', 'ASSEMBLY'),
+        getStops(SRPT_MNBD, 'LAKDI KA PUL', 'MEHDIPATNAM'),
+        getStops(CRPL_LGPL, 'RETHIBOWLI', 'KHAJAGUDA X ROADS'),
+        getStops(TailsUP, 'LANCO HILLS', 'GOWLI DHODDI'),
+        "GOPALPALLY X ROADS", "TELLAPUR", "OSMAN NAGAR", "KOLLUR"
+    ),
+    ["116G/65M"].concat(
+        getStops(TailsDOWN, 'GOWLI DHODDI', 'LANCO HILLS'),
+        getStops(LGPL_CRPL, 'KHAJAGUDA X ROADS', 'RETHIBOWLI'),
+        getStops(MNBD_SRPT, 'MEHDIPATNAM', 'LAKDI KA PUL'),
+        getStops(PTCR_GTKS, 'ASSEMBLY', 'CITY BUS STATION')
+    ),
     ["116GA/65"].concat(
         getStops(TailsDOWN, 'GOWLI DHODDI', 'LANCO HILLS'),
         getStops(LGPL_CRPL, 'KHAJAGUDA X ROADS', 'RETHIBOWLI'),
@@ -2891,6 +2960,18 @@ let DetailedRoutesUP = [
         getStops(KOTI_MCRL, 'KOTI MEDICAL COLLEGE', 'MEHDIPATNAM'),
         getStops(CRPL_LGPL, 'MEHDIPATNAM', 'KHAJAGUDA X ROADS'),
         getStops(TailsUP, 'LANCO HILLS', 'GOWLI DHODDI')
+    ),
+    ["116NL"].concat(
+        getStops(KOTI_MCRL, 'KOTI MEDICAL COLLEGE', 'MEHDIPATNAM'),
+        getStops(CRPL_LGPL, 'MEHDIPATNAM', 'KHAJAGUDA X ROADS'),
+        getStops(TailsUP, 'LANCO HILLS', 'GOWLI DHODDI'),
+        "GOPANPALLY X ROADS", "GOPANPALLY", "APARNA APPARTMENTS", "CITIZENS HOSPITAL", "NALLAGANDLA", SHD[558]
+    ),
+    ["116N/220K"].concat(
+        getStops(KOTI_MCRL, 'KOTI MEDICAL COLLEGE', 'MEHDIPATNAM'),
+        getStops(CRPL_LGPL, 'MEHDIPATNAM', 'KHAJAGUDA X ROADS'),
+        getStops(TailsUP, 'LANCO HILLS', 'GOWLI DHODDI'),
+        "GOPALPALLY X ROADS", "TELLAPUR", "OSMAN NAGAR", "KOLLUR"
     ),
 
     // 117 SERIES
@@ -2923,6 +3004,15 @@ let DetailedRoutesUP = [
         SHD[620],
         getStops(SECB_SKPL, 'RETHIBOWLI', 'GANDIPET X ROAD'),
         SHD[306], "OSMAN SAGAR"
+    ),
+    ["120/113M"].concat(
+        SHD[595],
+        getStops(SKPL_SECB, 'MANCHIREVULA X ROADS', 'RETHIBOWLI'),
+        getStops(MNBD_SRPT, 'MEHDIPATNAM', 'SECRETARIATE'),
+        getStops(TailsDOWN, 'LIBERTY', 'CHEY NUMBER'),
+        getStops(PTCR_GTKS, 'AMBERPET', 'BODUPPAL X ROADS'),
+        getStops(TailsUP, 'NTR STATUE (BDUPL)', 'INDIRA NAGAR X ROADS'),
+        SHD[144]
     ),
     ["120K/5K"].concat(
         "KOKAPET",
@@ -3096,6 +3186,12 @@ let DetailedRoutesUP = [
         getStops(GTKS_KPHB, 'SHAHPUR NAGAR', 'KPHB MAIN ROAD'),
         SHD[510]
     ),
+    ["171K/198W"].concat(
+        getStops(GTKS_KPHB, 'GAJULA RAMARAM', 'KPHB MAIN ROAD'),
+        SHD[510],
+        getStops(MLPT_BLNR, 'JNTU COLLEGE', 'WAVEROCK')
+    ),
+
     ["171K/219"].concat(
         getStops(GTKS_KPHB, 'SHAHPUR NAGAR', 'KPHB MAIN ROAD'),
         getStops(GTKS_PTCR, 'KPHB MAIN ROAD', 'PATANCHERUVU')
@@ -3158,6 +3254,13 @@ let DetailedRoutesUP = [
         getStops(SKPL_SECB, 'LAL DHABA', 'SHIVARAMPALLY X ROADS'),
         getStops(KSR_SHMB, 'ARAMGHAR', 'SHAMSHABAD')
     ),
+    ["188B/49M"].concat(
+        "BAIRAGIGUDA", "GANDHAMGUDA",
+        getStops(DRFM_RMNG, 'HYDERSHAKOTE X ROADS', 'SAI RAM NAGAR (SUNCITY)'),
+        getStops(MNBD_SRPT, 'TK BRIDGE', 'RETHIBOWLI'),
+        getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PATNY'),
+        getStops(MHRM_MDCL, 'MOTHER TERESA STATUE', 'SECUNDERABAD')
+    ),
 
     // 189 SERIES
     ["189M"].concat(
@@ -3182,6 +3285,12 @@ let DetailedRoutesUP = [
     ),
 
     // 195 SERIES
+    ["195/272"].concat(
+        getStops(BLNR_MLPT, 'WAVEROCK', 'JNTU COLLEGE'),
+        SHD[442], SHD[510],
+        getStops(MLPT_BLNR, 'KUKATPALLY', 'BALANAGAR'),
+        getStops(IBP_DNGL, 'IDPL', 'GANDIMAISAMMA')
+    ),
     ["195G"].concat(
         "GAR (KOKAPET)", "KOKAPET ORR",
         getStops(BLNR_MLPT, 'INFOTECH', 'JNTU COLLEGE')
@@ -3193,6 +3302,10 @@ let DetailedRoutesUP = [
     ["195GK"].concat(
         "GAR (KOKAPET)", "KOKAPET ORR",
         getStops(BLNR_MLPT, 'INFOTECH', 'JNTU COLLEGE')
+    ),
+    ["195H"].concat(
+        getStops(LGPL_CRPL, 'HCU BUS DEPOT', 'GACHIBOWLI STADIUM'),
+        getStops(BLNR_MLPT, 'GACHIBOWLI DLF', 'BACHUPALLY X ROADS')
     ),
     ["195J"].concat(
         getStops(BLNR_MLPT, 'WAVEROCK', 'JNTU COLLEGE'),
@@ -3214,6 +3327,13 @@ let DetailedRoutesUP = [
         getStops(BLNR_MLPT, 'WAVEROCK', 'JNTU COLLEGE'),
         getStops(TailsUP, 'JNTU COLLEGE', 'PRAGATHI NAGAR'),
         getStops(ADBT_MDCL, 'KAISAR NAGAR', 'GANDIMAISAMMA')
+    ),
+
+    // 198 SERIES
+    ["198W/171K"].concat(
+        getStops(BLNR_MLPT, 'WAVEROCK', 'JNTU COLLEGE'),
+        "JNTU COLLEGE",
+        getStops(KPHB_GTKS, 'KPHB MAIN ROAD', 'GAJULA RAMARAM')
     ),
 
     // 201 SERIES
@@ -3366,6 +3486,14 @@ let DetailedRoutesUP = [
         getStops(IBP_DNGL, "KAMINENI HOSPITALS", "SECUNDERABAD"),
         SHD[754],
         SHD[448]
+    ),
+    ["205B/290U"].concat(
+        "BALIJAGUDA",
+        getStops(OSK_Stops, 'KAWADIPALLY', 'ABDULLAHPURMET VILLAGE'),
+        getStops(OSK_Stops, 'ABDULLAHPURMET', 'WORD & DEED'),
+        getStops(KTGD_LGRH, "HAYATHNAGAR", "LB NAGAR X ROADS"),
+        getStops(IBP_DNGL, "KAMINENI HOSPITALS", "ALUGADDA BHAVI"),
+        SHD[898]
     ),
     ["205F/156"].concat(
         getStops(KTGD_LGRH, 'ABDULLAHPURMET', 'KOTI MEDICAL COLLEGE'),
@@ -3574,7 +3702,8 @@ let DetailedRoutesUP = [
         getStops(PTCR_GTKS, 'MIYAPUR X ROADS', 'ASSEMBLY'),
         SHD[3], SHD[110], SHD[506],
         getStops(SECB_SKPL, 'KOTI WOMENS COLLEGE', 'BAIRAMALGUDA'),
-        getStops(DNGL_IBP, 'SAGAR RING ROAD', 'MANNEGUDA')
+        getStops(DNGL_IBP, 'SAGAR RING ROAD', 'MANNEGUDA'),
+        SHD[478], SHD[885], SHD[790]
     ),
 
     // 219 SERIES
@@ -3655,6 +3784,43 @@ let DetailedRoutesUP = [
         getStops(DNGL_IBP, 'BALANAGAR', 'UPPAL RING ROAD'),
         getStops(PTCR_GTKS, 'UPPAL', 'GHATKESAR')
     ),
+    ["219MP"].concat(
+        getStops(IBP_DNGL, "SECUNDERABAD", "BALANAGAR"),
+        SHD[1087],
+        getStops(GTKS_PTCR, "KUKATPALLY GOVT COLLEGE", "BEERAMGUDA"),
+        getStops(TailsUP, 'BEERAMGUDA VILLAGE', 'PATEL GUDA')
+    ),
+
+    // 220 SERIES
+    ["220G"].concat(
+        SHD[620],
+        getStops(SECB_SKPL, 'RETHIBOWLI', 'DONTANPALLY'),
+        "MAHARAJPET", "GOPULAARAM"
+    ),
+    ["220K/116"].concat(
+        "KOLLUR", "OSMAN NAGAR", "TELLAPUR", "GOPALPALLY X ROADS",
+        getStops(TailsDOWN, 'GOWLI DHODDI', 'LANCO HILLS'),
+        getStops(LGPL_CRPL, 'KHAJAGUDA X ROADS', 'RETHIBOWLI'),
+        getStops(MNBD_SRPT, 'MEHDIPATNAM', 'LAKDI KA PUL'),
+        getStops(PTCR_GTKS, 'ASSEMBLY', 'CITY BUS STATION')
+    ),
+    ["220K/116N"].concat(
+        "KOLLUR", "OSMAN NAGAR", "TELLAPUR", "GOPALPALLY X ROADS",
+        getStops(TailsDOWN, 'GOWLI DHODDI', 'LANCO HILLS'),
+        getStops(LGPL_CRPL, 'KHAJAGUDA X ROADS', 'MEHDIPATNAM'),
+        getStops(MCRL_KOTI, 'MEHDIPATNAM', 'KOTI MEDICAL COLLEGE'),
+    ),
+
+    // 221 SERIES
+    ["221"].concat(
+        getStops(GTKS_PTCR, 'MIYAPUR METRO STATION', 'ALLWYN X ROADS'),
+        UP_221
+    ),
+    ["221G"].concat(
+        getStops(MDCL_ADBT, 'GANDIMAISAMMA', 'MIYAPUR X ROADS'),
+        getStops(GTKS_PTCR, 'MIYAPUR', 'ALLWYN X ROADS'),
+        getStops(UP_221, 'OLD HAFEEZPET', 'GACHIBOWLI X ROADS')
+    ),
 
     // 222 SERIES
     ["222A"].concat(
@@ -3678,6 +3844,10 @@ let DetailedRoutesUP = [
         SHD[752],
         getStops(KOTI_MCRL, 'ANDHRA JYOTHI', 'FILM NAGAR'),
         "PRASASHAN NAGAR", SHD[908]
+    ),
+    ["224B"].concat(
+        getStops(ADBT_MDCL, 'MIYAPUR X ROADS', 'IDA X ROADS'),
+        "BOLLARAM VILLAGE ROAD", "BOLLARAM GANDHI STATUE", SHD[150]
     ),
     ["224G"].concat(
         getStops(ADBT_MDCL, 'MIYAPUR X ROADS', 'GANDIMAISAMMA')
@@ -3708,7 +3878,8 @@ let DetailedRoutesUP = [
         SHD[3], SHD[110], SHD[507]
     ),
     ["224X"].concat(
-        getStops(ADBT_MDCL, 'MIYAPUR X ROADS', 'IDA X ROADS')
+        getStops(ADBT_MDCL, 'MIYAPUR X ROADS', 'IDA X ROADS'),
+        "BOLLARAM VILLAGE ROAD", "BOLLARAM GANDHI STATUE", SHD[150]
     ),
 
     // 226 SERIES
@@ -4003,6 +4174,12 @@ let DetailedRoutesUP = [
         getStops(GWRL_HCLX, 'ECIL X ROADS', 'HCL X ROADS'),
         getStops(CRPL_LGPL, 'ASHOK NAGAR (NFC)', 'MEHDIPATNAM')
     ),
+    ["250E"].concat(
+        getStops(GWRL_HCLX, 'ECIL X ROADS', 'HCL X ROADS'),
+        getStops(LGPL_CRPL, 'HCL PHASE 1', 'CHERLAPALLY'),
+        "IOC X ROADS",
+        getStops(TailsDOWN, 'CHENGICHERLA', 'CHENGICHERLA DEPOT')
+    ),
     ["250S"].concat(
         getStops(LGPL_CRPL, 'SECUNDERABAD', 'NOMA')
     ),
@@ -4067,11 +4244,6 @@ let DetailedRoutesUP = [
     ),
 
     // 252 SERIES
-    ["252S"].concat(
-        getStops(KSR_SHMB, 'AFZALGUNJ', 'SHAMSHABAD'),
-        'KISHANGUDA',
-        getStops(OSK_Stops, 'RASHEEDGUDA', 'SHANKARAPUR')
-    ),
     ["252/3K"].concat(
         SHD[843], getStops(SHMB_KSR, "SHAMSHABAD", "ECIL X ROADS")
     ),
@@ -4083,6 +4255,17 @@ let DetailedRoutesUP = [
         SHD[70], SHD[856], SHD[167], SHD[1075],
         getStops(SHMB_KSR, 'VIDYA NAGAR', 'TARNAKA'),
         getStops(LGPL_CRPL, 'TARNAKA', 'CHERLAPALLY')
+    ),
+    ["252S"].concat(
+        getStops(KSR_SHMB, 'AFZALGUNJ', 'SHAMSHABAD'),
+        'KISHANGUDA',
+        getStops(OSK_Stops, 'RASHEEDGUDA', 'SHANKARAPURAM')
+    ),
+    ["252S/8A"].concat(
+        getStops(OSK_Stops_DOWN, 'SHANKARAPURAM', 'RASHEEDGUDA'),
+        'KISHANGUDA',
+        getStops(SHMB_KSR, 'SHAMSHABAD', 'AFZALGUNJ'),
+        getStops(MHRM_MDCL, 'OSMANGUNJ', 'SECUNDERABAD')
     ),
 
     // 253 SERIES
@@ -4129,6 +4312,12 @@ let DetailedRoutesUP = [
     ["272"].concat(
         getStops(IBP_DNGL, "SECUNDERABAD", "GANDIMAISAMMA"),
         SHD[158], SHD[157]
+    ),
+    ["272/195"].concat(
+        getStops(DNGL_IBP, 'GANDIMAISAMMA', 'BALANAGAR'),
+        getStops(BLNR_MLPT, 'BALANAGAR', 'KUKATPALLY'),
+        SHD[510],
+        getStops(MLPT_BLNR, 'JNTU COLLEGE', 'WAVEROCK')
     ),
     ["272G/9K"].concat(
         getStops(DNGL_IBP, 'GANDIMAISAMMA', 'BALANAGAR'),
@@ -4215,6 +4404,7 @@ let DetailedRoutesUP = [
         SHD[624], SHD[238], SHD[11],
     ),
     ["277K/218"].concat(
+        SHD[790], SHD[885], SHD[478],
         getStops(IBP_DNGL, 'MANNEGUDA', 'SAGAR RING ROAD'),
         getStops(SKPL_SECB, 'BAIRAMALGUDA', 'KOTI WOMENS COLLEGE'),
         SHD[507], SHD[4],
@@ -4429,6 +4619,13 @@ let DetailedRoutesUP = [
         "ANURAG UNIVERSITY", "VENKATAPUR", "TENUGUDEM"
     ),
 
+    // 284P SERIES
+    ["284P"].concat(
+        SHD[1038],
+        getStops(PTCR_GTKS, 'UPPAL GANDHI STATUE', 'PEERJADIGUDA KAMAN'),
+        "INDIAN INTERNATIONAL SCHOOL", "PEERJADIGUDA", "RTC COLONY (PARVATHAPUR)", "PARVATHPURAM", "GANDHI NAGAR (PARVATHPUR)", "LAXMI NAGAR (PARVATHPUR)", "KACHAVANI SINGARAM", "MUTHYALAGUDA", "PRATHAP SINGARAM"
+    ),
+
     // 288 SERIES
     ["288"].concat(
         getStops(SRPT_MNBD, 'MEHDIPATNAM', 'MOINABAD')
@@ -4452,6 +4649,10 @@ let DetailedRoutesUP = [
         getStops(OSK_Stops, 'HIMAYATH NAGAR VILLAGE', 'CHILKOOR X ROADS'),
         SHD[1026], SHD[209]
     ),
+    ["288E"].concat(
+        getStops(SRPT_MNBD, 'MEHDIPATNAM', 'HIMAYATH NAGAR JUNCTION'),
+        getStops(OSK_Stops_DOWN, 'YENKEPALLY', 'BAKARAM')
+    ),
     ["288D/19K"].concat(
         SHD[209], SHD[1026],
         getStops(OSK_Stops_DOWN, 'CHILKOOR X ROADS', 'HIMAYATH NAGAR VILLAGE'),
@@ -4464,6 +4665,19 @@ let DetailedRoutesUP = [
         SHD[4],
         getStops(GTKS_PTCR, 'NAMPALLY', 'LAKDI KA PUL'),
         getStops(SRPT_MNBD, 'MAHAVIR HOSPITAL', 'MOINABAD'),
+    ),
+    ["288NB"].concat(
+        getStops(SRPT_MNBD, 'MEHDIPATNAM', 'POLICE ACADEMY'),
+        getStops(OSK_Stops, 'AZIZ NAGAR', 'BAKARAM')
+    ),
+    ["288R"].concat(
+        getStops(SRPT_MNBD, 'MEHDIPATNAM', 'HIMAYATH NAGAR JUNCTION'),
+        getStops(OSK_Stops, 'HIMAYATH NAGAR VILLAGE', 'APPOJIGUDA X ROADS'),
+        "CHANDANAGAR X ROADS", "CHANDA NAGAR VILLAGE", "CHANDANAGAR X ROADS", "REDDYPALLY", "CHINNA MANGALAARAM"
+    ),
+    ["288Y"].concat(
+        getStops(SRPT_MNBD, 'MEHDIPATNAM', 'MOINABAD'),
+        "PEDDA MANGALARAM", "CHANDANAGAR X ROADS", "REDDYPALLY", "QUTHBUDDINGUDA", "YELKAGUDA"
     ),
 
     // 290 SERIES
@@ -4563,6 +4777,14 @@ let DetailedRoutesUP = [
         getStops(LGRH_KTGD, "LB NAGAR X ROADS", "HAYATHNAGAR"),
         getStops(OSK_Stops_DOWN, 'WORD & DEED', 'ABDULLAHPURMET'),
         getStops(OSK_Stops_DOWN, 'LASHKARGUDA', 'ANAJPUR')
+    ),
+    ["290U/205B"].concat(
+        SHD[898],
+        getStops(DNGL_IBP, "ALUGADDA BHAVI", "KAMINENI HOSPITALS"),
+        getStops(LGRH_KTGD, "LB NAGAR X ROADS", "HAYATHNAGAR"),
+        getStops(OSK_Stops_DOWN, 'WORD & DEED', 'ABDULLAHPURMET'),
+        getStops(OSK_Stops_DOWN, 'ABDULLAHPURMET VILLAGE', 'KAWADIPALLY'),
+        "BALIJAGUDA"
     ),
     ["290U/205M"].concat(
         SHD[448],
@@ -4672,6 +4894,11 @@ let DetailedRoutesUP = [
         getStops(DNGL_IBP, 'SAGAR RING ROAD', 'IBRAHIMPATNAM'),
         getStops(OSK_Stops, 'KHANAPUR X ROADS', 'MALL')
     ),
+    ["444"].concat(
+        getStops(SRPT_MNBD, 'MEHDIPATNAM', 'HIMAYATH NAGAR JUNCTION'),
+        getStops(OSK_Stops, 'HIMAYATH NAGAR VILLAGE', 'APPOJIGUDA X ROADS'),
+        "CHANDANAGAR X ROADS", "REDDYPALLY", "VEERANNAPET", "MEDIPALLI VILLAGE"
+    ),
     ["445"].concat(
         getStops(SRPT_MNBD, 'MEHDIPATNAM', 'MOINABAD'),
         getStops(OSK_Stops_DOWN, 'AYAAN INSTITUTE OF MEDICAL', 'KETHIREDDYPALLY ROAD'),
@@ -4731,6 +4958,12 @@ let DetailedRoutesUP = [
         getStops(OSK_Stops_DOWN, 'DUNDIGAL X ROADS', 'ANNARAM'),
         getStops(OSK_Stops_DOWN, 'PULLAREDDY COLLEGE', 'GUMMADIDALA'),
         getStops(OSK_Stops, 'ANANTHARAM X ROADS', 'KANUKUNTA'),
+    ),
+    ["497"].concat(
+        getStops(SHMB_KSR, 'ECIL X ROADS', 'KEESARAGUTTA KAMAN'),
+        getStops(OSK_Stops_DOWN, 'ANKIREDDYPALLY X ROADS', 'RANGAPURAM X ROADS'),
+        getStops(OSK_Stops, 'RANGAPURAM', 'HAZIPUR')
+
     ),
     ["498"].concat(
         SHD[898],
@@ -5458,6 +5691,12 @@ let DetailedRoutesDOWN = [
     ["8A/178G"].concat(
         "GHOUSE NAGAR", "ISMAIL NAGAR", SHD[103],
         getStops(MHRM_MDCL, "CHANDRAYANGUTTA X ROADS", "SECUNDERABAD")
+    ),
+    ["8A/252S"].concat(
+        getStops(OSK_Stops_DOWN, 'SHANKARAPURAM', 'RASHEEDGUDA'),
+        'KISHANGUDA',
+        getStops(SHMB_KSR, 'SHAMSHABAD', 'AFZALGUNJ'),
+        getStops(MHRM_MDCL, 'OSMANGUNJ', 'SECUNDERABAD')
     ),
     ["8A/532"].concat(
         getStops(OSK_Stops, 'KOTHUR', 'KISHANGUDA'),
@@ -6383,6 +6622,7 @@ let DetailedRoutesDOWN = [
         getStops(PTCR_GTKS, 'UPPAL GANDHI STATUE', 'UPPAL DEPOT')
     ),
     ["18/47U"].concat(
+        getStops(TailsDOWN, 'AOU UNIVERSITY', 'ROAD NO. 45'),
         getStops(MCRL_KOTI, 'JUBLIE HILLS CHECK POST', 'ANDHRA JYOTHI'),
         getStops(LGPL_CRPL, "PANJAGUTTA", "PATNY"),
         getStops(DNGL_IBP, 'SECUNDERABAD', 'UPPAL RING ROAD'),
@@ -6957,6 +7197,15 @@ let DetailedRoutesDOWN = [
         SHD[794],
         getStops(TailsUP, 'SHAIKPET DARGAH', 'MANIKONDA')
     ),
+    ["47U/18"].concat(
+        SHD[144],
+        getStops(TailsDOWN, 'INDIRA NAGAR X ROADS', 'NTR STATUE (BDUPL)'),
+        getStops(GTKS_PTCR, 'BODUPPAL X ROADS', 'UPPAL RING ROAD'),
+        getStops(IBP_DNGL, 'UPPAL RING ROAD', 'SECUNDERABAD'),
+        getStops(CRPL_LGPL, "PATNY", "PANJAGUTTA"),
+        getStops(KOTI_MCRL, 'ANDHRA JYOTHI', 'JOURNLIST COLONY'),
+        getStops(TailsUP, 'ROAD NO. 45', 'AOU UNIVERSITY')
+    ),
     ["47W/16A"].concat(
         getStops(HCLX_GWRL, "ECIL X ROADS", "NEW BRIDGE"),
         getStops(IBP_DNGL, "METTUGUDA", "ALUGADDA BHAVI"),
@@ -7073,6 +7322,13 @@ let DetailedRoutesDOWN = [
         getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PATNY'),
         getStops(MHRM_MDCL, 'MOTHER TERESA STATUE', 'SECUNDERABAD')
     ),
+    ["49M/188B"].concat(
+        "BAIRAGIGUDA", "GANDHAMGUDA",
+        getStops(DRFM_RMNG, 'HYDERSHAKOTE X ROADS', 'SAI RAM NAGAR (SUNCITY)'),
+        getStops(MNBD_SRPT, 'TK BRIDGE', 'RETHIBOWLI'),
+        getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PATNY'),
+        getStops(MHRM_MDCL, 'MOTHER TERESA STATUE', 'SECUNDERABAD')
+    ),
     ["49M/229"].concat(
         getStops(MDCL_MHRM, 'MEDCHAL', 'BOWENPALLY CHECK POST'),
         getStops(DNGL_IBP, 'BOWENPALLY X ROADS', 'TARBUND'),
@@ -7120,11 +7376,11 @@ let DetailedRoutesDOWN = [
         getStops(PTCR_GTKS, 'ASSEMBLY', 'AFZALGUNJ'),
         getStops(MDCL_MHRM, 'SALARJUNG MUSEUM', 'CHARMINAR')
     ),
-    ["65/116GA"].concat(
+    ["65M/116G"].concat(
         getStops(TailsDOWN, 'GOWLI DHODDI', 'LANCO HILLS'),
         getStops(LGPL_CRPL, 'KHAJAGUDA X ROADS', 'RETHIBOWLI'),
         getStops(MNBD_SRPT, 'MEHDIPATNAM', 'LAKDI KA PUL'),
-        getStops(PTCR_GTKS, 'ASSEMBLY', 'CITY BUS STATION'),
+        getStops(PTCR_GTKS, 'ASSEMBLY', 'CITY BUS STATION')
     ),
     ["65M/123"].concat(
         getStops(MCRL_KOTI, 'MANCHIREVULA X ROADS', 'DREAM VALLY'),
@@ -7410,6 +7666,12 @@ let DetailedRoutesDOWN = [
         getStops(SHMB_KSR, 'ARAMGHAR', 'CITY BUS STATION'),
         SHD[507]
     ),
+    ["95M"].concat(
+        "JALPALLY", "WAMBAY COLONY", "LAXMIGUDA",
+        getStops(SECB_SKPL, 'DURGA NAGAR', 'BABUL REDDY NAGAR'),
+        getStops(SHMB_KSR, 'ARAMGHAR', 'CITY BUS STATION'),
+        SHD[507]
+    ),
 
     // 100 SERIES
     ["100/299"].concat(
@@ -7430,6 +7692,7 @@ let DetailedRoutesDOWN = [
         getStops(ADBT_MDCL, 'ABIDS GPO', 'ASSEMBLY'),
         SHD[139], SHD[897]
     ),
+
 
     // 102 SERIES
     ["102"].concat(
@@ -7569,6 +7832,18 @@ let DetailedRoutesDOWN = [
         getStops(PTCR_GTKS, 'AMBERPET', 'CHENGICHERLA X ROADS'),
         getStops(TailsUP, 'AYODHYA COLONY', 'CHENGICHERLA')
     ),
+    ["113IM"].concat(
+        getStops(MNBD_SRPT, 'MEHDIPATNAM', 'TELEPHONE BHAVAN'),
+        SHD[821], SHD[723], SHD[67], SHD[856], SHD[167], SHD[1075],
+        getStops(HCLX_GWRL, 'VIDYA NAGAR', 'CHEY NUMBER'),
+        getStops(PTCR_GTKS, 'AMBERPET', 'UPPAL')
+    ),
+    ["113IMZ"].concat(
+        getStops(MNBD_SRPT, 'MEHDIPATNAM', 'TELEPHONE BHAVAN'),
+        SHD[821], SHD[723], SHD[67], SHD[856], SHD[167], SHD[1075],
+        getStops(HCLX_GWRL, 'VIDYA NAGAR', 'CHEY NUMBER'),
+        getStops(PTCR_GTKS, 'AMBERPET', 'UPPAL')
+    ),
     ["113K"].concat(
         getStops(KPHB_GTKS, 'KPHB 4TH PHASE', 'KPHB MAIN ROAD'),
         getStops(PTCR_GTKS, 'KPHB MAIN ROAD', 'KHAIRATHABAD'),
@@ -7604,6 +7879,15 @@ let DetailedRoutesDOWN = [
         getStops(MNBD_SRPT, 'MEHDIPATNAM', 'SECRETARIATE'),
         getStops(TailsDOWN, 'LIBERTY', 'CHEY NUMBER'),
         getStops(PTCR_GTKS, 'AMBERPET', 'UPPAL')
+    ),
+    ["113M/120"].concat(
+        SHD[595],
+        getStops(SKPL_SECB, 'MANCHIREVULA X ROADS', 'RETHIBOWLI'),
+        getStops(MNBD_SRPT, 'MEHDIPATNAM', 'SECRETARIATE'),
+        getStops(TailsDOWN, 'LIBERTY', 'CHEY NUMBER'),
+        getStops(PTCR_GTKS, 'AMBERPET', 'BODUPPAL X ROADS'),
+        getStops(TailsUP, 'NTR STATUE (BDUPL)', 'INDIRA NAGAR X ROADS'),
+        SHD[144]
     ),
     ["113M/281"].concat(
         getStops(GTKS_KPHB, 'GHATKESAR', 'RAMPALLY X ROADS'),
@@ -7676,6 +7960,19 @@ let DetailedRoutesDOWN = [
     ),
 
     // 116 SERIES
+    ["116/220K"].concat(
+        "KOLLUR", "OSMAN NAGAR", "TELLAPUR", "GOPALPALLY X ROADS",
+        getStops(TailsDOWN, 'GOWLI DHODDI', 'LANCO HILLS'),
+        getStops(LGPL_CRPL, 'KHAJAGUDA X ROADS', 'RETHIBOWLI'),
+        getStops(MNBD_SRPT, 'MEHDIPATNAM', 'LAKDI KA PUL'),
+        getStops(PTCR_GTKS, 'ASSEMBLY', 'CITY BUS STATION')
+    ),
+    ["116G/65M"].concat(
+        getStops(GTKS_PTCR, 'CITY BUS STATION', 'ASSEMBLY'),
+        getStops(SRPT_MNBD, 'LAKDI KA PUL', 'MEHDIPATNAM'),
+        getStops(CRPL_LGPL, 'RETHIBOWLI', 'KHAJAGUDA X ROADS'),
+        getStops(TailsUP, 'LANCO HILLS', 'GOWLI DHODDI')
+    ),
     ["116GA/65"].concat(
         getStops(GTKS_PTCR, 'AFZALGUNJ', 'ASSEMBLY'),
         getStops(SRPT_MNBD, 'LAKDI KA PUL', 'MEHDIPATNAM'),
@@ -7683,6 +7980,18 @@ let DetailedRoutesDOWN = [
         getStops(TailsUP, 'LANCO HILLS', 'GOWLI DHODDI')
     ),
     ["116N"].concat(
+        getStops(TailsDOWN, 'GOWLI DHODDI', 'LANCO HILLS'),
+        getStops(LGPL_CRPL, 'KHAJAGUDA X ROADS', 'MEHDIPATNAM'),
+        getStops(MCRL_KOTI, 'MEHDIPATNAM', 'KOTI MEDICAL COLLEGE'),
+    ),
+    ["116NL"].concat(
+        SHD[558], "NALLAGANDLA", "CITIZENS HOSPITAL", "APARNA APPARTMENTS", "GOPANPALLY", "GOPANPALLY X ROADS",
+        getStops(TailsDOWN, 'GOWLI DHODDI', 'LANCO HILLS'),
+        getStops(LGPL_CRPL, 'KHAJAGUDA X ROADS', 'MEHDIPATNAM'),
+        getStops(MCRL_KOTI, 'MEHDIPATNAM', 'KOTI MEDICAL COLLEGE'),
+    ),
+    ["116N/220K"].concat(
+        "KOLLUR", "OSMAN NAGAR", "TELLAPUR", "GOPALPALLY X ROADS",
         getStops(TailsDOWN, 'GOWLI DHODDI', 'LANCO HILLS'),
         getStops(LGPL_CRPL, 'KHAJAGUDA X ROADS', 'MEHDIPATNAM'),
         getStops(MCRL_KOTI, 'MEHDIPATNAM', 'KOTI MEDICAL COLLEGE'),
@@ -7719,6 +8028,15 @@ let DetailedRoutesDOWN = [
         SHD[711], SHD[306],
         getStops(SKPL_SECB, 'GANDIPET X ROAD', 'RETHIBOWLI'),
         SHD[620]
+    ),
+    ["120/113M"].concat(
+        SHD[144],
+        getStops(TailsDOWN, 'INDIRA NAGAR X ROADS', 'NTR STATUE (BDUPL)'),
+        getStops(GTKS_PTCR, 'BODUPPAL X ROADS', 'AMBERPET'),
+        getStops(TailsUP, 'CHEY NUMBER', 'LIBERTY'),
+        getStops(SRPT_MNBD, 'SECRETARIATE', 'MEHDIPATNAM'),
+        getStops(SECB_SKPL, 'RETHIBOWLI', 'MANCHIREVULA X ROADS'),
+        SHD[595]
     ),
     ["120K/5K"].concat(
         getStops(SRPT_MNBD, "SECUNDERABAD", "MEHDIPATNAM"),
@@ -7892,6 +8210,11 @@ let DetailedRoutesDOWN = [
         getStops(BLNR_MLPT, 'VIVEKA NANDA NAGAR', 'BEERAPPA NAGAR'),
         SHD[905]
     ),
+    ["171K/198W"].concat(
+        getStops(BLNR_MLPT, 'WAVEROCK', 'JNTU COLLEGE'),
+        "JNTU COLLEGE",
+        getStops(KPHB_GTKS, 'KPHB MAIN ROAD', 'GAJULA RAMARAM')
+    ),
     ["171K/219"].concat(
         getStops(PTCR_GTKS, 'PATANCHERUVU', 'KPHB MAIN ROAD'),
         getStops(BLNR_MLPT, 'VIVEKA NANDA NAGAR', 'BEERAPPA NAGAR'),
@@ -7955,6 +8278,13 @@ let DetailedRoutesDOWN = [
         getStops(DRFM_RMNG, 'DAIRY FARM (CNTLMT)', 'SAI RAM NAGAR (SUNCITY)'),
         getStops(MNBD_SRPT, 'TK BRIDGE', 'MEHDIPATNAM')
     ),
+    ["188B/49M"].concat(
+        getStops(CRPL_LGPL, 'SECUNDERABAD', 'MEHDIPATNAM'),
+        getStops(SRPT_MNBD, "RETHIBOWLI", "TK BRIDGE"),
+        getStops(RMNG_DRFM, 'SAI RAM NAGAR (SUNCITY)', 'HYDERSHAKOTE X ROADS'),
+        "GANDHAMGUDA", "BAIRAGIGUDA"
+    ),
+
 
     // 189 SERIES
     ["189M"].concat(
@@ -7979,6 +8309,12 @@ let DetailedRoutesDOWN = [
     ),
 
     // 195 SERIES
+    ["195/272"].concat(
+        getStops(DNGL_IBP, 'GANDIMAISAMMA', 'BALANAGAR'),
+        getStops(BLNR_MLPT, 'BALANAGAR', 'KUKATPALLY'),
+        SHD[510],
+        getStops(MLPT_BLNR, 'JNTU COLLEGE', 'WAVEROCK')
+    ),
     ["195G"].concat(
         getStops(MLPT_BLNR, 'JNTU COLLEGE', 'INFOTECH'),
         "KOKAPET ORR", "GAR (KOKAPET)"
@@ -7990,6 +8326,10 @@ let DetailedRoutesDOWN = [
     ["195GK"].concat(
         getStops(MLPT_BLNR, 'JNTU COLLEGE', 'INFOTECH'),
         "KOKAPET ORR", "GAR (KOKAPET)"
+    ),
+    ["195H"].concat(
+        getStops(MLPT_BLNR, 'BACHUPALLY X ROADS', 'GACHIBOWLI DLF'),
+        getStops(CRPL_LGPL, 'GACHIBOWLI STADIUM', 'HCU BUS DEPOT')
     ),
     ["195J"].concat(
         getStops(MLPT_BLNR, 'JAGATHGIRIGUTTA', 'VIVEKA NANDA NAGAR'),
@@ -8010,6 +8350,13 @@ let DetailedRoutesDOWN = [
     ["195WP"].concat(
         getStops(MDCL_ADBT, 'GANDIMAISAMMA', 'KAISAR NAGAR'),
         getStops(TailsDOWN, 'PRAGATHI NAGAR', 'JNTU COLLEGE'),
+        getStops(MLPT_BLNR, 'JNTU COLLEGE', 'WAVEROCK')
+    ),
+
+    // 198 SERIES
+    ["198W/171K"].concat(
+        getStops(GTKS_KPHB, 'GAJULA RAMARAM', 'KPHB MAIN ROAD'),
+        SHD[510],
         getStops(MLPT_BLNR, 'JNTU COLLEGE', 'WAVEROCK')
     ),
 
@@ -8167,6 +8514,14 @@ let DetailedRoutesDOWN = [
         getStops(LGRH_KTGD, "LB NAGAR X ROADS", "HAYATHNAGAR"),
         getStops(OSK_Stops_DOWN, 'WORD & DEED', 'ABDULLAHPURMET'),
         getStops(OSK_Stops_DOWN, 'LASHKARGUDA', 'ANAJPUR')
+    ),
+    ["205B/290U"].concat(
+        SHD[898],
+        getStops(DNGL_IBP, "ALUGADDA BHAVI", "KAMINENI HOSPITALS"),
+        getStops(LGRH_KTGD, "LB NAGAR X ROADS", "HAYATHNAGAR"),
+        getStops(OSK_Stops_DOWN, 'WORD & DEED', 'ABDULLAHPURMET'),
+        getStops(OSK_Stops_DOWN, 'ABDULLAHPURMET VILLAGE', 'KAWADIPALLY'),
+        "BALIJAGUDA"
     ),
     ["205F/156"].concat(
         getStops(MNBD_SRPT, 'MEHDIPATNAM', 'LAKDI KA PUL'),
@@ -8370,6 +8725,7 @@ let DetailedRoutesDOWN = [
         SHD[3], SHD[110], SHD[507]
     ),
     ["218/277K"].concat(
+        SHD[790], SHD[885], SHD[478],
         getStops(IBP_DNGL, 'MANNEGUDA', 'SAGAR RING ROAD'),
         getStops(SKPL_SECB, 'BAIRAMALGUDA', 'KOTI WOMENS COLLEGE'),
         SHD[507], SHD[4],
@@ -8452,6 +8808,45 @@ let DetailedRoutesDOWN = [
         SHD[1087],
         getStops(GTKS_PTCR, 'KUKATPALLY GOVT COLLEGE', 'PATANCHERUVU')
     ),
+    ["219MP"].concat(
+        getStops(TailsDOWN, 'PATEL GUDA', 'BEERAMGUDA VILLAGE'),
+        getStops(PTCR_GTKS, "BEERAMGUDA", "KUKATPALLY"),
+        SHD[1087],
+        getStops(DNGL_IBP, "BALANAGAR", "SECUNDERABAD")
+    ),
+
+    // 220 SERIES
+    ["220G"].concat(
+        "GOPULAARAM", "MAHARAJPET",
+        getStops(SKPL_SECB, 'DONTANPALLY', 'RETHIBOWLI'),
+        SHD[620]
+    ),
+    ["220K/116"].concat(
+        getStops(GTKS_PTCR, 'CITY BUS STATION', 'ASSEMBLY'),
+        getStops(SRPT_MNBD, 'LAKDI KA PUL', 'MEHDIPATNAM'),
+        getStops(CRPL_LGPL, 'RETHIBOWLI', 'KHAJAGUDA X ROADS'),
+        getStops(TailsUP, 'LANCO HILLS', 'GOWLI DHODDI'),
+        "GOPALPALLY X ROADS", "TELLAPUR", "OSMAN NAGAR", "KOLLUR"
+    ),
+    ["220K/116N"].concat(
+        getStops(KOTI_MCRL, 'KOTI MEDICAL COLLEGE', 'MEHDIPATNAM'),
+        getStops(CRPL_LGPL, 'MEHDIPATNAM', 'KHAJAGUDA X ROADS'),
+        getStops(TailsUP, 'LANCO HILLS', 'GOWLI DHODDI'),
+        "GOPALPALLY X ROADS", "TELLAPUR", "OSMAN NAGAR", "KOLLUR",
+    ),
+
+
+    // 221 SERIES
+    ["221"].concat(
+        DN_221,
+        getStops(PTCR_GTKS, 'ALLWYN X ROADS', 'MIYAPUR METRO STATION')
+    ),
+    ["221G"].concat(
+        getStops(DN_221, 'GACHIBOWLI X ROADS', 'OLD HAFEEZPET'),
+        getStops(PTCR_GTKS, 'ALLWYN X ROADS', 'MIYAPUR'),
+        getStops(ADBT_MDCL, 'MIYAPUR X ROADS', 'GANDIMAISAMMA')
+    ),
+
 
     // 222 SERIES
     ["222A"].concat(
@@ -8475,6 +8870,10 @@ let DetailedRoutesDOWN = [
         getStops(GTKS_PTCR, 'PANJAGUTTA', 'MIYAPUR METRO STATION'),
         getStops(ADBT_MDCL, 'MIYAPUR X ROADS', 'MIYAPUR DEPOT'),
         SHD[795]
+    ),
+    ["224B"].concat(
+        SHD[150], "BOLLARAM GANDHI STATUE", "BOLLARAM VILLAGE ROAD",
+        getStops(MDCL_ADBT, 'IDA X ROADS', 'MIYAPUR X ROADS')
     ),
     ["224G"].concat(
         getStops(MDCL_ADBT, 'GANDIMAISAMMA', 'MIYAPUR X ROADS')
@@ -8505,6 +8904,7 @@ let DetailedRoutesDOWN = [
         getStops(BLNR_MLPT, 'NIZAMPET X ROADS', 'MALLAMPET')
     ),
     ["224X"].concat(
+        SHD[150], "BOLLARAM GANDHI STATUE", "BOLLARAM VILLAGE ROAD",
         getStops(MDCL_ADBT, 'IDA X ROADS', 'MIYAPUR X ROADS')
     ),
 
@@ -8822,6 +9222,12 @@ let DetailedRoutesDOWN = [
         getStops(GTKS_KPHB, 'NAGARAM X ROADS', 'AMBEDKAR NAGAR'),
         "AMBEDKAR NAGAR CIRCLE"
     ),
+    ["250E"].concat(
+        getStops(TailsUP, 'CHENGICHERLA DEPOT', 'CHENGICHERLA'),
+        "IOC X ROADS",
+        getStops(CRPL_LGPL, 'CHERLAPALLY', 'HCL PHASE 1'),
+        getStops(HCLX_GWRL, 'HCL X ROADS', 'ECIL X ROADS')
+    ),
     ["250S"].concat(
         getStops(CRPL_LGPL, 'NOMA', 'ALUGADDA BHAVI'),
         SHD[878], SHD[898]
@@ -8889,11 +9295,6 @@ let DetailedRoutesDOWN = [
     ),
 
     // 252 SERIES
-    ["252S"].concat(
-        getStops(OSK_Stops_DOWN, 'SHANKARAPUR', 'RASHEEDGUDA'),
-        'KISHANGUDA',
-        getStops(SHMB_KSR, 'SHAMSHABAD', 'AFZALGUNJ')
-    ),
     ["252/3K"].concat(
         getStops(KSR_SHMB, 'ECIL X ROADS', 'SHAMSHABAD'),
         SHD[843]
@@ -8908,6 +9309,17 @@ let DetailedRoutesDOWN = [
         getStops(SRPT_MNBD, 'LAKDI KA PUL', 'MEHDIPATNAM'),
         getStops(CRPL_LGPL, 'RETHIBOWLI', 'GACHIBOWLI DLF'),
         getStops(MLPT_BLNR, 'INFOSYS', 'WAVEROCK')
+    ),
+    ["252S"].concat(
+        getStops(OSK_Stops_DOWN, 'SHANKARAPURAM', 'RASHEEDGUDA'),
+        'KISHANGUDA',
+        getStops(SHMB_KSR, 'SHAMSHABAD', 'AFZALGUNJ')
+    ),
+    ["252S/8A"].concat(
+        getStops(MDCL_MHRM, 'SECUNDERABAD', 'OSMANGUNJ'),
+        getStops(KSR_SHMB, 'AFZALGUNJ', 'SHAMSHABAD'),
+        'KISHANGUDA',
+        getStops(OSK_Stops, 'RASHEEDGUDA', 'SHANKARAPURAM')
     ),
 
     // 253 SERIES
@@ -8954,6 +9366,12 @@ let DetailedRoutesDOWN = [
     ["272"].concat(
         SHD[157], SHD[158],
         getStops(DNGL_IBP, "GANDIMAISAMMA", "SECUNDERABAD")
+    ),
+    ["272/195"].concat(
+        getStops(BLNR_MLPT, 'WAVEROCK', 'JNTU COLLEGE'),
+        SHD[442], SHD[510],
+        getStops(MLPT_BLNR, 'KUKATPALLY', 'BALANAGAR'),
+        getStops(IBP_DNGL, 'IDPL', 'GANDIMAISAMMA')
     ),
     ["272G/9K"].concat(
         SHD[11],
@@ -9043,7 +9461,8 @@ let DetailedRoutesDOWN = [
         getStops(PTCR_GTKS, 'MIYAPUR X ROADS', 'ASSEMBLY'),
         SHD[3], SHD[110], SHD[506],
         getStops(SECB_SKPL, 'KOTI WOMENS COLLEGE', 'BAIRAMALGUDA'),
-        getStops(DNGL_IBP, 'SAGAR RING ROAD', 'MANNEGUDA')
+        getStops(DNGL_IBP, 'SAGAR RING ROAD', 'MANNEGUDA'),
+        SHD[478], SHD[885], SHD[790]
     ),
     ["277L"].concat(
         getStops(IBP_DNGL, "IBRAHIMPATNAM", "LB NAGAR X ROADS"),
@@ -9238,6 +9657,12 @@ let DetailedRoutesDOWN = [
         getStops(IBP_DNGL, 'UPPAL RING ROAD', 'SECUNDERABAD')
     ),
 
+    // 284 SERIES
+    ["284P"].concat(
+        "PRATHAP SINGARAM", "MUTHYALAGUDA", "KACHAVANI SINGARAM", "LAXMI NAGAR (PARVATHPUR)", "GANDHI NAGAR (PARVATHPUR)", "PARVATHPURAM", "RTC COLONY (PARVATHAPUR)", "PEERJADIGUDA", "INDIAN INTERNATIONAL SCHOOL",
+        getStops(GTKS_PTCR, 'PEERJADIGUDA KAMAN', 'UPPAL RING ROAD')
+    ),
+
     // 288 SERIES
     ["288"].concat(
         getStops(MNBD_SRPT, 'MOINABAD', 'MEHDIPATNAM')
@@ -9261,6 +9686,10 @@ let DetailedRoutesDOWN = [
         getStops(OSK_Stops_DOWN, 'CHILKOOR X ROADS', 'HIMAYATH NAGAR VILLAGE'),
         getStops(MNBD_SRPT, 'HIMAYATH NAGAR JUNCTION', 'MEHDIPATNAM')
     ),
+    ["288E"].concat(
+        getStops(OSK_Stops, 'BAKARAM', 'YENKEPALLY'),
+        getStops(MNBD_SRPT, 'HIMAYATH NAGAR JUNCTION', 'MEHDIPATNAM')
+    ),
     ["288D/19K"].concat(
         getStops(PTCR_GTKS, 'KUKATPALLY', 'PANJAGUTTA'),
         getStops(CRPL_LGPL, 'PANJAGUTTA', 'MEHDIPATNAM'),
@@ -9272,6 +9701,19 @@ let DetailedRoutesDOWN = [
         getStops(MNBD_SRPT, 'MOINABAD', 'LAKDI KA PUL'),
         getStops(MDCL_ADBT, 'ASSEMBLY', 'BANK STREET (KOTI)'),
         SHD[507]
+    ),
+    ["288NB"].concat(
+        getStops(OSK_Stops_DOWN, 'BAKARAM', 'AZIZ NAGAR'),
+        getStops(MNBD_SRPT, 'POLICE ACADEMY', 'MEHDIPATNAM')
+    ),
+    ["288R"].concat(
+        "CHINNA MANGALAARAM", "REDDYPALLY", "CHANDANAGAR X ROADS", "CHANDA NAGAR VILLAGE", "CHANDANAGAR X ROADS",
+        getStops(OSK_Stops_DOWN, 'APPOJIGUDA X ROADS', 'HIMAYATH NAGAR VILLAGE'),
+        getStops(MNBD_SRPT, 'HIMAYATH NAGAR JUNCTION', 'MEHDIPATNAM')
+    ),
+    ["288Y"].concat(
+        "YELKAGUDA", "QUTHBUDDINGUDA", "REDDYPALLY", "CHANDANAGAR X ROADS", "PEDDA MANGALARAM",
+        getStops(MNBD_SRPT, 'MOINABAD', 'MEHDIPATNAM')
     ),
 
     // 290 SERIES
@@ -9361,6 +9803,14 @@ let DetailedRoutesDOWN = [
         getStops(IBP_DNGL, "KAMINENI HOSPITALS", "SECUNDERABAD"),
         SHD[754],
         SHD[448]
+    ),
+    ["290U/205B"].concat(
+        "BALIJAGUDA",
+        getStops(OSK_Stops, 'KAWADIPALLY', 'ABDULLAHPURMET VILLAGE'),
+        getStops(OSK_Stops, 'ABDULLAHPURMET', 'WORD & DEED'),
+        getStops(KTGD_LGRH, "HAYATHNAGAR", "LB NAGAR X ROADS"),
+        getStops(IBP_DNGL, "KAMINENI HOSPITALS", "ALUGADDA BHAVI"),
+        SHD[898]
     ),
     ["290U/205M"].concat(
         getStops(OSK_Stops_DOWN, 'MAJEEDPUR VILLAGE', 'GUNTAPALLY'),
@@ -9463,6 +9913,11 @@ let DetailedRoutesDOWN = [
         getStops(IBP_DNGL, 'IBRAHIMPATNAM', 'SAGAR RING ROAD'),
         getStops(SKPL_SECB, 'BAIRAMALGUDA', 'KOTI WOMENS COLLEGE')
     ),
+    ["444"].concat(
+        "MEDIPALLI VILLAGE", "VEERANNAPET", "REDDYPALLY", "CHANDANAGAR X ROADS",
+        getStops(OSK_Stops_DOWN, 'APPOJIGUDA X ROADS', 'HIMAYATH NAGAR VILLAGE'),
+        getStops(MNBD_SRPT, 'HIMAYATH NAGAR JUNCTION', 'MEHDIPATNAM')
+    ),
     ["445"].concat(
         getStops(OSK_Stops_DOWN, 'KETHIREDDYPALLY', 'SAJJANPALLY X ROADS'),
         getStops(OSK_Stops, 'KETHIREDDYPALLY ROAD', 'AYAAN INSTITUTE OF MEDICAL'),
@@ -9524,6 +9979,11 @@ let DetailedRoutesDOWN = [
         getStops(OSK_Stops, 'ANNARAM', 'DUNDIGAL X ROADS'),
         "DOMARAPOCHAMPALLY",
         getStops(DNGL_IBP, 'GANDIMAISAMMA', 'SECUNDERABAD')
+    ),
+    ["497"].concat(
+        getStops(OSK_Stops_DOWN, 'HAZIPUR', 'RANGAPURAM'),
+        getStops(OSK_Stops, 'RANGAPURAM X ROADS', 'ANKIREDDYPALLY X ROADS'),
+        getStops(KSR_SHMB, "KEESARAGUTTA KAMAN", "ECIL X ROADS")
     ),
     ["498"].concat(
         "KESAVAPUR",
@@ -9914,12 +10374,17 @@ function setRouteOutputContent(routeNoI) {
         routeNumberDown = "";
     }
 
+    secBad_SS_UP = "";
+    secBad_SS_DN = "";
+
     switch (routeNoI) {
         // HD1 SERIES
         case "1":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AFZALGUNJ";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1/25S":
@@ -9938,18 +10403,24 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AFZALGUNJ";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1C":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CBS";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1D":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DILSHUKNAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1D/229":
@@ -9968,54 +10439,72 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "HAYATHNAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1HD":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SAROORNAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1J":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "JIYAGUDA";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1JL":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "LANGER HOUSE";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1JK":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KALI MANDIR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1K":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KACHEGUDA DEPOT";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1L":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "LB NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1MD":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "NEW MARUTHI NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1P":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AFZALGUNJ";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1P/25S":
@@ -10028,36 +10517,48 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "NGO's COLONY";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1VM":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SAI NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1VS":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SAHAB NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1W":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KOTI W.COLLEGE";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1X":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KACHEGUDA STATION";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1Z":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ARAMGHAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "1Z/229":
@@ -10083,6 +10584,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AFZALGUNJ";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "2/25S":
@@ -10095,36 +10598,48 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BARKAS";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "2J":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "JIYAGUDA";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "2K":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KACHEGUDA DEPOT";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "2U":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "UPPUGUDA";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "2Z":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SRI RAM COLONY";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "2Z/251":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SHAMSHABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         // HD3 SERIES
@@ -10309,18 +10824,24 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GOLCONDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "5K":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MEHDIPATNAM";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "5KM":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MANIKONDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "5K/16A":
@@ -10363,30 +10884,40 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ARAMGHAR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "5K/92R":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "RAJENDRA NAGAR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "5K/120K":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KOKAPET";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "5K/125":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KONDAPUR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "5K/188":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KALI MANDIR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "5K/229":
@@ -10399,12 +10930,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SHAMSHABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "5M":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MEHDIPATNAM";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "5R":
@@ -10423,6 +10958,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "WAVEROCK";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD6 SERIES
@@ -10473,12 +11010,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ARAMGHAR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "7Z/251":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SHAMSHABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD8 SERIES
@@ -10492,6 +11033,8 @@ function setRouteOutputContent(routeNoI) {
             note = 1;
             starting = "SECUNDERABAD";
             destination = "CHANDRAYANGUTTA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
 
             introPartUP = "Bus Route <strong>" + routeNoI + "</strong> runs Between <strong>" + capitalizeText(starting) + "</strong> and <strong>" + capitalizeText(destination) + ".</strong> Sometimes, it ends at <strong>Charminar</strong> instead of going all the way to Chandrayangutta. Here are all the stops it covers: ";
 
@@ -10502,54 +11045,72 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PAHADI SHARIF";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "8A/178G":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GOUSE NAGAR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "8A/251":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KOTHUR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "8A/252S":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SHANKARAPURAM";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "8A/253":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SHAMSHABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "8A/532":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KOTHUR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "8A/539":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KANHA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "8AK":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CHANDRAYANGUTTA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "8C":
             note = 1;
             starting = "SECUNDERABAD";
             destination = "CHANDRAYANGUTTA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
 
             introPartUP = "Bus Route <strong>" + routeNoI + "</strong> runs Between <strong>" + capitalizeText(starting) + "</strong> and <strong>" + capitalizeText(destination) + ".</strong> Sometimes, it ends at <strong>Charminar</strong> instead of going all the way to Chandrayangutta. Here are all the stops it covers: ";
 
@@ -10560,6 +11121,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PAHADI SHARIF";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "8C/229":
@@ -10578,12 +11141,15 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "RISALA BAZAR";
             destination = "CBS";
+
             break;
 
         case "8UA":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "UPPUGUDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD9 SERIES
@@ -10681,24 +11247,32 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SANATH NAGAR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10F":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BORABANDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10FV":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "VBIT PARK";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10H":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KONDAPUR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10H/16A":
@@ -10723,30 +11297,40 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PATANCHERUVU";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10HL":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "LINGAMPALLY";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10HP":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PREM NAGAR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10HW":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "WAVEROCK";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10J":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "JNTU COLLEGE";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10J/171":
@@ -10765,6 +11349,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KPHB 4TH PHASE";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10K/250":
@@ -10777,6 +11363,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "JAGATHGIRIGUTTA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10KJ/18":
@@ -10789,36 +11377,48 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "LINGAMPALLY";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10KM":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MIYAPUR";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10KM/224G":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GANDIMAISAMMA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10W":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "WAVEROCK";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10Y":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "YOUSUFGUDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10YF":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BORABANDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "10YF/16S":
@@ -10839,12 +11439,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PRASHANTH NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "14PX":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         // HD15 SERIES
@@ -10852,12 +11456,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AMBEDKAR NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "15H":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KUSHAIGUDA";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "15H/20":
@@ -10870,6 +11478,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "RG COLONY";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "15D/20":
@@ -10889,6 +11499,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "16A/5K":
@@ -10949,12 +11561,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "16C":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "16C/5K":
@@ -10997,6 +11613,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "16CR/38T":
@@ -11009,6 +11627,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AMBEDKAR NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "16CD/5K":
@@ -11027,6 +11647,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AMBEDKAR NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "16D/5K":
@@ -11057,6 +11679,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "16H/49M":
@@ -11069,18 +11693,24 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "YAPRAL";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "16P":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PRASHANTH NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "16PX":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "16R/20":
@@ -11106,36 +11736,48 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CHERLAPALLY";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "17D":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AMBEDKAR NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "17DH":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BALAJI NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "17DS":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BALAJI NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "17DV":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "VIKAS NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "17H":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "17H/29B":
@@ -11160,24 +11802,32 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KEESARAGUTTA";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "17HN":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "17S":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KUSHAIGUDA";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "17V":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "VIKAS NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         // HD18 SERIES
@@ -11185,6 +11835,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "UPPAL";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "18/10KJ":
@@ -11215,12 +11867,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CCMB COLONY";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "18C":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CHENGICHERLA";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "18C/10H":
@@ -11257,12 +11913,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "RAMANTHAPUR CHURCH CLY";
             destination = "JBS";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "18V":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "VENKATREDDY NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "18VJ":
@@ -11275,6 +11935,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "RAMANTHAPUR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         // HD19 SERIES
@@ -11379,6 +12041,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "NAMPALLY";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         // HD21 SERIES
@@ -11386,6 +12050,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "WEST VENKATAPURAM";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD22 SERIES
@@ -11393,6 +12059,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "HAKIMPET";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "22/49E":
@@ -11411,12 +12079,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MB DARGAH";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "22K":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "RAJIV GRUHAKALPA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD23 SERIES
@@ -11424,42 +12096,56 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BHUDEVI NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "23BK":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KISTAMMA ENCLAVE";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "23BS":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SUCHITRA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "23GF":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GREEN FIELDS";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "23GS":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SUCHITRA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "23K":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KISTAMMA ENCLAVE";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "23T":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "TELECOM NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD24 SERIES
@@ -11467,12 +12153,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "YAPRAL";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "24B":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BALAJI NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "24B/16D":
@@ -11485,36 +12175,48 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GHATKESAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "24BA":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AMBEDKAR NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "24BJ":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BJR NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "24E":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "24J":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "24L/281":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GHATKESAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "24S":
@@ -11540,42 +12242,56 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SURYA NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "25AJ":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "JONNABANDA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "25AJ/M":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GOPAL NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "25M":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GOPAL NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "25MS":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SHARAN NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "25P":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PANCHASHEELA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "25S":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SUCHITRA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "25S/1":
@@ -11619,6 +12335,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "OLD BOWENPALLY";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "26M/49M":
@@ -11631,6 +12349,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "OLD BOWENPALLY";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD29 SERIES
@@ -11638,6 +12358,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "JEEDIMETLA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "29B/17H":
@@ -11650,12 +12372,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GANDIMAISAMMA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "29B/272I":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "INDIRAMMA COLONY";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "29Q":
@@ -11668,6 +12394,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SUBHASH NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD30 SERIES
@@ -11675,12 +12403,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "JAGATHGIRIGUTTA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "30S":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SRINIVAS COLONY";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "30/18C":
@@ -11700,6 +12432,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PRAGATHI NAGAR";
+            // secBad_SS_UP = BSH_SS;
+            // secBad_SS_DN = BSH_SS;
             break;
 
         // HD37 SERIES
@@ -11707,12 +12441,14 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "37/8":
             note = 0;
             starting = "KUSHAIGUDA";
-            destination = "GANDHI BHAVANf";
+            destination = "GANDHI BHAVAN";
             break;
 
         // HD38 SERIES
@@ -11720,36 +12456,48 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "38M":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MAHENDRA HILLS";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "38X":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "38T":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "TUKARAMGATE";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "38T/16C":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "38T/16CR":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         // HD40 SERIES
@@ -11757,6 +12505,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KOTI";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD41 SERIES
@@ -11771,6 +12521,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GANGAPUTRA COLONY";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         // HD45 SERIES
@@ -11785,6 +12537,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PATIGADDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD47 SERIES
@@ -11798,6 +12552,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MANIKONDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "47L/16A":
@@ -11822,12 +12578,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MANIKONDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "47YM":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MANCHIREVULA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "47W/16A":
@@ -11847,6 +12607,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "NAMPALLY";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "49/250":
@@ -11859,6 +12621,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AFZALGUNJ";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "49E/22":
@@ -11871,6 +12635,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MEHDIPATNAM";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "49M/16A":
@@ -11949,6 +12715,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "TALLAGADDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "49MT/250":
@@ -11962,6 +12730,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CHENGICHERLA";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         // HD65 SERIES
@@ -12076,12 +12846,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "PAHADI SHARIF";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "85P/8C":
             note = 0;
             starting = "PAHADI SHARIF";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "85/253L":
@@ -12101,24 +12875,32 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AFZALGUNJ";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "86C":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CBS";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "86J":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "JIYAGUDA";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "86K":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KOTI";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         // HD90 SERIES
@@ -12126,18 +12908,23 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "JBS";
             destination = "FAB CITY";
+
             break;
 
         case "90/300":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MEHDIPATNAM";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "90B":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BANDLAGUDA DEPOT";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "90BE":
@@ -12150,6 +12937,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DILSHUKNAGAR";
+            secBad_SS_UP = CLG_SS;
+            secBad_SS_DN = CLG_SS;
             break;
 
         case "90NU":
@@ -12223,12 +13012,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "ARAMGHAR";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "92A/49M":
             note = 0;
             starting = "ARAMGHAR";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "92K":
@@ -12247,6 +13040,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "RAJENDRA NAGAR";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD94 SERIES
@@ -12314,7 +13109,7 @@ function setRouteOutputContent(routeNoI) {
 
         case "100X":
             note = 0;
-            starting = "LB NAGAR";
+            starting = "DILSHUKNAGAR";
             destination = "BADANGPET";
             break;
 
@@ -12371,6 +13166,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "NADERGUL";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "102B/218":
@@ -12417,36 +13214,48 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DILSHUKNAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "107JL":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "LB NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "107JS":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SAROOR NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "107VL":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "LB NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "107VR":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DILSHUKNAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "107VS":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SAROOR NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         // HD113 SERIES
@@ -12665,6 +13474,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "KOKAPET";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD123 SERIES
@@ -12685,6 +13496,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "KONDAPUR";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD126 SERIES
@@ -12811,6 +13624,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GAJULARAMARAM";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "171/10J":
@@ -12841,6 +13656,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SRI RAM NAGAR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "171M/189M":
@@ -12912,6 +13729,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "KALI MANDIR";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "188/251":
@@ -12924,6 +13743,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "BAIRAGIGUDA";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD189 SERIES
@@ -13098,6 +13919,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "RAVIRYALA";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "203N":
@@ -13122,6 +13945,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "NADERGUL";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "203N/218":
@@ -13209,48 +14034,64 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "POTHAIPALLY";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "211/242":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DONGALAMYSAMMA";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "211B":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "UDDHAMARRI";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "211CD":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DRDO (YADGARPALLY)";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "211D":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KOLTHUR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "211DY":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DEVARAYAMJAL";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "211K":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KESHAVARAM";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "211M":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CRPF";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD212 SERIES
@@ -13258,18 +14099,24 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BITS PILANI";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "212/702":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "VARGAL TEMPLE";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "212T":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "TURKAPALLY";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD215 SERIES
@@ -13407,6 +14254,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PATANCHERUVU";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "219/16A":
@@ -13491,6 +14340,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PATEL GUDA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD220 SERIES
@@ -13598,6 +14449,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PATANCHERUVU";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD227 SERIES
@@ -13605,12 +14458,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GANDIMAISAMMA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "227/25S":
             note = 0;
             starting = "GANDIMAISAMMA";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD229 SERIES
@@ -13618,6 +14475,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MEDCHAL";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "229/1D":
@@ -13708,6 +14567,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PUDUR";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD230 SERIES
@@ -13715,18 +14576,24 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ANNARAM";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "230AN":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ANNARAM";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "230P":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DUNDIGAL";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "230P/9K":
@@ -13758,6 +14625,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KAZIPALLY";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD233 SERIES
@@ -13765,6 +14634,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "NUTHANAKAL";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD241 SERIES
@@ -13772,6 +14643,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DHARMAVARAM";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         // HD242 SERIES
@@ -13779,6 +14652,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KEESARAGUTTA";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "242/3K":
@@ -13791,12 +14666,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "KEESARAGUTTA";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "242/211":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DONGALAMYSAMMA";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "242/272G":
@@ -13809,42 +14688,56 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ANKIREDDYPALLY";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "242B":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BOGARAM";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "242BJ":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "JINNARAM COLONY";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "242G":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KEESARA";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "242GA":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ANKIREDDYPALLY";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "242RG":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "RG COLONY";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "242RG/15H":
             note = 0;
             starting = "RG COLONY";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         // HD245 SERIES
@@ -13859,6 +14752,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "ECIL X ROADS";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "250/10K":
@@ -13901,6 +14796,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CHERLAPALLY";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "250C/49M":
@@ -13913,6 +14810,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "AMBEDKAR NAGAR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "250D/49M":
@@ -13931,12 +14830,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CHENGICHERLA";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "250SS":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "CHENGICHERLA DEPOT";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         // HD251 SERIES
@@ -14976,6 +15879,16 @@ function fillNewUIrouteListNEW(route, direction) {
             if (i == 1) {
                 graphics.classList.add('first');
             }
+
+            if (route[i] == "SECUNDERABAD") {
+                if (direction == 1) {
+                    substopName.innerHTML = secBad_SS_UP;
+                } else {
+                    substopName.innerHTML = secBad_SS_DN;
+                }
+            }
+
+
 
             graphics.appendChild(circle);
             text.appendChild(stopName);
