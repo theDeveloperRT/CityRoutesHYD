@@ -2,19 +2,11 @@ let navs = document.querySelectorAll('.navLinks');
 let sideScreenMenu = document.querySelector('.sideScreenMenu');
 let menuItems = document.querySelector('.menuItems');
 
-let outputContent = getId('outputContent');
-let routeSection1 = getId('routeSection1');
-let routeSection2 = getId('routeSection2');
-let PPbusStations = getId('PPbusStations');
-
 let OutputScreen = getId('OutputScreen');
 let OutputScreen2 = getId('OutputScreen2');
 let OutputScreen3 = getId('OutputScreen3');
 let outputBusStopPart1 = getId('outputBusStopPart1');
 let outputBusStopPart2 = getId('outputBusStopPart2');
-
-let junctionStopsHeading = getId('junctionStopsHeading');
-let avlBusStops = getId('avlBusStops');
 
 let regularRoutesOutput = getId('regularRoutesOutput');
 let rareRoutesOutput = getId('rareRoutesOutput');
@@ -22,11 +14,6 @@ let rareRoutesOutput = getId('rareRoutesOutput');
 // Font Size Handling Handles
 let StopNameHead = getId('StopNameHead');
 let StopNameSub = getId('StopNameSub');
-
-// Route Output Screen Handles
-let output2RouteHolder = getId('output2RouteHolder');
-let route1No = getId('route1No');
-let route2No = getId('route2No');
 
 // Input Handles
 let input1 = getId('input1');
@@ -51,8 +38,6 @@ let rareRoutesOutputFT = getId('rareRoutesOutputFT');
 let fareChartOutput = getId('fareChart');
 
 // Alternate Handles
-let outputBusStopPart2ALT = getId('outputBusStopPart2ALT');
-
 let ALTroute1 = getId('ALTroute1');
 let ALTroute2 = getId('ALTroute2');
 
@@ -90,59 +75,14 @@ let r2_3pNW_OR = getId('r2_3pNW_OR');
 let h3_3pNW_OR = getId('h3_3pNW_OR');
 let r3_3pNW_OR = getId('r3_3pNW_OR');
 
-let ALT_DetailedRoute_3P = getId('ALT_DetailedRoute_3P');
-let ALT_DetailedRoute_content = getId('ALT_DetailedRoute_content');
-
-
-
-// Detailed Route Output Handles
-let upSource = getId('upSource');
-let upViaList = getId('upViaList');
-let upDestination = getId('upDestination');
-
-let downSource = getId('downSource');
-let downViaList = getId('downViaList');
-let downDestination = getId('downDestination');
-
-let upRouteHolder = getId('upRouteHolder');
-let downRouteHolder = getId('downRouteHolder');
-
-let upRouteStopsList = getId('upRouteStopsList');
-let downRouteStopsList = getId('downRouteStopsList');
-
-let upRouteDownSpan = getId('upRouteDownSpan');
-let upRouteDownIcon = getId('upRouteDownIcon');
-
-let downRouteDownSpan = getId('downRouteDownSpan');
-let downRouteDownIcon = getId('downRouteDownIcon');
-
 // Alert Box Handles
-let popUpScreen = getId('popUpScreen');
-let alertBox = getId('alertBox');
-let successBox = getId('successBox');
-let contactBox = getId('contactBox');
-
-let errorBox = getId('errorBox');
 let errorMessage = getId('errorMessage');
-
-let headlineAlert = getId('headlineAlert');
-let messageAlert = getId('messageAlert');
 
 // Other Section Handles
 let otherSectionsScreen = getId('otherSectionsScreen');
-let otherSectionsScreenHeading = getId('otherSectionsScreenHeading');
-let busPassInfoScreen = getId('busPassInfoScreen');
-let helpScreen = getId('helpScreen');
-let shareAppScreen = getId('shareAppScreen');
-let ShortformsScreen = getId('ShortformsScreen');
 
 // Route List New UI Handles
-let routeOutputNewOutline = getId('routeOutputNewOutline');
-let contentRO = getId('contentRO');
 let stopsList = getId('stopsList');
-
-let newUISource = getId('newUISource');
-let newUIDestination = getId('newUIDestination');
 
 // Referance Arrays and Variables
 let starting, destination, upRouteArray, downRouteArray, direction, routeNumberRef, secBad_SS_UP, secBad_SS_DN;
@@ -10180,8 +10120,8 @@ function navigation(ref) {
         case 1:
             // Routes
             input1.setAttribute('placeholder', 'Search By Route No...');
-            routeSection1.classList.remove('close');
-            routeSection2.classList.remove('close');
+            getId('routeSection1').classList.remove('close');
+            getId('routeSection2').classList.remove('close');
 
             randomRoutes3 = getRandomRoutes(routesArrayLEN3, 5);
             randomRoutes4 = getRandomRoutes(routesArrayLEN4, 4);
@@ -10198,7 +10138,7 @@ function navigation(ref) {
         case 2:
             // Bus Stop
             input1.setAttribute('placeholder', 'Search By Bus Stop...');
-            PPbusStations.classList.remove('close');
+            getId('PPbusStations').classList.remove('close');
 
             suggessionsArray = SHD;
             feature = 2;
@@ -10291,28 +10231,28 @@ function menuItemsClick(ref) {
 }
 
 function displayOtherSections(screen, heading) {
-    busPassInfoScreen.classList.add('hide');
-    helpScreen.classList.add('hide');
-    shareAppScreen.classList.add('hide');
-    ShortformsScreen.classList.add('hide');
-    otherSectionsScreenHeading.innerHTML = heading;
+    getId('busPassInfoScreen').classList.add('hide');
+    getId('helpScreen').classList.add('hide');
+    getId('shareAppScreen').classList.add('hide');
+    getId('ShortformsScreen').classList.add('hide');
+    getId('otherSectionsScreenHeading').innerHTML = heading;
     if (screen == 1) {
-        busPassInfoScreen.classList.remove('hide');
+        getId('busPassInfoScreen').classList.remove('hide');
     } else if (screen == 2) {
-        helpScreen.classList.remove('hide');
+        getId('helpScreen').classList.remove('hide');
     } else if (screen == 3) {
-        shareAppScreen.classList.remove('hide');
+        getId('shareAppScreen').classList.remove('hide');
     } else if (screen == 4) {
-        ShortformsScreen.classList.remove('hide');
+        getId('ShortformsScreen').classList.remove('hide');
     }
 }
 
 function hideHomeScreenSections() {
     swapIconContainer.classList.add('hide');
     input2Container.classList.add('hide');
-    routeSection1.classList.add('close');
-    routeSection2.classList.add('close');
-    PPbusStations.classList.add('close');
+    getId('routeSection1').classList.add('close');
+    getId('routeSection2').classList.add('close');
+    getId('PPbusStations').classList.add('close');
     FromToSuggesions.classList.add('hide');
     // clear1.classList.add('hide');
     // clear2.classList.add('hide');
@@ -10359,7 +10299,7 @@ function setRouteOutputContent(routeNoI) {
     }
 
     if (routeNoI.includes("/")) {
-        output2RouteHolder.classList.add('doubleNumber');
+        getId('output2RouteHolder').classList.add('doubleNumber');
         if (routeNoI == "1/25S/229") {
             routeNumberUP = "1/25S";
             routeNumberDown = "229";
@@ -10369,7 +10309,7 @@ function setRouteOutputContent(routeNoI) {
             routeNumberDown = routeRef[1];
         }
     } else {
-        output2RouteHolder.classList.remove('doubleNumber');
+        getId('output2RouteHolder').classList.remove('doubleNumber');
         routeNumberUP = routeNoI;
         routeNumberDown = "";
     }
@@ -14829,7 +14769,7 @@ function setRouteOutputContent(routeNoI) {
         case "250S":
             note = 0;
             starting = "SECUNDERABAD";
-            destination = "CHENGICHERLA";
+            destination = "CHENGICHERLA DEPOT";
             secBad_SS_UP = BSH_SS;
             secBad_SS_DN = BSH_SS;
             break;
@@ -14847,36 +14787,48 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SHAMSHABAD";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "251/2Z":
             note = 0;
             starting = "SHAMSHABAD";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "251/5K":
             note = 0;
             starting = "SHAMSHABAD";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "251/7Z":
             note = 0;
             starting = "SHAMSHABAD";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "251/8A":
             note = 0;
             starting = "KOTHUR";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "251/90L":
             note = 0;
             starting = "SHAMSHABAD";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "251/188":
@@ -14920,6 +14872,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SHANKARAPURAM";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         // HD253 SERIES
@@ -14933,6 +14887,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SHAMSHABAD";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "253L/85":
@@ -14971,6 +14927,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BOWRAMPET";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "272/195":
@@ -14983,6 +14941,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BOWRAMPET";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "272G/9K":
@@ -15007,6 +14967,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "GANDIMAISAMMA";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "272G/83J":
@@ -15043,6 +15005,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "INDIRAMMA COLONY";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD273 SERIES
@@ -15119,6 +15083,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "GHATKESAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "280/20":
@@ -15143,18 +15109,24 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "PILLAIPALLY";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "280/488":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BIBI NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "280B":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BOGARAM";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "280I":
@@ -15173,6 +15145,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "NFC NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "280X":
@@ -15234,6 +15208,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "RTC COLONY";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         // HD282 SERIES
@@ -15248,6 +15224,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SURARAM COLONY";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "283D/9X":
@@ -15260,24 +15238,32 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KORREMULA";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "283T":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "TENUGUDEM";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "283VS":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "SURARAM VILLAGE";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "283S/18":
             note = 0;
             starting = "KORREMULA";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         // HD284 SERIES
@@ -15499,6 +15485,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "MEHDIPATNAM";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "300/118W":
@@ -15523,6 +15511,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KANHA";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "300L":
@@ -15590,24 +15580,32 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "BIBI NAGAR";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "490S":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "BIBI NAGAR";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "492/280":
             note = 0;
             starting = "PILLAIPALLY";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "495":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KANUKUNTA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "497":
@@ -15620,24 +15618,32 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KESHAVAPUR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "498K":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "KOTHAPALLY";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "498U":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "UDDHAMARRI";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "498VJ":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "JINNARAM";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         // HD500 SERIES
@@ -15693,6 +15699,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "KOTHUR";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "537":
@@ -15711,18 +15719,24 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "KANHA";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "539/8A":
             note = 0;
             starting = "KANHA";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
             break;
 
         case "539/300":
             note = 0;
             starting = "KANHA";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = RTF_SS;
+            secBad_SS_DN = RTF_SS;
             break;
 
         case "546":
@@ -15747,18 +15761,24 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MARKOOK";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "568":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "DAMARAKUNTA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "571T":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "THIMMAPUR";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "578":
@@ -15771,12 +15791,16 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "YADAGIRIGUTTA";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
             break;
 
         case "589":
             note = 0;
             starting = "SECUNDERABAD";
             destination = "RAMAYAMPET";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
         case "592":
@@ -15796,6 +15820,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "VARGAL TEMPLE";
             destination = "SECUNDERABAD";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
             break;
 
 
@@ -16029,8 +16055,8 @@ function viewStop(ref) {
         sub = '';
         outputBusStopPart1.classList.add('hide');
         outputBusStopPart2.classList.remove('hide');
-        avlBusStops.innerHTML = '';
-        junctionStopsHeading.innerHTML = 'Bus Stops in ' + JunctionStop.charAt(0).toUpperCase() + JunctionStop.slice(1).toLowerCase();;
+        getId('avlBusStops').innerHTML = '';
+        getId('junctionStopsHeading').innerHTML = 'Bus Stops in ' + JunctionStop.charAt(0).toUpperCase() + JunctionStop.slice(1).toLowerCase();;
         let index = junctionStopsArray.indexOf(JunctionStop);
 
         junctionStopsArrayStops[index].forEach(element => {
@@ -16038,7 +16064,7 @@ function viewStop(ref) {
             listItem.setAttribute('value', 1);
             listItem.setAttribute('onclick', 'viewStop(this)');
             listItem.textContent = element;
-            avlBusStops.appendChild(listItem);
+            getId('avlBusStops').appendChild(listItem);
         });
 
     } else {
@@ -16976,27 +17002,27 @@ function openMenu() {
 let subHelpScreen = 0;
 
 function openPopUpBox(type, message) {
-    popUpScreen.classList.remove('hide');
+    getId('popUpScreen').classList.remove('hide');
 
-    alertBox.classList.add('hide');
-    contactBox.classList.add('hide');
-    successBox.classList.add('hide');
-    errorBox.classList.add('hide');
-    ALT_DetailedRoute_3P.classList.add('hide');
+    getId('alertBox').classList.add('hide');
+    getId('contactBox').classList.add('hide');
+    getId('successBox').classList.add('hide');
+    getId('errorBox').classList.add('hide');
+    getId('ALT_DetailedRoute_3P').classList.add('hide');
 
     if (type == 1) {
-        alertBox.classList.remove('hide');
+        getId('alertBox').classList.remove('hide');
         if (message == "DA") {
-            messageAlert.innerHTML = "Direct Buses are Available, Do you want to view them?";
+            getId('messageAlert').innerHTML = "Direct Buses are Available, Do you want to view them?";
         } else if (message == "DNA") {
-            messageAlert.innerHTML = "Direct Buses aren't Available, Do you want to view Alternate Route?";
+            getId('messageAlert').innerHTML = "Direct Buses aren't Available, Do you want to view Alternate Route?";
         }
     } else if (type == 2) {
-        successBox.classList.remove('hide');
+        getId('successBox').classList.remove('hide');
     } else if (type == 3) {
-        contactBox.classList.remove('hide');
+        getId('contactBox').classList.remove('hide');
     } else if (type == 4) {
-        errorBox.classList.remove('hide');
+        getId('errorBox').classList.remove('hide');
         if (message == "SAME") {
             errorMessage.innerHTML = "Source and Destination cannot be the same.";
         } else if (message == "ALTworking") {
@@ -17013,7 +17039,7 @@ function openPopUpBox(type, message) {
             errorMessage.innerHTML = "Fare Not found. Please try again later.";
         }
     } else if (type == 5) {
-        ALT_DetailedRoute_3P.classList.remove('hide');
+        getId('ALT_DetailedRoute_3P').classList.remove('hide');
     }
 }
 
@@ -17075,8 +17101,8 @@ function needHelpALT(type) {
             ul.appendChild(li2);
             ul.appendChild(li3);
             ul.appendChild(p);
-            ALT_DetailedRoute_content.innerHTML = "";
-            ALT_DetailedRoute_content.appendChild(ul);
+            getId('ALT_DetailedRoute_content').innerHTML = "";
+            getId('ALT_DetailedRoute_content').appendChild(ul);
 
             openPopUpBox("5", "");
         }
@@ -17138,8 +17164,8 @@ function needHelpALT(type) {
             ul.appendChild(li2);
             ul.appendChild(li3);
             ul.appendChild(p);
-            ALT_DetailedRoute_content.innerHTML = "";
-            ALT_DetailedRoute_content.appendChild(ul);
+            getId('ALT_DetailedRoute_content').innerHTML = "";
+            getId('ALT_DetailedRoute_content').appendChild(ul);
             openPopUpBox("5", "");
         } else if (type == "O") {
             /* if (route[3] != "") {
@@ -17245,7 +17271,7 @@ function getTowards(text) {
 }
 
 function closePopUpBox(ref) {
-    popUpScreen.classList.add('hide');
+    getId('popUpScreen').classList.add('hide');
     if (feature == 4 || feature == 3) {
         //console.log(ref);
     } else {
