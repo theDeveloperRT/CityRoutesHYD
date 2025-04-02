@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
     <title>City Bus Ways</title>
 </head>
 
@@ -215,10 +217,6 @@
 
             <span>Indirect Routes</span>
         </li>
-
-
-
-
     </nav>
 
     <div class="sideScreenMenu">
@@ -240,6 +238,10 @@
                 <li onclick="menuItemsClick(this)" value="1" id="menuItem1">
                     <img src="images/icons/rupeeWhite.png" alt="icon">
                     <span>Fare Chart</span>
+                </li>
+                <li onclick="menuItemsClick(this)" value="6">
+                    <img src="images/icons/update_White.png" alt="icon">
+                    <span>Live Updates</span>
                 </li>
                 <li onclick="menuItemsClick(this)" value="2">
                     <img src="images/icons/idWhite.png" alt="icon">
@@ -566,7 +568,7 @@
                 <p id="errorMessage"></p>
             </div>
             <div class="actionBtns centerRow">
-                <button class="active single" onclick="closePopUpBox(this)" id="successCloseBtn">Dismiss</button>
+                <button class="active single" onclick="closePopUpBox(this)" id="errorCloseBtn">Dismiss</button>
             </div>
         </div>
 
@@ -582,7 +584,7 @@
                 </ul> -->
             </div>
             <div class="actionBtns centerRow">
-                <button class="active single" onclick="closePopUpBox(this)" id="successCloseBtn">Dismiss</button>
+                <button class="active single" onclick="closePopUpBox(this)" id="detailedALTCloseBtn">Dismiss</button>
             </div>
         </div>
     </div>
@@ -678,7 +680,7 @@
                 </p>
 
                 <h3>4. T24 TAYL(DAY PASS)</h3>
-                <img src="images/photos/metroDlx.jpg" alt="busPic">
+                <img src="images/photos/eMetroExpress.png" alt="busPic">
                 <p>The T24 Travel as you like pass is valid for 24 hours from the time of purchase. There are two types
                     of passes available in T24. You can purchase these passes from
                     conductors.<br><strong><span class="bulletPoint">&#8658;</span> The Non AC T24
@@ -825,8 +827,8 @@
                         <h4>Contribute</h4>
                         <p>You are always welcomed to contribute to our Application. Kindly Help us to provide more
                             information to our users by sharing your ideas and information to us by contact us option.
-                            And you can also help us by sharing your bus ticket, so that we can provide more information
-                            at fare section.
+                            <!-- And you can also help us by sharing your bus ticket, so that we can provide more information
+                            at fare section. -->
                         </p>
                     </div>
                 </div>
@@ -837,7 +839,8 @@
                         <p>Dear user, we made this app to make the city bus rides of our user easy and convenient by
                             choosing right bus and right route to reach their destination. Ad policy is the only way to
                             fund our Application. So we placed advertisements in our application. But we're sure that we
-                            won't irritate you by showing many ads, Just watching <strong>one ad per day</strong> and enjoy our
+                            won't irritate you by showing many ads, Just watching <strong>one ad per day</strong> and
+                            enjoy our
                             application. Thank you.
                         </p>
                     </div>
@@ -896,7 +899,7 @@
                     <h3>Invite your friends today!</h3>
                 </div>
                 <div class="image centerRow">
-                    <img src="images/photos/ShareAppImage2.jpg" alt="Image">
+                    <img src="images/photos/shareAppImage2.jpg" alt="Image">
                 </div>
                 <div class="actions centerCol">
                     <button class="centerRow" onclick="copyShareLink()" id="copyLinkBtn"><img
@@ -922,6 +925,52 @@
 
             </table>
         </div>
+
+        <!-- LIVE UPDATES SCREEN -->
+        <div class="liveUpdatesScreen hide " id="liveUpdatesScreen">
+            <div class="busContainer hide">
+                <div class="busHead">
+                    <div class="row">
+                        <p class="r25" id="routeNo_LU">17H</p>
+                        <p class="r50" id="busNo_LU">AP29Z2343</p>
+                        <p class="r25" id="depot_LU">KG</p>
+                    </div>
+
+                    <div class="row">
+                        <p class="r100" id="route_LU">ECIL X ROADS - SECUNDERABAD</p>
+                    </div>
+
+                </div>
+
+                <div class="updateContainer">
+                    <div class="left">
+                        <p>Recent Stop: </p>
+                        <p>Next Stop: </p>
+                        <p>Service Type: </p>
+                        <p>Occupancy: </p>
+                    </div>
+                    <div class="right">
+                        <p id="RS_LU">Mettuguda</p>
+                        <p id="NS_LU">Tarnaka</p>
+                        <p id="ST_LU">City Ordinary</p>
+                        <p id="OC_LU">More than 5 Seats Available</p>
+                    </div>
+                </div>
+
+                <div class="LU_footer">
+                    <p id="status_LU">Left Mettuguda at 12:45 PM</p>
+                </div>
+
+            </div>
+
+            <div class="notFoundScreen hide">
+                <p>No Buses Found <br> Please try again Later</p>
+            </div>
+
+
+        </div>
+
+
     </div>
 
     <!-- DISCLAIMER SCREEN -->
@@ -951,6 +1000,10 @@
 
     </ul>
 
+    <div class="testingBackButton hide" onclick="AppGoBack()">
+
+    </div>
+
     <script src="data.js"></script>
     <script src="randomLogic.js"></script>
     <script src="fareChart.js"></script>
@@ -971,7 +1024,7 @@
             storageBucket: "cbwh-ab6d5.firebasestorage.app",
             messagingSenderId: "586373767716",
             appId: "1:586373767716:web:542a4b4754ea628f0ceeb1",
-            measurementId: "G-V3TBG9NQ7R"
+            measurementId: "G-V3TBG9NQ7R",
         };
 
         // Initialize Firebase
@@ -1009,6 +1062,7 @@
                 openPopUpBox(4, 'MSG');
             }
         });
+
     </script>
 </body>
 
