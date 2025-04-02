@@ -18179,6 +18179,9 @@ function changeIcons(ref) {
         case 5:
             ref.children[0].src = 'images/icons/shareBlack.png';
             break;
+        case 6:
+            ref.children[0].src = 'images/icons/update_Black.png';
+            break;
 
         default:
             break;
