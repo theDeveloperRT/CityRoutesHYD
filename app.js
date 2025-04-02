@@ -16903,12 +16903,18 @@ function viewStop(ref) {
 
     handleFontSize(main, sub);
 
-    if (AppBackState == 0) {
-        AppBackState = "View Stop";
-    } else if (AppBackState == "View Route") {
-        AppBackState = "View Route + View Stop";
-    } else if (AppBackState == "View From To + View Route") {
-        AppBackState = "View From To + View Route + View Stop";
+    if (ref.value != 1) {
+        if (AppBackState == 0) {
+            AppBackState = "View Stop";
+        } else if (AppBackState == "View Route") {
+            AppBackState = "View Route + View Stop";
+        } else if (AppBackState == "View From To + View Route") {
+            AppBackState = "View From To + View Route + View Stop";
+        }
+    } else {
+        if (AppBackState == 0) {
+            AppBackState = "JunctionStop";
+        }
     }
 }
 
@@ -18458,7 +18464,7 @@ function closeOtherSection() {
 }
 
 function copyShareLink() {
-    ClipboardCopier("https://thedeveloperrt.github.io/cityWaysHyd/");
+    ClipboardCopier("https://thedeveloperrt.github.io/CityRoutesHYD/");
 }
 
 function ClipboardCopier(text) {
@@ -18564,17 +18570,22 @@ function AppGoBack() {
         default:
             backPressCount++;
 
-            if (backPressCount === 1) {
-                Android.showToast("Press back again to exit"); // Call Android function to show Toast
+            if (navs[0].classList.contains('activeLink')) {
+                if (backPressCount === 1) {
+                    Android.showToast("Press back again to exit"); // Call Android function to show Toast
 
-                // Reset the counter after 2 seconds
-                backPressTimer = setTimeout(() => {
-                    backPressCount = 0;
-                }, 2000);
-            } else if (backPressCount === 2) {
-                clearTimeout(backPressTimer); // Clear timer if second press is within 2 seconds
-                Android.exitApp(); // Call Android function to exit
+                    // Reset the counter after 2 seconds
+                    backPressTimer = setTimeout(() => {
+                        backPressCount = 0;
+                    }, 2000);
+                } else if (backPressCount === 2) {
+                    clearTimeout(backPressTimer); // Clear timer if second press is within 2 seconds
+                    Android.exitApp(); // Call Android function to exit
+                }
+            } else {
+                navs[0].click();
             }
+
             break;
     }
 }
@@ -18584,3 +18595,5 @@ function resetBackPress() {
     backPressCount = 0;
     clearTimeout(backPressTimer);
 }
+
+
