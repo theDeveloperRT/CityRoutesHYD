@@ -2399,27 +2399,27 @@ altRouteSetter(4, ['ECIL X ROADS'], getStops(GTKS_PTCR, 'SR NAGAR', 'ERRAGADDA')
 altRouteSetter(4, getStops(PTCR_GTKS, 'ERRAGADDA', 'ESI HOSPITAL'), ['ECIL X ROADS'], ["SEWD_M", "SHYAM LAL", "SAME BUS STOP", "", "10, 10F, 10KJ, 10KM", SMB_D, "16A/47L, 16C/49M, 16H/49M, 250/49M", "SEC'BAD", "ALPHA", "BLUE SEA", "10, 10F, 10KJ, 10KM", "Go to Blue Sea Hotel Bus Stop by walk.", "15H, 16C, 16H, 17H, 17D, 17DS, 241T, 242"]);
 
 // --> JIYAGUDA ROUTE (--> <--)
-altRouteSetter(4, ['ECIL X ROADS', 'ECIL'], getStops(KTGD_LGRH, 'OSMANIA HOSPITAL', 'JIYAGUDA KHT'), ["SEWD_S", "CBS", "SAME BUS STOP", "", "3, 3D, 3K, 3KN, 3K/281", SMB_D, "1J, 1JL, 2J, 86J"]);
+altRouteSetter(4, ['ECIL X ROADS', 'ECIL DAE COLONY'], getStops(KTGD_LGRH, 'OSMANIA HOSPITAL', 'JIYAGUDA KHT'), ["SEWD_S", "CBS", "SAME BUS STOP", "", "3, 3D, 3K, 3KN, 3K/281", SMB_D, "1J, 1JL, 2J, 86J"]);
 
 altRouteSetter(4, getStops(KTGD_LGRH, 'OSMANIA HOSPITAL', 'JIYAGUDA KHT'), ['ECIL X ROADS'], ["SEWD_S", "CBS", "SAME BUS STATION", "", "1J, 1JL, 2J, 86J", SMB_D, "3, 3D, 3K, 3KN, 3K/281"]);
 
 // --> MADINA - BAHUDURPURA (--> <--)
-altRouteSetter(4, ['ECIL X ROADS', 'ECIL'], getStops(KSR_SHMB, 'MADINA', 'BAHUDURPURA'), ["SEWD_S", "CBS", "SAME BUS STOP", "", "3, 3D, 3K, 3KN, 3K/281", SMB_D, "1Z, 1Z/251, 7Z, 94R, 95K"]);
+altRouteSetter(4, ['ECIL X ROADS', 'ECIL DAE COLONY'], getStops(KSR_SHMB, 'MADINA', 'BAHUDURPURA'), ["SEWD_S", "CBS", "SAME BUS STOP", "", "3, 3D, 3K, 3KN, 3K/281", SMB_D, "1Z, 1Z/251, 7Z, 94R, 95K"]);
 
 altRouteSetter(4, getStops(KSR_SHMB, 'MADINA', 'BAHUDURPURA'), ['ECIL X ROADS'], ["SEWD_S", "CBS", "SAME BUS STATION", "", "1Z, 1Z/251, 7Z, 94R, 95K", SMB_D, "3, 3D, 3K, 3KN, 3K/281"]);
 
 // --> ZOO PARK - ARAMGHAR (--> <--)
-altRouteSetter(4, ['ECIL X ROADS', 'ECIL'], getStops(KSR_SHMB, 'ZOO PARK', 'ARAMGHAR'), ["SEWD_S", "CBS", "SAME BUS STOP", "", "3, 3D, 3K, 3KN, 3K/281", SMB_D, "1Z, 1Z/251, 7Z, 95K"]);
+altRouteSetter(4, ['ECIL X ROADS', 'ECIL DAE COLONY'], getStops(KSR_SHMB, 'ZOO PARK', 'ARAMGHAR'), ["SEWD_S", "CBS", "SAME BUS STOP", "", "3, 3D, 3K, 3KN, 3K/281", SMB_D, "1Z, 1Z/251, 7Z, 95K"]);
 
 altRouteSetter(4, getStops(KSR_SHMB, 'ZOO PARK', 'ARAMGHAR'), ['ECIL X ROADS'], ["SEWD_S", "CBS", "SAME BUS STATION", "", "1Z, 1Z/251, 7Z, 95K", SMB_D, "3, 3D, 3K, 3KN, 3K/281"]);
 
 // --> KISHAN BAGH - CHINTALMET (--> <--)
-altRouteSetter(4, ['ECIL X ROADS', 'ECIL'], getStops(TailsUP, 'KISHAN BAGH', 'CHINTALMET'), ["SEWD_S", "CBS", "SAME BUS STOP", "", "3, 3D, 3K, 3KN, 3K/281", SMB_D, "94R, 94RM"]);
+altRouteSetter(4, ['ECIL X ROADS', 'ECIL DAE COLONY'], getStops(TailsUP, 'KISHAN BAGH', 'CHINTALMET'), ["SEWD_S", "CBS", "SAME BUS STOP", "", "3, 3D, 3K, 3KN, 3K/281", SMB_D, "94R, 94RM"]);
 
 altRouteSetter(4, getStops(TailsUP, 'KISHAN BAGH', 'CHINTALMET'), ['ECIL X ROADS'], ["SEWD_S", "CBS", "SAME BUS STATION", "", "94R, 94RM", SMB_D, "3, 3D, 3K, 3KN, 3K/281"]);
 
 // --> NANDIMUSLAY GUDA (--> <--)
-altRouteSetter(4, ['ECIL X ROADS', 'ECIL'], ['NANDIMUSLAY GUDA'], ["SEWD_S", "CBS", "SAME BUS STOP", "", "3, 3D, 3K, 3KN, 3K/281", SMB_D, "94RM"]);
+altRouteSetter(4, ['ECIL X ROADS', 'ECIL DAE COLONY'], ['NANDIMUSLAY GUDA'], ["SEWD_S", "CBS", "SAME BUS STOP", "", "3, 3D, 3K, 3KN, 3K/281", SMB_D, "94RM"]);
 
 altRouteSetter(4, ['NANDIMUSLAY GUDA'], ['ECIL X ROADS'], ["SEWD_S", "CBS", "SAME BUS STATION", "", "94RM", SMB_D, "3, 3D, 3K, 3KN, 3K/281"]);
 
