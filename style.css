@@ -1118,6 +1118,134 @@ td {
     display: none;
 }
 
+.liveUpdatesScreen {
+    width: 100%;
+    padding-bottom: 10px;
+    height: 100%;
+    overflow: scroll;
+}
+
+.busContainer {
+    width: 95%;
+    height: fit-content;
+    border-radius: 10px;
+    background-color: #becbfb;
+    margin: auto;
+    margin-top: 10px;
+    overflow: hidden;
+
+    background-color: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.busContainer .busHead {
+    background-color: var(--primaryColor);
+    color: white;
+    padding: 5px;
+}
+
+.busContainer .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    font-size: 16px;
+}
+
+.busContainer .row p.r25 {
+    width: 25%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.busContainer .row p.r50 {
+    width: 50%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.busContainer .row p.r50 {
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.busContainer .row p.r100 {
+    text-transform: uppercase;
+}
+
+.busContainer .updateContainer {
+    padding: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+
+    overflow: hidden;
+}
+
+.busContainer .updateContainer p {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.busContainer .updateContainer .left {
+    font-size: 12px;
+    font-weight: bold;
+    width: 28%;
+    opacity: 0.8;
+}
+
+.busContainer .updateContainer .right {
+    font-size: 15px;
+    width: 72%;
+}
+
+.busContainer .updateContainer .right p {
+    text-transform: capitalize;
+}
+
+.busContainer .LU_footer {
+    width: 100%;
+    background-color: var(--primaryColor);
+    height: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.busContainer .LU_footer p {
+    color: white;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    color: #ffef5a;
+    text-transform: capitalize;
+}
+
+.notFoundScreen {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.notFoundScreen p {
+    font-size: 14px;
+    opacity: 0.8;
+    font-weight: bold;
+    width: 100%;
+    text-align: center;
+}
+
 /* ALTERNATE ROUTE STYLE */
 .altOutline {
     width: 100%;
@@ -1333,7 +1461,7 @@ td {
     text-align: center;
     padding: 5px 0px;
     border-bottom: 2px solid gray;
-    font-size: 18   px;
+    font-size: 18 px;
 }
 
 .disclaimerScreen .disclaimer p {
@@ -1341,10 +1469,12 @@ td {
     margin-top: 10px;
     text-align: justify;
 }
-.disclaimerScreen .disclaimer p span{
+
+.disclaimerScreen .disclaimer p span {
     color: blue;
     font-weight: bold;
 }
+
 .disclaimerScreen .disclaimer button {
     height: 40px;
     width: 100%;
@@ -1616,7 +1746,7 @@ td {
     justify-content: center;
     overflow: hidden;
     padding: 20px 0px;
-    gap: 10px;
+    /* gap: 10px; */
 }
 
 .helpSection:nth-child(even) {
@@ -1642,6 +1772,11 @@ td {
 
 .helpScreen .text h4 {
     font-size: 16px;
+}
+
+
+.helpScreen .text p span {
+    font-weight: bold;
 }
 
 /* DETAILED ROUTE NEW UI */
@@ -1683,6 +1818,24 @@ td {
     letter-spacing: 1px;
     height: 100%;
     gap: 5px;
+}
+
+#route1No {
+    /* color: var(--orange); */
+}
+
+#starting {
+    color: #FFC107;
+    color: #f8c427;
+    text-shadow: 0px 0px 10px black;
+}
+
+#destination {
+    color: rgb(0, 255, 0);
+    color: var(--green);
+    color: #85e31a;
+    color: #93f128;
+    text-shadow: 0px 0px 10px black;
 }
 
 .contentOutputScreen .stopsList {
@@ -1751,10 +1904,11 @@ td {
 
 .stopsList .stopsContainer .text p {
     font-size: 10px;
-    opacity: 0.6;
+    opacity: 0.8;
     margin-top: -4px;
     letter-spacing: 0px;
     font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .stopsList .RouteSummary {
@@ -1803,4 +1957,16 @@ td {
     text-align: center;
     align-content: center;
     height: 200px;
+}
+
+
+.testingBackButton {
+    height: 100px;
+    width: 100px;
+    background-color: var(--green);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 85px;
+    right: 25px;
+    z-index: 100000;
 }
