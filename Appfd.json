@@ -1,0 +1,11 @@
+{
+    "fares": {
+        "LALAPET (RAM TH.)": {
+            "TARNAKA": "10-20",
+            "LALAPET": "@TARNAKA",
+            "WHITE HOUSE": "@TARNAKA",
+            "JUBILEE HILLS": "25-45"
+        },
+        "LALAPET": "@LALAPET (RAM TH.)"
+    }
+}

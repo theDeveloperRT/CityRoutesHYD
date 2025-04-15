@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+    <title>City Bus Ways</title>
+</head>
+
+<body>
+
+    <div class="top">
+        <li class="menuIcon centerRow" onclick="openMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3 4H21V6H3V4ZM3 11H15V13H3V11ZM3 18H21V20H3V18Z"></path>
+            </svg>
+        </li>
+        <li class="input centerRow ">
+            <img src="images/icons/searchBlack.png" alt="Icon">
+            <input type="text" name="searchBar" id="input1" placeholder="Search By Route No..."
+                oninput="showSuggesions(this)" autocomplete="off" onfocus="showcancelIcon(this)"
+                onblur="hidecancelIcon(this)">
+            <img src="images/icons/closeBlack.png" alt="Icon" class="" onclick="clearInputs(this)" id="clear1">
+        </li>
+        <li class="swapIconContainer hide" id="swapIconContainer"><img class="centerRow swapIcon"
+                src="images/icons/swapWhite.png" alt="swapIcon" onclick="swapInputValues()">
+        </li>
+        <li class="input centerRow hide" id="input2Container">
+            <img src="images/icons/searchBlack.png" alt="Icon">
+            <input type="text" name="searchBar" id="input2" placeholder="Travelling To..."
+                oninput="showSuggesions(this)" autocomplete="off" onfocus="showcancelIcon(this)"
+                onblur="hidecancelIcon(this)">
+            <img src="images/icons/closeBlack.png" alt="Icon" class="" onclick="clearInputs(this)" id="clear2">
+        </li>
+    </div>
+
+    <div class="ads">
+        <div class="adItem" id="adItem">
+            <img src="images/BannerAds/RS.jpg" alt="adImage">
+            <img src="images/BannerAds/BS.jpg" alt="adImage">
+            <img src="images/BannerAds/FT.jpg" alt="adImage">
+            <img src="images/BannerAds/ID.jpg" alt="adImage">
+            <img src="images/BannerAds/FS.jpg" alt="adImage">
+        </div>
+
+        <ul class="indicators centerRow" id="indicators">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+
+            <!-- <div id="brand">
+                Designed and Developed by RT Web & Mobile Apps
+            </div> -->
+        </ul>
+    </div>
+
+    <div id="outputContent" class="sectionContainer">
+
+        <div class="section" id="routeSection1">
+            <h2>Popular Routes</h2>
+            <ul class="routesContainer centerRow" id="listLEN3">
+                <li onclick="viewRoute(this)">10H</li>
+                <li onclick="viewRoute(this)">16C</li>
+                <li onclick="viewRoute(this)">47L</li>
+                <li onclick="viewRoute(this)">72J</li>
+                <li onclick="viewRoute(this)">90L</li>
+            </ul>
+            <ul class="routesContainer centerRow big" id="listLEN4">
+                <li onclick="viewRoute(this)">216</li>
+                <li onclick="viewRoute(this)">242A</li>
+                <li onclick="viewRoute(this)">279</li>
+                <li onclick="viewRoute(this)">290</li>
+            </ul>
+        </div>
+
+        <div class="section" id="routeSection2">
+            <h2>New/Restored Routes</h2>
+            <ul class="routesContainer centerRow big">
+                <li onclick="viewRoute(this)">37</li>
+                <li onclick="viewRoute(this)">24E</li>
+                <li onclick="viewRoute(this)">231KN</li>
+                <li onclick="viewRoute(this)">217D</li>
+            </ul>
+
+            <ul class="routesContainer centerRow big2">
+                <li onclick="viewRoute(this)">17H/47W</li>
+                <li onclick="viewRoute(this)">16S/10YF</li>
+                <li onclick="viewRoute(this)">224/47D</li>
+            </ul>
+        </div>
+
+        <div class="section close" id="PPbusStations">
+            <h2>Popular Bus Stations</h2>
+            <ul class="routesContainer centerRow big3">
+                <li onclick="viewStop(this)">UPPAL</li>
+                <li onclick="viewStop(this)">KOTI</li>
+                <li onclick="viewStop(this)">AMEERPET</li>
+            </ul>
+            <ul class="routesContainer centerRow big4">
+                <li onclick="viewStop(this)">SECUNDERABAD</li>
+                <li onclick="viewStop(this)">DILSHUKNAGAR</li>
+            </ul>
+            <ul class="routesContainer centerRow big5">
+                <li onclick="viewStop(this)">CENTRAL BUS STATION (CBS)</li>
+            </ul>
+            <ul class="routesContainer centerRow big5">
+                <li onclick="viewStop(this)">JUBLIE BUS STATION (JBS)</li>
+            </ul>
+        </div>
+        <div class="section hide" id="FromToSuggesions">
+            <h2 id="suggestionsHead">Direct Routes</h2>
+            <ul class="routesContainer centerCol big5" id="pplrSearch_FT_List">
+                <li onclick="viewFromTo(this)">JEEDIMETLA - AMEERPET</li>
+                <li onclick="viewFromTo(this)">CYBER TOWERS - SECUNDERABAD</li>
+                <li onclick="viewFromTo(this)">HAYATHNAGAR - SANATH NAGAR</li>
+            </ul>
+        </div>
+
+        <div class="hide" id="fareChart">
+            <table>
+                <tr>
+                    <th>Service Type</th>
+                    <th>Fare</th>
+                </tr>
+                <tr>
+                    <td>City Ordinary</td>
+                    <td id="CO_Fare">10/-</td>
+                </tr>
+                <tr>
+                    <td>Metro Express</td>
+                    <td id="ME_Fare">15/-</td>
+                </tr>
+                <tr class="hide">
+                    <td>Metro Deluxe</td>
+                    <td id="MD_Fare">15/-</td>
+                </tr>
+                <tr class="hide">
+                    <td>E - City Ordinary</td>
+                    <td id="eCO_Fare">10/-</td>
+                </tr>
+                <tr class="hide">
+                    <td>E - Metro Express</td>
+                    <td id="eME_Fare">15/-</td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+    <!-- <div id="brand">
+        Designed and Developed by RT Web & Mobile Apps
+    </div> -->
+    <nav>
+        <li onclick="navigation(this)" class="navLinks activeLink" value="1">
+            <svg fill="#000000" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M12 0C8.90625 0 6.644531 0.398438 5.09375 1.75C3.542969 3.101563 3 5.230469 3 8L3 12L2 12C0.90625 12 0 12.90625 0 14L0 22C0 23.09375 0.90625 24 2 24L3 24L3 41C3 42.222656 3.382813 43.25 4 44.03125L4 47C4 48.644531 5.355469 50 7 50L11 50C12.644531 50 14 48.644531 14 47L14 46L36 46L36 47C36 48.644531 37.355469 50 39 50L43 50C44.644531 50 46 48.644531 46 47L46 44.03125C46.617188 43.25 47 42.222656 47 41L47 24L48 24C49.09375 24 50 23.09375 50 22L50 14C50 12.90625 49.09375 12 48 12L47 12L47 9C47 6.355469 46.789063 4.191406 45.71875 2.53125C44.648438 0.871094 42.6875 0 40 0 Z M 12 2L40 2C42.3125 2 43.351563 2.542969 44.03125 3.59375C44.710938 4.644531 45 6.484375 45 9L45 41C45 42.386719 44.601563 42.933594 43.78125 43.375C42.960938 43.816406 41.585938 44 40 44L10 44C8.414063 44 7.039063 43.816406 6.21875 43.375C5.398438 42.933594 5 42.386719 5 41L5 8C5 5.484375 5.457031 4.109375 6.40625 3.28125C7.355469 2.453125 9.09375 2 12 2 Z M 15 3C13.90625 3 13 3.90625 13 5L13 7C13 8.09375 13.90625 9 15 9L36 9C37.09375 9 38 8.09375 38 7L38 5C38 3.90625 37.09375 3 36 3 Z M 15 5L36 5L36 7L15 7 Z M 11 10C9.832031 10 8.765625 10.296875 8.03125 11.03125C7.296875 11.765625 7 12.832031 7 14L7 26C7 27.167969 7.296875 28.234375 8.03125 28.96875C8.765625 29.703125 9.832031 30 11 30L39 29.9375C39.816406 29.9375 40.695313 29.625 41.5 29C42.304688 28.375 43 27.324219 43 26L43 14C43 12.832031 42.703125 11.765625 41.96875 11.03125C41.234375 10.296875 40.167969 10 39 10 Z M 11 12L39 12C39.832031 12 40.265625 12.203125 40.53125 12.46875C40.796875 12.734375 41 13.167969 41 14L41 26C41 26.675781 40.714844 27.070313 40.28125 27.40625C39.847656 27.742188 39.230469 27.9375 39 27.9375L11 28C10.167969 28 9.734375 27.796875 9.46875 27.53125C9.203125 27.265625 9 26.832031 9 26L9 14C9 13.167969 9.203125 12.734375 9.46875 12.46875C9.734375 12.203125 10.167969 12 11 12 Z M 2 14L3 14L3 22L2 22 Z M 47 14L48 14L48 22L47 22 Z M 11.5 33C9.027344 33 7 35.027344 7 37.5C7 39.972656 9.027344 42 11.5 42C13.972656 42 16 39.972656 16 37.5C16 35.027344 13.972656 33 11.5 33 Z M 38.5 33C36.027344 33 34 35.027344 34 37.5C34 39.972656 36.027344 42 38.5 42C40.972656 42 43 39.972656 43 37.5C43 35.027344 40.972656 33 38.5 33 Z M 11.5 35C12.890625 35 14 36.109375 14 37.5C14 38.890625 12.890625 40 11.5 40C10.109375 40 9 38.890625 9 37.5C9 36.109375 10.109375 35 11.5 35 Z M 38.5 35C39.890625 35 41 36.109375 41 37.5C41 38.890625 39.890625 40 38.5 40C37.109375 40 36 38.890625 36 37.5C36 36.109375 37.109375 35 38.5 35 Z M 6 45.4375C7.199219 45.890625 8.566406 46 10 46L12 46L12 47C12 47.5625 11.5625 48 11 48L7 48C6.4375 48 6 47.5625 6 47 Z M 44 45.4375L44 47C44 47.5625 43.5625 48 43 48L39 48C38.4375 48 38 47.5625 38 47L38 46L40 46C41.433594 46 42.800781 45.890625 44 45.4375Z">
+                    </path>
+                </g>
+            </svg>
+            <span>Routes</span>
+        </li>
+
+        <li onclick="navigation(this)" class="navLinks" value="2">
+            <svg fill="#fff" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <g>
+                        <g>
+                            <path
+                                d="M501.556,423.088h-20.102V268.135h6.615c13.052,0,23.672-10.619,23.672-23.673v-81.749 c0-13.054-10.619-23.673-23.672-23.673h-34.116c-13.054,0-23.673,10.619-23.673,23.673v81.749 c0,13.054,10.619,23.673,23.673,23.673h6.614v154.953H413.57V270.719v-3.22V132.862h27.154c5.767,0,10.444-4.676,10.444-10.444 c0-29.993-24.128-54.394-53.785-54.394H53.785C24.128,68.023,0,92.425,0,122.418c0,5.768,4.677,10.444,10.444,10.444h27.154 v134.637v3.22v152.369H10.703c-5.767,0-10.444,4.676-10.444,10.444s4.677,10.444,10.444,10.444h490.854 c5.767,0,10.444-4.676,10.444-10.444S507.324,423.088,501.556,423.088z M22.523,111.974c4.318-13.377,16.702-23.063,31.262-23.063 h343.598c14.561,0,26.944,9.684,31.262,23.063H22.523z M228.198,176.39c-4.079-4.078-10.69-4.078-14.771,0l-83.723,83.724 c-0.052,0.052-0.095,0.109-0.146,0.161H58.485V132.862H332.44L205.026,260.275h-45.944l69.115-69.115 C232.276,187.082,232.276,180.469,228.198,176.39z M330.892,423.088H120.255v-19.843h210.637V423.088z M89.904,382.358v-8.355 h271.362v8.355H89.904z M392.683,423.088h-40.904v-19.843h19.93c5.767,0,10.444-4.676,10.444-10.444v-29.242 c0-5.768-4.677-10.444-10.444-10.444H79.46c-5.767,0-10.444,4.676-10.444,10.444v29.242c0,5.768,4.677,10.444,10.444,10.444 h19.909v19.843H58.485V281.163h334.198V423.088z M392.683,260.275H234.568l127.413-127.413h30.702V260.275z M453.953,247.249 c-1.536-0.001-2.785-1.25-2.785-2.785v-81.749c0-1.536,1.249-2.785,2.785-2.785h34.116c1.535,0,2.784,1.249,2.784,2.785v81.749 c0,1.535-1.249,2.785-2.784,2.785H453.953z">
+                            </path>
+                        </g>
+                    </g>
+                    <g>
+                        <g>
+                            <path
+                                d="M252.206,152.422c-4.068-4.091-10.681-4.107-14.771-0.04l-0.097,0.096c-4.089,4.068-4.107,10.681-0.039,14.769 c2.041,2.052,4.722,3.079,7.405,3.079c2.664,0,5.328-1.013,7.366-3.039l0.097-0.096 C256.256,163.124,256.274,156.511,252.206,152.422z">
+                            </path>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+            <span>Bus Stops</span>
+        </li>
+
+        <li onclick="navigation(this)" class="navLinks" value="3" id="navlink3">
+            <svg fill="#000000" viewBox="0 0 256 256" id="Flat" xmlns="http://www.w3.org/2000/svg">
+                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                <g id="SVGRepo_iconCarrier">
+                    <path
+                        d="M213.77051,181.53174c-.03906.041-.07324.085-.11328.12549l-32,32a8.00053,8.00053,0,0,1-11.31446-11.31446L188.68652,184H48a8,8,0,0,1,0-16H188.68652l-18.34375-18.34277a8.00053,8.00053,0,0,1,11.31446-11.31446l32,32c.03759.0376.06884.0791.10547.11719.1455.15088.28857.3042.42138.46631.0874.106.16406.21777.24512.32764.07373.09961.15137.19677.2207.30029.0835.12451.15625.25342.23194.38135.05712.09668.11767.19043.17089.28955.06885.12793.127.25976.18848.39062.04981.106.10254.21045.148.31934.05225.12646.09473.25537.14014.3833.04248.11865.08789.23486.12451.356.03906.1289.06787.25976.10058.39013.03077.12305.06543.24414.09034.36914.02978.15186.04834.30518.06982.458.01465.10547.03467.20947.04541.31641a8.02276,8.02276,0,0,1,0,1.584c-.01074.10694-.03076.21094-.04541.31641-.02148.15283-.04.30615-.06982.458-.02491.125-.05957.24609-.09034.36914-.03271.13037-.06152.26123-.10058.39013-.03662.1211-.082.23731-.12451.356-.04541.12793-.08789.25684-.14014.3833-.04541.10889-.09814.21338-.148.31934-.06152.13086-.11963.26269-.18848.39062-.05322.09912-.11377.19287-.17089.28955-.07569.12793-.14844.25684-.23194.38135-.06933.10352-.147.20068-.2207.30029-.08106.10987-.15772.22168-.24512.32764C214.05371,181.23291,213.91309,181.3833,213.77051,181.53174ZM41.5708,75.25391c-.07373.09961-.15137.19677-.2207.30029-.0835.12451-.15625.25342-.23194.38135-.05712.09668-.11767.19043-.17089.28955-.06885.12793-.127.25976-.18848.39062-.04981.106-.10254.21045-.14795.31934-.05225.12646-.09473.25537-.14014.3833-.04248.11865-.08789.23486-.12451.356-.03906.1289-.06787.25976-.10058.39013-.03077.12305-.06543.24414-.09034.36914-.02978.15186-.04834.30518-.06982.458-.01465.10547-.03467.20947-.04541.31641a8.02276,8.02276,0,0,0,0,1.584c.01074.10694.03076.21094.04541.31641.02148.15283.04.30615.06982.458.02491.125.05957.24609.09034.36914.03271.13037.06152.26123.10058.39013.03662.1211.082.23731.12451.356.04541.12793.08789.25684.14014.3833.04541.10889.09814.21338.14795.31934.06152.13086.11963.26269.18848.39062.05322.09912.11377.19287.17089.28955.07569.12793.14844.25684.23194.38135.06933.10352.147.20068.2207.30029.08106.10987.15772.22168.24512.32764.13037.15918.271.30957.41357.458.03906.041.07324.085.11328.12549l32,32a8.00053,8.00053,0,0,0,11.31446-11.31446L67.31348,88H208a8,8,0,0,0,0-16H67.31348L85.65723,53.65723A8.00053,8.00053,0,0,0,74.34277,42.34277l-32,32c-.03759.0376-.06884.0791-.10547.11719-.1455.15088-.28857.3042-.42138.46631C41.72852,75.03223,41.65186,75.144,41.5708,75.25391Z">
+                    </path>
+                </g>
+            </svg>
+            <span>From - To</span>
+        </li>
+
+        <li onclick="navigation(this)" class="navLinks" value="4">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13.5003 8C13.8278 8.43606 14.0625 8.94584 14.175 9.5H16V11H14.175C13.8275 12.7117 12.3142 14 10.5 14H10.3107L14.0303 17.7197L12.9697 18.7803L8 13.8107V12.5H10.5C11.4797 12.5 12.3131 11.8739 12.622 11H8V9.5H12.622C12.3131 8.62611 11.4797 8 10.5 8H8V6.5H16V8H13.5003Z">
+                </path>
+            </svg> -->
+
+            <svg fill="#000000" width="800px" height="800px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M 6 4 C 4.90625 4 4 4.90625 4 6 C 4 7.09375 4.90625 8 6 8 C 7.09375 8 8 7.09375 8 6 C 8 4.90625 7.09375 4 6 4 Z M 10 5 C 9.449219 5 9 5.449219 9 6 C 9 6.550781 9.449219 7 10 7 C 10.550781 7 11 6.550781 11 6 C 11 5.449219 10.550781 5 10 5 Z M 13 5 C 12.449219 5 12 5.449219 12 6 C 12 6.550781 12.449219 7 13 7 C 13.550781 7 14 6.550781 14 6 C 14 5.449219 13.550781 5 13 5 Z M 16 5 C 15.449219 5 15 5.449219 15 6 C 15 6.550781 15.449219 7 16 7 C 16.550781 7 17 6.550781 17 6 C 17 5.449219 16.550781 5 16 5 Z M 19 5 C 18.449219 5 18 5.449219 18 6 C 18 6.550781 18.449219 7 19 7 C 19.550781 7 20 6.550781 20 6 C 20 5.449219 19.550781 5 19 5 Z M 22 5 C 21.449219 5 21 5.449219 21 6 C 21 6.550781 21.449219 7 22 7 C 22.550781 7 23 6.550781 23 6 C 23 5.449219 22.550781 5 22 5 Z M 25 5 C 24.449219 5 24 5.449219 24 6 C 24 6.550781 24.449219 7 25 7 C 25.550781 7 26 6.550781 26 6 C 26 5.449219 25.550781 5 25 5 Z M 27 7 C 26.449219 7 26 7.449219 26 8 C 26 8.550781 26.449219 9 27 9 C 27.550781 9 28 8.550781 28 8 C 28 7.449219 27.550781 7 27 7 Z M 16 10 C 14.347656 10 13 11.347656 13 13 C 13 14.25 14.613281 17.492188 15.109375 18.457031 L 16 20.1875 L 16.890625 18.457031 C 17.386719 17.492188 19 14.25 19 13 C 19 11.347656 17.652344 10 16 10 Z M 27 10 C 26.449219 10 26 10.449219 26 11 C 26 11.550781 26.449219 12 27 12 C 27.550781 12 28 11.550781 28 11 C 28 10.449219 27.550781 10 27 10 Z M 16 12 C 16.550781 12 17 12.449219 17 13 C 17 13.550781 16.550781 14 16 14 C 15.449219 14 15 13.550781 15 13 C 15 12.449219 15.449219 12 16 12 Z M 27 13 C 26.449219 13 26 13.449219 26 14 C 26 14.550781 26.449219 15 27 15 C 27.550781 15 28 14.550781 28 14 C 28 13.449219 27.550781 13 27 13 Z M 27 16 C 26.449219 16 26 16.449219 26 17 C 26 17.550781 26.449219 18 27 18 C 27.550781 18 28 17.550781 28 17 C 28 16.449219 27.550781 16 27 16 Z M 7 18 C 6.449219 18 6 18.449219 6 19 C 6 19.550781 6.449219 20 7 20 C 7.550781 20 8 19.550781 8 19 C 8 18.449219 7.550781 18 7 18 Z M 10 18 C 9.449219 18 9 18.449219 9 19 C 9 19.550781 9.449219 20 10 20 C 10.550781 20 11 19.550781 11 19 C 11 18.449219 10.550781 18 10 18 Z M 13 18 C 12.449219 18 12 18.449219 12 19 C 12 19.550781 12.449219 20 13 20 C 13.550781 20 14 19.550781 14 19 C 14 18.449219 13.550781 18 13 18 Z M 19 18 C 18.449219 18 18 18.449219 18 19 C 18 19.550781 18.449219 20 19 20 C 19.550781 20 20 19.550781 20 19 C 20 18.449219 19.550781 18 19 18 Z M 22 18 C 21.449219 18 21 18.449219 21 19 C 21 19.550781 21.449219 20 22 20 C 22.550781 20 23 19.550781 23 19 C 23 18.449219 22.550781 18 22 18 Z M 25 18 C 24.449219 18 24 18.449219 24 19 C 24 19.550781 24.449219 20 25 20 C 25.550781 20 26 19.550781 26 19 C 26 18.449219 25.550781 18 25 18 Z M 5 20 C 4.449219 20 4 20.449219 4 21 C 4 21.550781 4.449219 22 5 22 C 5.550781 22 6 21.550781 6 21 C 6 20.449219 5.550781 20 5 20 Z M 5 23 C 4.449219 23 4 23.449219 4 24 C 4 24.550781 4.449219 25 5 25 C 5.550781 25 6 24.550781 6 24 C 6 23.449219 5.550781 23 5 23 Z M 26 24 C 24.90625 24 24 24.90625 24 26 C 24 27.09375 24.90625 28 26 28 C 27.09375 28 28 27.09375 28 26 C 28 24.90625 27.09375 24 26 24 Z M 7 25 C 6.449219 25 6 25.449219 6 26 C 6 26.550781 6.449219 27 7 27 C 7.550781 27 8 26.550781 8 26 C 8 25.449219 7.550781 25 7 25 Z M 10 25 C 9.449219 25 9 25.449219 9 26 C 9 26.550781 9.449219 27 10 27 C 10.550781 27 11 26.550781 11 26 C 11 25.449219 10.550781 25 10 25 Z M 13 25 C 12.449219 25 12 25.449219 12 26 C 12 26.550781 12.449219 27 13 27 C 13.550781 27 14 26.550781 14 26 C 14 25.449219 13.550781 25 13 25 Z M 16 25 C 15.449219 25 15 25.449219 15 26 C 15 26.550781 15.449219 27 16 27 C 16.550781 27 17 26.550781 17 26 C 17 25.449219 16.550781 25 16 25 Z M 19 25 C 18.449219 25 18 25.449219 18 26 C 18 26.550781 18.449219 27 19 27 C 19.550781 27 20 26.550781 20 26 C 20 25.449219 19.550781 25 19 25 Z M 22 25 C 21.449219 25 21 25.449219 21 26 C 21 26.550781 21.449219 27 22 27 C 22.550781 27 23 26.550781 23 26 C 23 25.449219 22.550781 25 22 25 Z" />
+            </svg>
+
+            <span>Indirect Routes</span>
+        </li>
+    </nav>
+    <!-- <div id="brand">
+        Designed and Developed by RT Web & Mobile Apps
+    </div> -->
+    <div class="sideScreenMenu">
+        <div class="menuContent">
+            <li class="menuIcon centerRow" onclick="openMenu()">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M20.7457 3.32851C20.3552 2.93798 19.722 2.93798 19.3315 3.32851L12.0371 10.6229L4.74275 3.32851C4.35223 2.93798 3.71906 2.93798 3.32854 3.32851C2.93801 3.71903 2.93801 4.3522 3.32854 4.74272L10.6229 12.0371L3.32856 19.3314C2.93803 19.722 2.93803 20.3551 3.32856 20.7457C3.71908 21.1362 4.35225 21.1362 4.74277 20.7457L12.0371 13.4513L19.3315 20.7457C19.722 21.1362 20.3552 21.1362 20.7457 20.7457C21.1362 20.3551 21.1362 19.722 20.7457 19.3315L13.4513 12.0371L20.7457 4.74272C21.1362 4.3522 21.1362 3.71903 20.7457 3.32851Z"
+                            fill="#fff"></path>
+                    </g>
+                </svg>
+            </li>
+
+            <!-- <h2>CITY ROUTES</h2> -->
+            <div class="imageLogo">
+                <img src="images/Logo/TextLogo.png" alt="TextLogo">
+            </div>
+            <ul class="menuItems">
+                <li onclick="menuItemsClick(this)" value="1" id="menuItem1">
+                    <img src="images/icons/rupeeWhite.png" alt="icon">
+                    <span>Fare Chart</span>
+                </li>
+                <li onclick="menuItemsClick(this)" value="6">
+                    <img src="images/icons/update_White.png" alt="icon">
+                    <span>Live Updates</span>
+                </li>
+                <li onclick="menuItemsClick(this)" value="2">
+                    <img src="images/icons/idWhite.png" alt="icon">
+                    <span>Bus Pass Info</span>
+                </li>
+                <li onclick="menuItemsClick(this)" value="4">
+                    <img src="images/icons/helpWhite.png" alt="icon">
+                    <span>User Guide</span>
+                </li>
+                <li onclick="menuItemsClick(this)" value="3">
+                    <img src="images/icons/contactWhite.png" alt="icon">
+                    <span>Contact Us</span>
+                </li>
+                <li onclick="menuItemsClick(this)" value="5">
+                    <img src="images/icons/shareWhite.png" alt="icon" style="height: 35px;">
+                    <span>Share App</span>
+                </li>
+            </ul>
+        </div>
+        <div class="outfocusArea" onclick="openMenu()">
+            <!-- <div id="brand">
+                Designed and Developed by RT Web & Mobile Apps
+            </div> -->
+        </div>
+    </div>
+
+    <!-- Bus Stop Details Output Screen -->
+    <div class="OutputScreen close" id="OutputScreen">
+        <div class="header">
+            <li class="menuIcon centerRow" onclick="closeBusStop()">
+                <svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#FFF">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z"
+                            fill="#FFF">
+                        </path>
+                    </g>
+                </svg>
+            </li>
+            <div class="backgroundDec centerCol">
+                <h2 id="StopNameHead">TARNAKA</h2>
+                <p id="StopNameSub">ARADHANA THEATER</p>
+            </div>
+        </div>
+        <!-- <div id="brand">
+            Designed and Developed by RT Web & Mobile Apps
+        </div> -->
+        <div class="contentOutputScreen" id="outputBusStopPart1">
+            <div class="section">
+                <h2>Regular Routes</h2>
+                <ul class="routesContainer centerRow dynamic" id="regularRoutesOutput">
+
+                </ul>
+            </div>
+
+            <div class="section" id="BST_RouteContainerFT">
+                <h2>Rare/Special Routes</h2>
+                <ul class="routesContainer centerRow dynamic" id="rareRoutesOutput">
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="contentOutputScreen hide" id="outputBusStopPart2">
+            <div class="section" id="avlBusStopsContainer">
+                <h2 id="junctionStopsHeading">Bus Stops in Secunderabad</h2>
+                <ul class="routesContainer centerCol big5" id="avlBusStops">
+                    <li onclick="viewStop(this)" value="1">CHILKALGUDA X ROADS</li>
+                    <li onclick="viewStop(this)" value="1">RETHIFILE BUS STATION</li>
+                    <li onclick="viewStop(this)" value="1">ALPHA HOTEL BUS STOP</li>
+                    <li onclick="viewStop(this)" value="1">GURUDWARA BUS STOP</li>
+                    <li onclick="viewStop(this)" value="1">BLUE SEA HOTEL BUS STOP</li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+    <!-- Detailed Route Output Screen -->
+    <div class="OutputScreen close" id="OutputScreen2">
+        <div class="header">
+            <!-- <div id="brand">
+                Designed and Developed by RT Web & Mobile Apps
+            </div> -->
+            <li class="menuIcon centerRow   " onclick="closeRoute()">
+                <svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#FFF">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z"
+                            fill="#FFF">
+                        </path>
+                    </g>
+                </svg>
+            </li>
+
+            <div class="titlePlate centerRow">
+                <div class="number" id="output2RouteHolder">
+                    <h3 id="route1No">17H</h3>
+                    <h3 class="downRouteNumber" id="route2No">10H</h3>
+                </div>
+                <div class="names centerCol">
+                    <h3 id="starting">ECIL X ROADS</h3>
+                    <h3 id="destination">SECUNDERABAD</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="contentOutputScreen" id="outputRoutes">
+            <!-- NEW UI ROUTE STRUCTURE -->
+            <div class="stopsList" id="stopsList">
+                <!-- <div id="brand">
+                    Designed and Developed by RT Web & Mobile Apps
+                </div> -->
+            </div>
+        </div>
+
+    </div>
+
+    <!-- From - To and Alternate Output Screen -->
+    <div class="OutputScreen close" id="OutputScreen3">
+        <div class="header">
+            <li class="menuIcon centerRow" onclick="closeFromTo()">
+                <svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#FFF">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z"
+                            fill="#FFF">
+                        </path>
+                    </g>
+                </svg>
+            </li>
+            <div class="backgroundDec centerCol fromToOutputPart">
+                <h2 id="FromStopNameHead">ECIL X ROADS</h2>
+                <span>TO</span>
+                <h2 id="ToStopNameHead">LALAPET</h2>
+            </div>
+        </div>
+
+        <!-- From - To Output Screen -->
+        <div class="contentOutputScreen hide" id="outputBusStopPart1FT">
+            <div class="section">
+                <h2>Regular Routes</h2>
+                <ul class="routesContainer centerRow dynamic" id="regularRoutesOutputFT">
+
+                </ul>
+            </div>
+
+            <div class="section" id="RR_RouteContainerFT">
+                <h2>Rare/Special Routes</h2>
+                <ul class="routesContainer centerRow dynamic" id="rareRoutesOutputFT">
+
+                </ul>
+            </div>
+        </div>
+
+        <!-- Alternate Route Output Screen ()-->
+        <div class="contentOutputScreen hide" id="outputBusStopPart2ALT">
+
+            <!-- Best Route Block -->
+            <div class="altOutline hide" id="ALTroute1">
+                <div class="ALT_header centerRow">
+                    <h3>Best Route: </h3>
+                    <img src="images/icons/down_Arrow.png" alt="closeIcon" onclick="closeALToutline(this)">
+                </div>
+
+                <!-- 3 Points with middle walk info -->
+                <div class="ALT_content centerRow hide" id="point3ALT">
+                    <div class="graphics centerCol">
+                        <p class="circle orange">S</p>
+                        <p class="road"></p>
+                        <p class="circle blue">Ex</p>
+                        <p class="road"></p>
+                        <p class="circle green">D</p>
+                    </div>
+                    <div class="content centerCol">
+                        <div class="data">
+                            <p class="head centerCol" id="h1_3p">ECIL X - SEC'BAD</p>
+                            <p class="text centerCol" id="r1_3p">17H, 17D, 16H, 16C, 242</p>
+                        </div>
+                        <div class="data">
+                            <p class="head centerCol" id="h2_3p">BLUE SEA - ALPHA</p>
+                            <p class="text centerCol walkway" id="r2_3p">Go to Alpha Hotel bus stop by walk</p>
+                        </div>
+                        <div class="data">
+                            <p class="head centerCol" id="h3_3p">SEC'BAD - AMEERPET</p>
+                            <p class="text centerCol" id="r3_3p">10H, 10KJ, 10YF, 10F, 47YM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Points without walk info -->
+                <div class="ALT_content centerRow" id="point3NWALT">
+                    <div class="graphics centerCol">
+                        <p class="circle orange">S</p>
+                        <p class="road"></p>
+                        <p class="circle blue">Ex</p>
+                        <p class="road"></p>
+                        <p class="circle green">D</p>
+                    </div>
+                    <div class="content centerCol">
+                        <div class="data">
+                            <p class="head centerCol" id="h1_3pNW">LALAPET - TARNAKA</p>
+                            <p class="text centerCol" id="r1_3pNW">3K, 17H, 17D, 242</p>
+                        </div>
+                        <div class="data">
+                            <p class="head centerCol" id="h2_3pNW">TARNAKA - NACHARAM X ROADS</p>
+                            <p class="text centerCol" id="r2_3pNW">3KN, 49M/250, 250, 250C,</p>
+                        </div>
+                        <div class="data">
+                            <p class="head centerCol" id="h3_3pNW">NACHARAM X ROADS</p>
+                            <p class="text centerCol" id="r3_3pNW">250, 250C</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="helpLink centerRow" onclick="needHelpALT('B')">Need Help?</p>
+            </div>
+
+            <!-- Other Route Block -->
+            <div class="altOutline close hide" id="ALTroute2">
+                <div class="ALT_header centerRow">
+                    <h3>Other Route: </h3>
+                    <img src="images/icons/down_Arrow.png" alt="closeIcon" onclick="closeALToutline(this)"
+                        class="close">
+                </div>
+                <!-- 3 Points with middle walk info -->
+                <div class="ALT_content centerRow" id="point3ALT_OR">
+                    <div class="graphics centerCol">
+                        <p class="circle orange">S</p>
+                        <p class="road"></p>
+                        <p class="circle blue">Ex</p>
+                        <p class="road"></p>
+                        <p class="circle green">D</p>
+                    </div>
+                    <div class="content centerCol">
+                        <div class="data">
+                            <p class="head centerCol" id="h1_3p_OR">ECIL X - SEC'BAD</p>
+                            <p class="text centerCol" id="r1_3p_OR">17H, 17D, 16H, 16C, 242</p>
+                        </div>
+                        <div class="data">
+                            <p class="head centerCol" id="h2_3p_OR">BLUE SEA - ALPHA</p>
+                            <p class="text centerCol walkway" id="r2_3p_OR">Go to Alpha Hotel bus stop by walk</p>
+                        </div>
+                        <div class="data">
+                            <p class="head centerCol" id="h3_3p_OR">SEC'BAD - AMEERPET</p>
+                            <p class="text centerCol" id="r3_3p_OR">10H, 10KJ, 10YF, 10F, 47YM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 Points without walk info -->
+                <div class="ALT_content centerRow" id="point3NWALT_OR">
+                    <div class="graphics centerCol">
+                        <p class="circle orange">S</p>
+                        <p class="road"></p>
+                        <p class="circle blue">Ex</p>
+                        <p class="road"></p>
+                        <p class="circle green">D</p>
+                    </div>
+                    <div class="content centerCol">
+                        <div class="data">
+                            <p class="head centerCol" id="h1_3pNW_OR">LALAPET - TARNAKA</p>
+                            <p class="text centerCol" id="r1_3pNW_OR">3K, 17H, 17D, 242</p>
+                        </div>
+                        <div class="data">
+                            <p class="head centerCol" id="h2_3pNW_OR">TOWARDS UPPAL STOP</p>
+                            <p class="text centerCol" id="r2_3pNW_OR">Go to Alpha Hotel bus stop by walk</p>
+                        </div>
+                        <div class="data">
+                            <p class="head centerCol" id="h3_3pNW_OR">TARNAKA - NACHARAM X ROADS</p>
+                            <p class="text centerCol" id="r3_3pNW_OR">250, 250C</p>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="helpLink centerRow" onclick="needHelpALT('O')">Need Help?</p>
+            </div>
+        </div>
+    </div>
+    <!-- <div id="brand">
+        Designed and Developed by RT Web & Mobile Apps
+    </div> -->
+    <!-- ALERT BOX POP UP SCREEN -->
+    <div class="alertBoxScreen hide" id="popUpScreen">
+
+        <!-- ALERT BOX -->
+        <div class="alertBox centerCol hide" id="alertBox">
+            <div class="content centerCol">
+                <img src="images/icons/oops_Red.png" alt="icon">
+                <h3 id="headlineAlert">OOPS!</h3>
+                <p id="messageAlert">Direct Buses aren't Available, Do you want to view Alternate Route?</p>
+            </div>
+            <div class="actionBtns centerRow">
+                <button onclick="closePopUpBox(this)" id="alertCloseBtn">Close</button>
+                <button class="active" onclick="alertRedirect()">View</button>
+            </div>
+        </div>
+
+        <!-- SUCCESS BOX -->
+        <div class="alertBox centerCol hide" id="successBox">
+            <div class="content centerCol">
+                <img src="images/icons/successGreen.png" alt="icon">
+                <h3>SUCCESS!</h3>
+                <p>Your Message Sent Successfully!</p>
+            </div>
+            <div class="actionBtns centerRow">
+                <button class="active single" onclick="closePopUpBox(this)" id="successCloseBtn">Dismiss</button>
+            </div>
+        </div>
+
+        <!-- CONTACT BOX -->
+        <div class="contactBox centerCol hide" id="contactBox">
+            <h2>SEND MESSAGE</h2>
+            <div class="form centerCol">
+                <input type="text" id="name" placeholder="Name" autocomplete="off">
+                <input type="email" id="email" placeholder="E-Mail ID" autocomplete="off">
+                <input type="text" id="subject" placeholder="Subject" autocomplete="off">
+                <textarea name="message" id="message" placeholder="Message"></textarea>
+            </div>
+            <div class="actionBtns centerRow">
+                <button class="" onclick="closePopUpBox(this)" id="contactCloseBtn">Close</button>
+                <button class="active" id="sendBtn">Send</button>
+            </div>
+        </div>
+
+        <!-- ERROR BOX -->
+        <div class="alertBox centerCol hide" id="errorBox">
+            <div class="content centerCol">
+                <img src="images/icons/oops_Red.png" alt="icon">
+                <h3>OOPS!</h3>
+                <p id="errorMessage"></p>
+            </div>
+            <div class="actionBtns centerRow">
+                <button class="active single" onclick="closePopUpBox(this)" id="errorCloseBtn">Dismiss</button>
+            </div>
+        </div>
+
+        <!-- DETAILED ALT ROUTE SCREEN -->
+        <div class="alertBox centerCol hide ALT_DetailedRoute" id="ALT_DetailedRoute_3P">
+            <div class="content centerCol" id="ALT_DetailedRoute_content">
+                <!-- <ul>
+                    <li>First Go to Tarnaka from Lalapet by buses like 3K, 17H, 242 etc.,</li>
+                    <li>Get Down at Tarnaka & walk to the bus stop where buses towards Uppal Stops.</li>
+                    <li>In that Bus stop board buses like 18C, 279, 280 etc., and get down at Uppal Ring Road.</li>
+                    <p><strong>Note:</strong> <br>Since Tarnaka has multiple bus stops, all buses won't stop at same bus
+                        stop.</p>
+                </ul> -->
+            </div>
+            <div class="actionBtns centerRow">
+                <button class="active single" onclick="closePopUpBox(this)" id="detailedALTCloseBtn">Dismiss</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- OTHER SECTION SCREEN -->
+    <div class="OutputScreen otherSectionsScreen close" id="otherSectionsScreen">
+        <h2 class="headerOS centerRow">
+            <li class="menuIcon centerRow" onclick="closeOtherSection()" id="otherSectionsCloseBtn">
+                <svg viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#FFF">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M768 903.232l-50.432 56.768L256 512l461.568-448 50.432 56.768L364.928 512z"
+                            fill="#FFF">
+                        </path>
+                    </g>
+                </svg>
+            </li><span id="otherSectionsScreenHeading">HEADING</span>
+        </h2>
+
+        <!-- BUS PASS INFO SCREEN -->
+        <div class="busPassInfoScreen hide" id="busPassInfoScreen">
+            <table class="hide">
+                <tr>
+                    <th>Bus Pass Type</th>
+                    <th>Eligibility</th>
+                    <th>Limits</th>
+                </tr>
+                <tr>
+                    <td>John</td>
+                    <td>28</td>
+                    <td>USA</td>
+                </tr>
+                <tr>
+                    <td>Mary</td>
+                    <td>22</td>
+                    <td>Canada</td>
+                </tr>
+                <tr>
+                    <td>Linda</td>
+                    <td>30</td>
+                    <td>UK</td>
+                </tr>
+            </table>
+            <div class="passContent">
+                <h3>1. General Pass</h3>
+                <img src="images/photos/cityOrdinary.jpg" alt="busPic">
+                <p>The General Pass allows unlimited travel on all <strong>city
+                        ordinary and e-city Ordinary buses</strong> within the limits of Hyderabad and its suburban
+                    areas. This pass is
+                    ideal for those
+                    who primarily use the regular city bus services for their daily commute. Both the general public and
+                    students are eligible to purchase the General Pass.</p>
+                <table class="">
+                    <tr>
+                        <th>Commuter</th>
+                        <th>Monthly</th>
+                        <th>Quaterly</th>
+                    </tr>
+                    <tr>
+                        <td>Student</td>
+                        <td>450/-</td>
+                        <td>1250/-</td>
+                    </tr>
+                    <tr>
+                        <td>General Public</td>
+                        <td>1150/-</td>
+                        <td>N.A</td>
+                    </tr>
+                </table>
+                <h3>2. Metro Express Pass</h3>
+                <img src="images/photos/metroExp.jpg" alt="busPic">
+                <p>The Metro Express Pass allows unlimited travel on all <strong>Metro Express, e-Metro Express
+                        Buses</strong> and also
+                    in <strong>City
+                        Ordinary, e-City Ordinary buses</strong> within the limits of Hyderabad and its suburban areas.
+                    it is available
+                    for the
+                    general public at <strong>1300/- per month,</strong> and the student cannot get a metro Express pass
+                    however they can buy a combo ticket of <strong>10/-</strong> everytime they wants to travel in the
+                    metro buses, that
+                    ticket is valid upto last stop of the Bus.</p>
+
+                <h3>3. Metro Deluxe Pass</h3>
+                <img src="images/photos/metroDlx.jpg" alt="busPic">
+                <p>The Metro Delue Pass allows unlimited travel in <strong>Metro Deluxe, Metro Express, City ordinary
+                        buses & all Non-AC Electric city bus services</strong>. Metro Deluxe buses offer a more
+                    comfortable
+                    and premium travel experience, often featuring better seating. It is available to the general public
+                    at
+                    <strong>1450/- per month,</strong>
+                    and students cannot travel in this buses with their pass with combo ticket.
+                </p>
+
+                <h3>4. T24 TAYL(DAY PASS)</h3>
+                <img src="images/photos/eMetroExpress.png" alt="busPic">
+                <p>The T24 Travel as you like pass is valid for 24 hours from the time of purchase. There are two types
+                    of passes available in T24. You can purchase these passes from
+                    conductors.<br><strong><span class="bulletPoint">&#8658;</span> The Non AC T24
+                        Pass</strong>
+                    allows
+                    unlimited travel
+                    in all the Non
+                    AC buses like City Ordinary, e-City Ordinary, Metro Express and e-Metro Express within the city and
+                    its suburban Limits,
+                    but It is not valid in Metro Deluxe & AC City Bus Services.<br><strong><span
+                            class="bulletPoint">&#8658;</span>
+                        The AC T24 Pass</strong> allows unlimited travel in the AC city bus services and also in all the
+                    Non-Ac Services within the city and its suburban limits, but this pass is not valid in Airport Liner
+                    Pushpak Bus Services.</p>
+                <table class="">
+                    <tr>
+                        <th>Pass Type</th>
+                        <th>Price</th>
+                        <!-- <th>Valid In</th> -->
+                    </tr>
+                    <tr>
+                        <td>T24 Non-AC</td>
+                        <td>120/-</td>
+                        <!-- <td>All Non AC Buses</td> -->
+                    </tr>
+                    <tr>
+                        <td>T24 AC</td>
+                        <td>160/-</td>
+                        <!-- <td>All AC & Non AC Buses(Except Airport Liners)</td> -->
+                    </tr>
+                </table>
+                <h4>Note: </h4>
+                <p>There are many passes like Student Route Pass, Student Greater Pass, MMTS RTC Combo, NGO's Pass etc.,
+                    but here we have mentioned few commonly used bus pass types. You can go through TSRTC website or
+                    staff
+                    for detailed information about other passes.</p>
+            </div>
+        </div>
+        <!-- <div id="brand">
+            Designed and Developed by RT Web & Mobile Apps
+        </div> -->
+        <!-- HELP SCREEN  -->
+        <div class="helpScreen hide" id="helpScreen">
+
+            <!-- NEW UI HELP SCREEN -->
+            <div class="newHelpScreen">
+                <div class="helpSection">
+                    <div class="image centerRow">
+                        <!-- <img src="images/photos/routeSearch.png" alt="routeSearch"> -->
+                    </div>
+                    <div class="text">
+                        <h4>Bus Routes</h4>
+                        <p>We have many Bus Routes in our city such as 17H, 14P, 250C etc., but we dont know which bus
+                            goes in which route and what are the stops present in that route. To get those details use Route
+                            Details Option. Just enter the bus route number and you will get all the stops on that
+                            particular route.</p>
+                    </div>
+                </div>
+
+                <div class="helpSection">
+                    <div class="image centerRow">
+                        <!-- <img src="images/photos/BusStop.png" alt="routeSearch"> -->
+                    </div>
+                    <div class="text">
+                        <h4>Bus Stops</h4>
+                        <p>If you are in the bus stop and wants to know all the buses which passes from that particular
+                            bus stop, then you can use the bus stop option. Just enter the bus stop name and you will
+                            get the list of all the bus route numbers which passes from that particular bus stop.</p>
+                    </div>
+                </div>
+
+                <div class="helpSection">
+                    <div class="image centerRow">
+                        <!-- <img src="images/photos/FromTo.png" alt="routeSearch"> -->
+                    </div>
+                    <div class="text">
+                        <h4>From - To</h4>
+                        <p>If you wants to go somewhere but don't know which bus you have to board, then you can use
+                            from - to option. Just enter the name of the bus stop which is nearer to you and also the
+                            name of the bus stop of your destination, then you will get the list of Direct bus route
+                            numbers which runs between those two bus stops.</p>
+                    </div>
+                </div>
+
+                <div class="helpSection">
+                    <div class="text">
+                        <h4>Regular and Rare Routes</h4>
+                        <p>In the above two sections you will see the list of regular buses and rare/special buses,
+                            Regular buses are those which runs daily
+                            with high no. of services and Rare/Special Bus Routes are those buses which
+                            has less no. of services and Some buses runs only on special occasions or on working days
+                            only.</p>
+                    </div>
+                </div>
+
+                <div class="helpSection">
+                    <div class="image centerRow">
+                        <!-- <img src="images/photos/AlternateRoute.png" alt="routeSearch"> -->
+                    </div>
+                    <div class="text">
+                        <h4>Indirect Routes</h4>
+                        <p>If you wants to go somewhere, but direct buses are not available to you destination, then you
+                            can use this option. Just enter you bus stop name which you board the bus and the bus stop
+                            name of your destination, then you will get the detailed information on how to reach your
+                            destination.</p>
+                    </div>
+                    <!-- <div id="brand">
+                        Designed and Developed by RT Web & Mobile Apps
+                    </div> -->
+                </div>
+
+                <div class="helpSection">
+                    <div class="image centerRow">
+                        <!-- <img src="images/photos/fareChart.png" alt="routeSearch"> -->
+                    </div>
+                    <div class="text">
+                        <h4>Fare Search</h4>
+                        <p>Hyderabad is a tourist hub, we have many tourist places to explore in our hyderabad, so if
+                            you are planning a trip by public transport and wants to know your travel budget you can use
+                            fare option. Just enter the starting point bus stop and destination bus stop, then you will
+                            get the ticket price between
+                            them.<!-- <br>Note: If there are many routes numbers between your starting point and destination, then ticket price would be different in each route. We will provide the fare only one route -->
+                        </p>
+                    </div>
+                </div>
+
+                <div class="helpSection">
+                    <div class="text">
+                        <h4>Live Updates</h4>
+                        <p>This feature of our app provides you the details of some buses which are currently in
+                            trip. We provide the details of those buses which are not present in TGSRTC Gamyam App. The
+                            Main
+                            objective of this feature is to provide the details of currently running bus along with its
+                            Occupancy. You can find the details of very less buses and sometimes you may get no buses
+                            found, because we cannot provide the information all the time in this app. If you need live
+                            tracking,
+                            please use TGSRTC gamyam App. </p>
+                    </div>
+                </div>
+
+                <div class="helpSection">
+                    <div class="text">
+                        <h4>Bus Pass Info</h4>
+                        <p>If you are a student or an employee, you have to travel regularly to reach your college or
+                            office. If you are using City buses for that, then buy ticket daily will costs more money.
+                            Instead of buying ticket daily you can take bus pass to reduce your cost. To know the
+                            information about various bus passes, You can use bus pass option.</p>
+                    </div>
+                </div>
+                <!-- <div id="brand">
+                    Designed and Developed by RT Web & Mobile Apps
+                </div> -->
+                <div class="helpSection">
+                    <div class="text">
+                        <h4>Short Names</h4>
+                        <p>While using this app, you will see some short names such as RTCX, CGCL etc., Those are the
+                            short names for some bus stops. We made them short inorder to maintain clean user interface.
+                            If you are unable to identify those short names, you can <strong onclick="showShortNames()"
+                                style="text-decoration: underline; color: blue;">click
+                                here</strong> to know the bus stop for
+                            that short Name.</p>
+                    </div>
+                </div>
+
+                <div class="helpSection">
+                    <div class="text">
+                        <h4>Contribute</h4>
+                        <p>You are always welcomed to contribute to our Application. Kindly Help us to provide more
+                            information to our users by sharing your ideas and information to us by contact us option.
+                            <!-- And you can also help us by sharing your bus ticket, so that we can provide more information
+                            at fare section. -->
+                        </p>
+                    </div>
+                </div>
+                <!-- <div id="brand">
+                    Designed and Developed by RT Web & Mobile Apps
+                </div> -->
+                <div class="helpSection">
+                    <div class="text">
+                        <h4>Google Ads</h4>
+                        <p>Dear user, we made this app to make the city bus rides of our user easy and convenient by
+                            choosing right bus and right route to reach their destination. Ad policy is the only way to
+                            fund our Application. So we placed advertisements in our application. But we're sure that we
+                            won't irritate you by showing many ads, Just watching <strong>one ad per day</strong> and
+                            enjoy our
+                            application. Thank you.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="helpSection">
+                    <div class="text">
+                        <h4>About Us</h4>
+                        <p> This application is designed to assist Hyderabad city commuters by providing information on
+                            city buses and routes. The data is gathered through personal observation and is not
+                            affiliated with TGSRTC. TGSRTC officials hold the right to modify bus routes and schedules
+                            at any time and are <strong>not responsible</strong> for any inaccuracies. Additionally,
+                            TGSRTC is
+                            <strong>not
+                                responsible </strong>for any <strong>false information</strong> presented in this
+                            application. For
+                            data removal
+                            requests, please contact us at
+                            <span>rtzoneproducts@gmail.com</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="helpSection">
+                    <div class="text">
+                        <h4>Privacy Policy</h4>
+                        <p>We do not collect any personal data. However, we store your name for display purposes and
+                            gather basic device details solely to track user count. We do not collect sensitive
+                            information such as date of birth, gender, phone numbers, emails, or passwords.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="helpSection">
+                    <div class="text">
+                        <h3 style="margin-top: 10px; font-size: 16px;">Need More Help?</h3>
+                        <p style="margin-top: 0px; font-size: 12px;">For any questions or feedback, reach out to us
+                            via the Contact
+                            Us option in the app menu. We're here to
+                            help!
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SHARE APP SCREEN -->
+        <div class="shareAppScreen hide" id="shareAppScreen">
+            <div class="ShareContent centerCol">
+                <div class="upText centerCol">
+                    <p>Let’s make Hyderabad commute hassle-free! </p>
+                    <h3>Invite your friends today!</h3>
+                </div>
+                <!-- <div id="brand">
+                    Designed and Developed by RT Web & Mobile Apps
+                </div> -->
+                <div class="image centerRow">
+                    <img src="images/photos/ShareAppImage2.jpg" alt="Image">
+                </div>
+                <div class="actions centerCol">
+                    <button class="centerRow" onclick="copyShareLink()" id="copyLinkBtn"><img
+                            src="images/icons/linkWhite.png" alt="linkIcon"><span id="copyText">Copy
+                            Link</span></button>
+                    <a href="https://wa.me/?text=your_message" class="shareWAbutton">Share Now</a>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- SHORT NAMES SCREEN -->
+        <div class="shareAppScreen hide" id="ShortformsScreen">
+            <div class="searchScreen">
+                <li class="input centerRow">
+                    <img src="images/icons/searchBlack.png" alt="Icon">
+                    <input type="text" name="searchBar" placeholder="Enter Short Name..."
+                        oninput="filterShortNames(this)" autocomplete="off" id="shortNamesInput">
+                </li>
+            </div>
+
+            <table id="shortNamesTable">
+
+            </table>
+        </div>
+
+        <!-- LIVE UPDATES SCREEN -->
+        <div class="liveUpdatesScreen  hide" id="liveUpdatesScreen">
+            <div class="busContainer hide">
+                <div class="busHead">
+                    <div class="row">
+                        <p class="r25" id="routeNo_LU">17H</p>
+                        <p class="r50" id="busNo_LU">AP29Z2343</p>
+                        <p class="r25" id="depot_LU">KG</p>
+                    </div>
+
+                    <div class="row">
+                        <p class="r100" id="route_LU">ECIL X ROADS - SECUNDERABAD</p>
+                    </div>
+
+                </div>
+
+                <div class="updateContainer">
+                    <div class="left">
+                        <p>Recent Stop: </p>
+                        <p>Next Stop: </p>
+                        <p>Service Type: </p>
+                        <p>Occupancy: </p>
+                    </div>
+                    <div class="right">
+                        <p id="RS_LU">Mettuguda</p>
+                        <p id="NS_LU">Tarnaka</p>
+                        <p id="ST_LU">City Ordinary</p>
+                        <p id="OC_LU">More than 5 Seats Available</p>
+                    </div>
+                </div>
+
+                <div class="LU_footer">
+                    <p id="status_LU">Left Mettuguda at 12:45 PM</p>
+                </div>
+
+            </div>
+
+            <div class="notFoundScreen hide">
+                <p>No Buses Found <br> Please try again Later</p>
+            </div>
+
+            <div class="simpleBusBlock hide">
+                <div class="upper">
+                    <p>Spoted <strong>3K</strong> towards <strong>Afzalgunj</strong> near <strong>Alugadda
+                            Bhavi</strong> at 17:35. The bus is
+                        full, but can stand.</p>
+                </div>
+                <div class="lower">
+                    <p>Next Stop Chilkalguda X Roads</p>
+                </div>
+            </div>
+
+            <!-- <div id="brand">
+                Designed and Developed by RT Web & Mobile Apps
+            </div> -->
+
+
+        </div>
+
+
+    </div>
+
+    <!-- DISCLAIMER SCREEN -->
+    <div class="disclaimerScreen hide" id="disclaimerScreen">
+        <div class="disclaimer">
+            <h3>Disclaimer</h3>
+            <p>Dear User,<br>
+                This application is designed to assist Hyderabad city commuters by providing information on
+                city buses and routes. The data is gathered through personal observation and is not
+                affiliated with TGSRTC. TGSRTC officials hold the right to modify bus routes and schedules
+                at any time and are <strong>not responsible</strong> for any inaccuracies. Additionally, TGSRTC is
+                <strong>not
+                    responsible </strong>for any <strong>false information</strong> presented in this application. For
+                data removal
+                requests, please contact us at
+                <span>rtzoneproducts@gmail.com</span>
+            </p>
+            <button onclick="getElementById('disclaimerScreen').classList.add('hide')">Close</button>
+        </div>
+    </div>
+
+    <div class="reverseButton centerCol hide" onclick="reverseDirectionRoute()" id="reverseButton">
+        <p id="buttonNameRev">DOWN ROUTE</p>
+    </div>
+
+    <ul class="suggessionsList" id="suggessionsList">
+        <!-- <div id="brand">
+            Designed and Developed by RT Web & Mobile Apps
+        </div> -->
+    </ul>
+
+    <div class="testingBackButton hide" onclick="AppGoBack()">
+
+    </div>
+
+    <script src="data.js"></script>
+    <script src="randomLogic.js"></script>
+    <script src="fareChart.js"></script>
+    <script src="altRouteData.js"></script>
+    <script src="app.js"></script>
+    <script src="format.js"></script>
+    <script type="module">
+
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-analytics.js";
+
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDL50nVv09WdGDqPygFgcaV_66j4q159ZI",
+            authDomain: "cbwh-ab6d5.firebaseapp.com",
+            projectId: "cbwh-ab6d5",
+            storageBucket: "cbwh-ab6d5.firebasestorage.app",
+            messagingSenderId: "586373767716",
+            appId: "1:586373767716:web:542a4b4754ea628f0ceeb1",
+            measurementId: "G-V3TBG9NQ7R",
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+
+        document.getElementById("sendBtn").addEventListener("click", async function () {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const subject = document.getElementById("subject").value;
+            const message = document.getElementById("message").value;
+
+            if (!name || !email || !subject || !message) {
+                alert("Please fill in all fields before submitting.");
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "CBWH_ContactUS"), {
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message,
+                    timestamp: new Date()
+                });
+
+                openPopUpBox(2);
+
+                document.getElementById("name").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("subject").value = "";
+                document.getElementById("message").value = "";
+            } catch (error) {
+                openPopUpBox(4, 'MSG');
+            }
+        });
+
+    </script>
+</body>
+
+</html>
