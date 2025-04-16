@@ -18466,15 +18466,19 @@ function closeRoute() {
 
     if (AppBackState == "View Route") {
         AppBackState = 0;
+        Android.changeStatusBarColor(white);
     } else if (AppBackState == "View Stop + View Route") {
         AppBackState = "View Stop";
+        Android.changeStatusBarColor(primary);
     } else if (AppBackState == "View From To + View Route") {
         AppBackState = "View From To";
+        Android.changeStatusBarColor(primary);
     } else if (AppBackState == "View Stop + Junction Stop + View Route") {
         AppBackState = "View Stop + Junction Stop";
+        Android.changeStatusBarColor(primary);
     }
 
-    Android.changeStatusBarColor(white);
+    
 }
 
 function closeFromTo() {
