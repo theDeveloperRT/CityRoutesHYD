@@ -1,3 +1,5 @@
+let white = "#FFFFFF";
+let primary = "#151A2D";
 let navs = document.querySelectorAll('.navLinks');
 let sideScreenMenu = document.querySelector('.sideScreenMenu');
 let menuItems = document.querySelector('.menuItems');
@@ -10404,6 +10406,8 @@ function navigation(ref) {
         default:
             break;
     }
+
+    Android.changeStatusBarColor(white);
 }
 
 function menuItemsClick(ref) {
@@ -10425,6 +10429,7 @@ function menuItemsClick(ref) {
             feature = 5;
 
             AppBackState = "Fare Chart";
+            Android.changeStatusBarColor(white);
             break;
 
         case 2:
@@ -10432,6 +10437,7 @@ function menuItemsClick(ref) {
             otherSectionsScreen.classList.remove('close');
             displayOtherSections(1, "BUS PASS INFO");
             AppBackState = "Other Screens";
+            Android.changeStatusBarColor(primary);
             break;
 
         case 3:
@@ -10441,6 +10447,7 @@ function menuItemsClick(ref) {
             }, 300);
 
             AppBackState = "Contact Us";
+            Android.changeStatusBarColor(white);
             break;
 
         case 4:
@@ -10448,6 +10455,7 @@ function menuItemsClick(ref) {
             otherSectionsScreen.classList.remove('close');
             displayOtherSections(2, "USER GUIDE");
             AppBackState = "Other Screens";
+            Android.changeStatusBarColor(primary);
             break;
 
         case 5:
@@ -10457,6 +10465,7 @@ function menuItemsClick(ref) {
             getId('copyLinkBtn').classList.remove("active");
             getId('copyText').innerText = "Copy Link";
             AppBackState = "Other Screens";
+            Android.changeStatusBarColor(primary);
             break;
 
         case 6:
@@ -10466,6 +10475,7 @@ function menuItemsClick(ref) {
             fetchLiveUpdates();
 
             AppBackState = "Other Screens";
+            Android.changeStatusBarColor(primary);
             break;
 
         default:
@@ -10643,6 +10653,8 @@ function viewRoute(ref) {
     } else if (AppBackState == "View Stop + Junction Stop") {
         AppBackState = "View Stop + Junction Stop + View Route";
     }
+
+    Android.changeStatusBarColor(primary);
 }
 
 let introPartUP, introPartDOWN;
@@ -16944,6 +16956,7 @@ function viewStop(ref) {
         AppBackState = "View Stop + Junction Stop";
     }
 
+    Android.changeStatusBarColor(primary);
 }
 
 function viewStopSender(ref) {
@@ -17225,6 +17238,8 @@ function fromToFetchOutput(from, to) {
                 if (AppBackState == 0) {
                     AppBackState = "View From To";
                 }
+
+                Android.changeStatusBarColor(primary);
             }
         }
     } else {
@@ -17292,6 +17307,8 @@ function fromToFetchOutput(from, to) {
             } else {
                 getId('RR_RouteContainerFT').style.display = "block";
             }
+
+            Android.changeStatusBarColor(primary);
         }
     }
 }
@@ -17875,8 +17892,10 @@ function openMenu() {
     sideScreenMenu.classList.toggle('open');
     if (sideScreenMenu.classList[1] == 'open') {
         AppBackState = "Menu Open";
+        Android.changeStatusBarColor(primary);
     } else {
         AppBackState = 0;
+        Android.changeStatusBarColor(white);
     }
 }
 
@@ -18395,12 +18414,15 @@ function closeBusStop() {
     if (backState == 1) {
         viewStop(JunctionStopState);
         backState = 0;
+        Android.changeStatusBarColor(primary);
     } else if (backState == 2) {
         fillRoutesBusStop(junctionStopsStopName);
         OutputScreen2.classList.add('close');
         backState = 1;
+        Android.changeStatusBarColor(primary);
     } else {
         OutputScreen.classList.add('close');
+        Android.changeStatusBarColor(white);
     }
 
     if (!(SHD.includes(input1.value))) {
@@ -18451,6 +18473,8 @@ function closeRoute() {
     } else if (AppBackState == "View Stop + Junction Stop + View Route") {
         AppBackState = "View Stop + Junction Stop";
     }
+
+    Android.changeStatusBarColor(white);
 }
 
 function closeFromTo() {
@@ -18475,6 +18499,8 @@ function closeFromTo() {
     if (AppBackState == "View From To") {
         AppBackState = 0;
     }
+
+    Android.changeStatusBarColor(white);
 }
 
 function closeOtherSection() {
