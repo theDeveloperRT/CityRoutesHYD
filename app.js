@@ -10462,8 +10462,6 @@ function menuItemsClick(ref) {
             // More Apps
             otherSectionsScreen.classList.remove('close');
             displayOtherSections(3, "SHARE APP");
-            getId('copyLinkBtn').classList.remove("active");
-            getId('copyText').innerText = "Copy Link";
             AppBackState = "Other Screens";
             Android.changeStatusBarColor(primary);
             break;
