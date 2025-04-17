@@ -1942,10 +1942,10 @@ let DetailedRoutesUP = [
         getStops(IBP_DNGL, 'SECUNDERABAD', 'PATNY'),
         getStops(TailsUP, 'MUD FORT', 'OLD BOWENPALLY')
     ),
-    ["26M/49M"].concat(
-        getStops(TailsDOWN, 'OLD BOWENPALLY', 'SIKH VILLAGE'),
-        getStops(CRPL_LGPL, 'PARADISE', 'MEHDIPATNAM')
-    ),
+    // ["26M/49M"].concat(
+    //     getStops(TailsDOWN, 'OLD BOWENPALLY', 'SIKH VILLAGE'),
+    //     getStops(CRPL_LGPL, 'PARADISE', 'MEHDIPATNAM')
+    // ),
     ["26N"].concat(
         getStops(IBP_DNGL, 'SECUNDERABAD', 'PATNY'),
         getStops(TailsUP, 'MUD FORT', 'DIAMOND POINT'),
@@ -2254,11 +2254,11 @@ let DetailedRoutesUP = [
         SHD[264], "NMDC (ANANDH BAGH)", "TIRUMALA NAGAR",
         getStops(SHMB_KSR, 'ZTS X ROADS', 'ECIL X ROADS')
     ),
-    ["49M/26M"].concat(
-        getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PARADISE'),
-        SHD[755],
-        getStops(TailsUP, 'MUD FORT', 'OLD BOWENPALLY')
-    ),
+    // ["49M/26M"].concat(
+    //     getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PARADISE'),
+    //     SHD[755],
+    //     getStops(TailsUP, 'MUD FORT', 'OLD BOWENPALLY')
+    // ),
     ["49M/92A"].concat(
         getStops(CRPL_LGPL, 'SECUNDERABAD', 'MEHDIPATNAM'),
         getStops(SKPL_SECB, 'RETHIBOWLI', 'ARAMGHAR')
@@ -3163,10 +3163,10 @@ let DetailedRoutesUP = [
         getStops(MLPT_BLNR, 'JNTU COLLEGE', 'WAVEROCK')
     ),
 
-    ["171K/219"].concat(
-        getStops(GTKS_KPHB, 'SHAHPUR NAGAR', 'KPHB MAIN ROAD'),
-        getStops(GTKS_PTCR, 'KPHB MAIN ROAD', 'PATANCHERUVU')
-    ),
+    // ["171K/219"].concat(
+    //     getStops(GTKS_KPHB, 'SHAHPUR NAGAR', 'KPHB MAIN ROAD'),
+    //     getStops(GTKS_PTCR, 'KPHB MAIN ROAD', 'PATANCHERUVU')
+    // ),
     ["171M/189M"].concat(
         getStops(KPHB_GTKS, 'GAJULA RAMARAM', 'NLB NAGAR'),
         getStops(DNGL_IBP, SHD[298], 'BALANAGAR'),
@@ -3725,11 +3725,11 @@ let DetailedRoutesUP = [
         getStops(PTCR_GTKS, "UPPAL GANDHI STATUE", "CHENGICHERLA X ROADS"),
         getStops(TailsUP, 'AYODHYA COLONY', 'CHENGICHERLA')
     ),
-    ["219/171K"].concat(
-        getStops(PTCR_GTKS, 'PATANCHERUVU', 'KPHB MAIN ROAD'),
-        getStops(BLNR_MLPT, 'VIVEKA NANDA NAGAR', 'BEERAPPA NAGAR'),
-        SHD[905]
-    ),
+    // ["219/171K"].concat(
+    //     getStops(PTCR_GTKS, 'PATANCHERUVU', 'KPHB MAIN ROAD'),
+    //     getStops(BLNR_MLPT, 'VIVEKA NANDA NAGAR', 'BEERAPPA NAGAR'),
+    //     SHD[905]
+    // ),
     ["219/183S"].concat(
         getStops(PTCR_GTKS, 'PATANCHERUVU', 'KUKATPALLY'),
         SHD[1087],
@@ -4205,9 +4205,9 @@ let DetailedRoutesUP = [
         "IOC X ROADS",
         getStops(TailsDOWN, 'CHENGICHERLA', 'CHENGICHERLA DEPOT')
     ),
-    ["250S"].concat(
-        getStops(LGPL_CRPL, 'SECUNDERABAD', 'NOMA')
-    ),
+    // ["250S"].concat(
+    //     getStops(LGPL_CRPL, 'SECUNDERABAD', 'NOMA')
+    // ),
     ["250/219"].concat(
         getStops(GWRL_HCLX, 'ECIL X ROADS', 'HCL X ROADS'),
         getStops(CRPL_LGPL, 'ASHOK NAGAR (NFC)', 'SECUNDERABAD'),
@@ -7077,11 +7077,11 @@ let DetailedRoutesDOWN = [
         SHD[1222], SHD[760],
         getStops(MHRM_MDCL, 'MOTHER TERESA STATUE', 'SECUNDERABAD')
     ),
-    ["26M/49M"].concat(
-        getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PARADISE'),
-        SHD[755],
-        getStops(TailsUP, 'MUD FORT', 'OLD BOWENPALLY')
-    ),
+    // ["26M/49M"].concat(
+    //     getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PARADISE'),
+    //     SHD[755],
+    //     getStops(TailsUP, 'MUD FORT', 'OLD BOWENPALLY')
+    // ),
     ["26N"].concat(
         getStops(TailsDOWN, 'OLD BOWENPALLY', 'ASHOK GARDENS'),
         SHD[1154], SHD[1165], SHD[585], SHD[584],
@@ -7406,10 +7406,10 @@ let DetailedRoutesDOWN = [
         getStops(IBP_DNGL, "METTUGUDA", "CHILKALGUDA X ROADS"),
         getStops(CRPL_LGPL, "SECUNDERABAD", "MEHDIPATNAM")
     ),
-    ["49M/26M"].concat(
-        getStops(TailsDOWN, 'OLD BOWENPALLY', 'SIKH VILLAGE'),
-        getStops(CRPL_LGPL, 'PARADISE', 'MEHDIPATNAM')
-    ),
+    // ["49M/26M"].concat(
+    //     getStops(TailsDOWN, 'OLD BOWENPALLY', 'SIKH VILLAGE'),
+    //     getStops(CRPL_LGPL, 'PARADISE', 'MEHDIPATNAM')
+    // ),
     ["49M/92A"].concat(
         getStops(SECB_SKPL, 'ARAMGHAR', 'RETHIBOWLI'),
         getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PATNY'),
@@ -8310,11 +8310,11 @@ let DetailedRoutesDOWN = [
         "JNTU COLLEGE",
         getStops(KPHB_GTKS, 'KPHB MAIN ROAD', 'GAJULA RAMARAM')
     ),
-    ["171K/219"].concat(
-        getStops(PTCR_GTKS, 'PATANCHERUVU', 'KPHB MAIN ROAD'),
-        getStops(BLNR_MLPT, 'VIVEKA NANDA NAGAR', 'BEERAPPA NAGAR'),
-        SHD[905]
-    ),
+    // ["171K/219"].concat(
+    //     getStops(PTCR_GTKS, 'PATANCHERUVU', 'KPHB MAIN ROAD'),
+    //     getStops(BLNR_MLPT, 'VIVEKA NANDA NAGAR', 'BEERAPPA NAGAR'),
+    //     SHD[905]
+    // ),
     ["171M/189M"].concat(
         getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PANJAGUTTA'),
         getStops(GTKS_PTCR, 'PANJAGUTTA', 'MOOSAPET'),
@@ -8878,10 +8878,10 @@ let DetailedRoutesDOWN = [
         SHD[1087],
         getStops(GTKS_PTCR, "KUKATPALLY GOVT COLLEGE", "PATANCHERUVU")
     ),
-    ["219/171K"].concat(
-        getStops(GTKS_KPHB, 'SHAHPUR NAGAR', 'KPHB MAIN ROAD'),
-        getStops(GTKS_PTCR, 'KPHB MAIN ROAD', 'PATANCHERUVU')
-    ),
+    // ["219/171K"].concat(
+    //     getStops(GTKS_KPHB, 'SHAHPUR NAGAR', 'KPHB MAIN ROAD'),
+    //     getStops(GTKS_PTCR, 'KPHB MAIN ROAD', 'PATANCHERUVU')
+    // ),
     ["219/183S"].concat(
         SHD[905],
         getStops(DNGL_IBP, 'CHINTAL', 'BALANAGAR'),
@@ -9358,10 +9358,10 @@ let DetailedRoutesDOWN = [
         getStops(CRPL_LGPL, 'CHERLAPALLY', 'HCL PHASE 1'),
         getStops(HCLX_GWRL, 'HCL X ROADS', 'ECIL X ROADS')
     ),
-    ["250S"].concat(
-        getStops(CRPL_LGPL, 'NOMA', 'ALUGADDA BHAVI'),
-        SHD[878], SHD[898]
-    ),
+    // ["250S"].concat(
+    //     getStops(CRPL_LGPL, 'NOMA', 'ALUGADDA BHAVI'),
+    //     SHD[878], SHD[898]
+    // ),
     ["250/219"].concat(
         getStops(PTCR_GTKS, 'PATANCHERUVU', 'KUKATPALLY'),
         SHD[1087],
@@ -18124,28 +18124,36 @@ function needHelpALT(type) {
 
 function capitalizeText(text) {
     let string = "";
-    if (text.includes(" ")) {
-        text = text.split(" ");
-        for (let i = 0; i < text.length; i++) {
-            if (text[i].length <= 3) {
-                if (i == text.length) {
-                    string += text[i].toUpperCase();
+
+    if (SHD.includes(text)) {
+        string = shdLower[SHD.indexOf(text)];
+    } else if (text == "MGBS" || text == "JBS" || text == "CBS" || text == "BDL" || text == "BEL" || text == "RCI" || text == "GAR") {
+        string = text.toUpperCase();
+    } else {
+        if (text.includes(" ")) {
+            text = text.split(" ");
+            for (let i = 0; i < text.length; i++) {
+                if (text[i].length <= 3) {
+                    if (i == text.length) {
+                        string += text[i].toUpperCase();
+                    } else {
+                        string += text[i].toUpperCase() + " ";
+                    }
                 } else {
-                    string += text[i].toUpperCase() + " ";
-                }
-            } else {
-                if (i == text.length - 1) {
-                    string += text[i][0].toUpperCase();
-                    string += text[i].slice(1, text[i].length).toLowerCase();
-                } else {
-                    string += text[i][0].toUpperCase();
-                    string += text[i].slice(1, text[i].length).toLowerCase() + " ";
+                    if (i == text.length - 1) {
+                        string += text[i][0].toUpperCase();
+                        string += text[i].slice(1, text[i].length).toLowerCase();
+                    } else {
+                        string += text[i][0].toUpperCase();
+                        string += text[i].slice(1, text[i].length).toLowerCase() + " ";
+                    }
                 }
             }
+        } else {
+            string = text[0].toUpperCase() + text.slice(1, text.length).toLowerCase();
         }
-    } else {
-        string = text[0].toUpperCase() + text.slice(1, text.length).toLowerCase();
     }
+
     return string;
 }
 
@@ -18478,7 +18486,7 @@ function closeRoute() {
         Android.changeStatusBarColor(primary);
     }
 
-    
+
 }
 
 function closeFromTo() {
@@ -18528,7 +18536,8 @@ function closeOtherSection() {
 }
 
 function copyShareLink() {
-    ClipboardCopier("https://thedeveloperrt.github.io/CityRoutesHYD/");
+    // ClipboardCopier("https://thedeveloperrt.github.io/CityRoutesHYD/");
+    Android.shareApp();
 }
 
 function ClipboardCopier(text) {
@@ -18540,8 +18549,8 @@ function ClipboardCopier(text) {
     document.execCommand("copy");
     document.body.removeChild(tempInput);
 
-    getId('copyLinkBtn').classList.add("active");
-    getId('copyText').innerText = "Copied";
+    // getId('copyLinkBtn').classList.add("active");
+    // getId('copyText').innerText = "Copied";
 }
 
 let arrayTest = (junctionStopsArrayRG_Routes[0][0]).concat(junctionStopsArrayRG_Routes[0][1], junctionStopsArrayRG_Routes[0][2]);
