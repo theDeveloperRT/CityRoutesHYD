@@ -1061,7 +1061,7 @@
                 requests, please contact us at
                 <span>rtzoneproducts@gmail.com</span>
             </p>
-            <button onclick="getElementById('disclaimerScreen').classList.add('hide')">Close</button>
+            <button onclick="closeDisclaimer()">Close</button>
         </div>
     </div>
 
@@ -1079,6 +1079,47 @@
 
     </div>
 
+    <div class="loadingScreen" id="loadingScreen">
+        <div class="spinner"></div>
+        <div id="loadingText"></div>
+        <div id="slowConnection">Slow internet connection…</div>
+    </div>
+
+    <script>
+        const loadingText = document.getElementById('loadingText');
+        const slowConnection = document.getElementById('slowConnection');
+        const loadingScreen = document.getElementById('loadingScreen');
+
+        const text = 'Loading...';
+        let i = 0;
+
+        function typeLoop() {
+            loadingText.textContent = '';
+            i = 0;
+            const typer = setInterval(() => {
+                loadingText.textContent += text.charAt(i);
+                i++;
+                if (i === text.length) {
+                    clearInterval(typer);
+                    setTimeout(typeLoop, 500);
+                }
+            }, 150);
+        }
+
+        typeLoop();
+
+        const slowTimer = setTimeout(() => {
+            slowConnection.style.display = 'block';
+        }, 3000);
+
+        window.addEventListener('load', () => {
+            clearTimeout(slowTimer);
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        });
+    </script>
     <script src="data.js"></script>
     <script src="randomLogic.js"></script>
     <script src="fareChart.js"></script>
