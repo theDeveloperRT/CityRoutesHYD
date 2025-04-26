@@ -902,6 +902,14 @@ let DetailedRoutesUP = [
         getStops(GTKS_PTCR, "MYTHRIVANAM", "KPHB MAIN ROAD"),
         getStops(GTKS_KPHB, 'KPHB TEMPLE', 'KPHB 4TH PHASE')
     ),
+    ["10KG"].concat(
+        getStops(CRPL_LGPL, "SECUNDERABAD", "GREEN LANDS"),
+        SHD[536],
+        SHD[36],
+        SHD[892],
+        getStops(GTKS_PTCR, "MYTHRIVANAM", "JNTU COLLEGE"),
+        SHD[344], SHD[409], "GOKUL PLOTS"
+    ),
     ["10KJ"].concat(
         getStops(CRPL_LGPL, "SECUNDERABAD", "GREEN LANDS"),
         SHD[536],
@@ -1619,6 +1627,11 @@ let DetailedRoutesUP = [
         getStops(OSK_Stops, 'HIMAYATH NAGAR VILLAGE', 'CHILKOOR X ROADS'),
         SHD[1026], SHD[209]
     ),
+    ["19KG"].concat(
+        getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PANJAGUTTA'),
+        getStops(GTKS_PTCR, 'PANJAGUTTA', 'JNTU COLLEGE'),
+        SHD[344], SHD[409], "GOKUL PLOTS"
+    ),
     ["19KJ"].concat(
         getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PANJAGUTTA'),
         getStops(GTKS_PTCR, 'PANJAGUTTA', 'KUKATPALLY'),
@@ -2150,6 +2163,10 @@ let DetailedRoutesUP = [
         getStops(PTCR_GTKS, 'UPPAL GANDHI STATUE', 'BODUPPAL X ROADS'),
         getStops(TailsUP, 'NTR STATUE (BDUPL)', 'INDIRA NAGAR X ROADS'),
         SHD[144]
+    ),
+    ["47W"].concat(
+        "SECUNDERABAD",
+        getStops(w47_UP, 'PATNY', 'WAVEROCK')
     ),
     ["47W/6N"].concat(
         getStops(BLNR_MLPT, 'WAVEROCK', 'INFOSYS'),
@@ -4655,6 +4672,12 @@ let DetailedRoutesUP = [
         getStops(IBP_DNGL, "SECUNDERABAD", "SURARAM"),
         "SURARAM VILLAGE"
     ),
+    ["283RG"].concat(
+        getStops(IBP_DNGL, "SECUNDERABAD", "SURARAM"),
+        "SURARAM CIRCLE",
+        "SURARAM COLONY",
+        "RAJIV GRUHAKALPA (SURARAM)"
+    ),
     ["283T"].concat(
         getStops(DNGL_IBP, 'SECUNDERABAD', 'UPPAL RING ROAD'),
         getStops(PTCR_GTKS, 'UPPAL GANDHI STATUE', 'JODIMETLA'),
@@ -6007,6 +6030,14 @@ let DetailedRoutesDOWN = [
         SHD[335],
         getStops(LGPL_CRPL, "BEGUMPET HPS", "SECUNDERABAD")
     ),
+    ["10KG"].concat(
+        "GOKUL PLOTS", SHD[409], SHD[344], SHD[442],
+        getStops(PTCR_GTKS, "JNTU COLLEGE", "AMEERPET"),
+        SHD[926],
+        SHD[536],
+        SHD[335],
+        getStops(LGPL_CRPL, "BEGUMPET HPS", "SECUNDERABAD")
+    ),
     ["10KJ"].concat(
         getStops(MLPT_BLNR, 'JAGATHGIRIGUTTA', 'VIVEKA NANDA NAGAR'),
         getStops(PTCR_GTKS, "KUKATPALLY", "AMEERPET"),
@@ -6022,7 +6053,6 @@ let DetailedRoutesDOWN = [
         SHD[335],
         getStops(LGPL_CRPL, "BEGUMPET HPS", "SECUNDERABAD")
     ),
-
     ["10KM"].concat(
         getStops(PTCR_GTKS, "MIYAPUR X ROADS", "AMEERPET"),
         SHD[926],
@@ -6757,6 +6787,11 @@ let DetailedRoutesDOWN = [
         getStops(LGPL_CRPL, 'MEHDIPATNAM', 'PANJAGUTTA'),
         getStops(GTKS_PTCR, 'PANJAGUTTA', 'KUKATPALLY')
     ),
+    ["19KG"].concat(
+        "GOKUL PLOTS", SHD[409], SHD[344], SHD[442],
+        getStops(PTCR_GTKS, 'JNTU COLLEGE', 'PANJAGUTTA'),
+        getStops(CRPL_LGPL, 'PANJAGUTTA', 'MEHDIPATNAM')
+    ),
     ["19KJ"].concat(
         getStops(MLPT_BLNR, 'JAGATHGIRIGUTTA', 'VIVEKA NANDA NAGAR'),
         getStops(PTCR_GTKS, 'KUKATPALLY', 'PANJAGUTTA'),
@@ -7289,6 +7324,10 @@ let DetailedRoutesDOWN = [
         getStops(CRPL_LGPL, "PATNY", "PANJAGUTTA"),
         getStops(KOTI_MCRL, 'ANDHRA JYOTHI', 'JOURNLIST COLONY'),
         getStops(TailsUP, 'ROAD NO. 45', 'AOU UNIVERSITY')
+    ),
+    ["47W"].concat(
+        getStops(w47_DN, 'WAVEROCK', 'PATNY'),
+        "SECUNDERABAD"
     ),
     ["47W/6N"].concat(
         getStops(KSR_SHMB, 'ECIL X ROADS', 'HB COLONY'),
@@ -9799,6 +9838,12 @@ let DetailedRoutesDOWN = [
         "SURARAM VILLAGE",
         getStops(DNGL_IBP, "SURARAM", "SECUNDERABAD")
     ),
+    ["283RG"].concat(
+        "RAJIV GRUHAKALPA (SURARAM)",
+        "SURARAM COLONY",
+        "SURARAM CIRCLE",
+        getStops(DNGL_IBP, "SURARAM", "SECUNDERABAD")
+    ),
     ["283T"].concat(
         "TENUGUDEM", "VENKATAPUR(TNGM)", "ANURAG UNIVERSITY",
         getStops(GTKS_PTCR, 'JODIMETLA', 'UPPAL RING ROAD'),
@@ -10650,9 +10695,16 @@ function viewRoute(ref) {
         AppBackState = "View From To + View Route";
     } else if (AppBackState == "View Stop + Junction Stop") {
         AppBackState = "View Stop + Junction Stop + View Route";
+    } else if (AppBackState == "View Route + View Stop") {
+        AppBackState = "View Route + View Stop + View Route";
+    } else if (AppBackState == "View Route + View Stop + Junction Stop") {
+        AppBackState = "View Route + View Stop + Junction Stop + View Route";
     }
 
     Android.changeStatusBarColor(primary);
+
+
+    console.log(AppBackState);
 }
 
 let introPartUP, introPartDOWN;
@@ -11746,6 +11798,14 @@ function setRouteOutputContent(routeNoI) {
             secBad_SS_DN = RSA_SS;
             break;
 
+        case "10KG":
+            note = 0;
+            starting = "SECUNDERABAD";
+            destination = "GOKUL PLOTS";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
+            break;
+
         case "10KJ/18":
             note = 0;
             starting = "JAGATHGIRIGUTTA";
@@ -12406,6 +12466,12 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "KUKATPALLY";
             destination = "BALAJI TEMPLE";
+            break;
+
+        case "19KG":
+            note = 0;
+            starting = "MEHDIPATNAM";
+            destination = "GOKUL PLOTS";
             break;
 
         case "19KJ":
@@ -13069,6 +13135,14 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECUNDERABAD";
             destination = "MANCHIREVULA";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
+            break;
+
+        case "47W":
+            note = 0;
+            starting = "SECUNDERABAD";
+            destination = "WAVEROCK";
             secBad_SS_UP = RSA_SS;
             secBad_SS_DN = RSA_SS;
             break;
@@ -15982,6 +16056,14 @@ function setRouteOutputContent(routeNoI) {
             secBad_SS_DN = RTF_SS;
             break;
 
+        case "283RG":
+            note = 0;
+            starting = "SECUNDERABAD";
+            destination = "RAJIV GRUHAKALPA";
+            secBad_SS_UP = GRD_SS;
+            secBad_SS_DN = GRD_SS;
+            break;
+
         case "283T":
             note = 0;
             starting = "SECUNDERABAD";
@@ -16850,6 +16932,7 @@ function reverseDirectionRoute() {
 }
 
 function viewStop(ref) {
+
     // To Be Hide
     OutputScreen.classList.remove('close');
     OutputScreen.classList.add('show');
@@ -16952,9 +17035,15 @@ function viewStop(ref) {
         AppBackState = "View From To + View Route + View Stop";
     } else if (AppBackState == "View Stop") {
         AppBackState = "View Stop + Junction Stop";
+    } else if (AppBackState == "View Stop + View Route") {
+        AppBackState = "View Stop + View Route + View Stop";
+    } else if (AppBackState == "View Route + View Stop") {
+        AppBackState = "View Route + View Stop + Junction Stop";
     }
 
     Android.changeStatusBarColor(primary);
+
+    console.log(AppBackState);
 }
 
 function viewStopSender(ref) {
@@ -17122,6 +17211,11 @@ function removeDuplicateRoutes(routes) {
     });
 
     return uniqueRoutes;
+}
+
+function closeDisclaimer() {
+    document.getElementById('disclaimerScreen').classList.add('hide');
+    AppBackState = 0;
 }
 
 function viewFromToRoute(ref, pos) {
@@ -18123,7 +18217,7 @@ function needHelpALT(type) {
 function capitalizeText(text) {
     let string = "";
 
-    if (SHD.includes(text)) {
+    if (SHD.includes(text) && (!OSK_Stops.includes(text))) {
         string = shdLower[SHD.indexOf(text)];
     } else if (text == "MGBS" || text == "JBS" || text == "CBS" || text == "BDL" || text == "BEL" || text == "RCI" || text == "GAR") {
         string = text.toUpperCase();
@@ -18380,7 +18474,7 @@ function resetAdSlider() {
 
 adSlider();
 
-// UNUSED FUNCTION
+// UNUSED FUNCTION START
 function closeOutputScreen(ref) {
     if (ref.id == "otherSectionsCloseBtn") {
         if (feature == "5") {
@@ -18414,7 +18508,7 @@ function closeOutputScreen(ref) {
         }
     }
 }
-// UNUSED FUNCTION
+// UNUSED FUNCTION END
 
 function closeBusStop() {
     if (backState == 1) {
@@ -18451,6 +18545,10 @@ function closeBusStop() {
         AppBackState = "View From To + View Route";
     } else if (AppBackState == "View Stop + Junction Stop") {
         AppBackState = "View Stop";
+    } else if (AppBackState == "View Stop + View Route + View Stop") {
+        AppBackState = "View Route";
+    } else if (AppBackState == "View Route + View Stop + Junction Stop") {
+        AppBackState = "View Route + View Stop";
     }
 
 }
@@ -18480,6 +18578,12 @@ function closeRoute() {
         AppBackState = "View From To";
         Android.changeStatusBarColor(primary);
     } else if (AppBackState == "View Stop + Junction Stop + View Route") {
+        AppBackState = "View Stop + Junction Stop";
+        Android.changeStatusBarColor(primary);
+    } else if (AppBackState == "View Route + View Stop + View Route") {
+        AppBackState = "View Stop";
+        Android.changeStatusBarColor(primary);
+    } else if (AppBackState == "View Route + View Stop + Junction Stop + View Route") {
         AppBackState = "View Stop + Junction Stop";
         Android.changeStatusBarColor(primary);
     }
@@ -18560,13 +18664,13 @@ arrayTest = []
 //     }
 // }
 
-let AppBackState = 0;
+let AppBackState = "Disclaimer";
 
 let backPressCount = 0; // Track back presses
 let backPressTimer; // Timer to reset the count
 
 function AppGoBack() {
-    // console.log(AppBackState);
+    console.log(AppBackState);
     switch (AppBackState) {
         case "Menu Open":
             openMenu();
@@ -18649,7 +18753,34 @@ function AppGoBack() {
             AppBackState = "View Stop + Junction Stop";
             break;
 
+        case "View Route + View Stop + View Route":
+            closeRoute();
+            AppBackState = "View Stop";
+            break;
+
+        case "View Stop + View Route + View Stop":
+            closeBusStop();
+            AppBackState = "View Route";
+            break;
+
+        case "View Route + View Stop + Junction Stop":
+            closeBusStop();
+            AppBackState = "View Route + View Stop";
+            break;
+
+        case "View Route + View Stop + Junction Stop + View Route":
+            closeRoute();
+            AppBackState = "View Stop + Junction Stop";
+            break;
+
+        case "Disclaimer":
+            document.getElementById('disclaimerScreen').classList.add('hide');
+            AppBackState = 0;
+            break;
+
+
         default:
+            AppBackState = 0;
             backPressCount++;
 
             if (navs[0].classList.contains('activeLink')) {
