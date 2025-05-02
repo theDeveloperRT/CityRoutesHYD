@@ -197,19 +197,173 @@ const fareData = {
         "NAGARJUNA COLONY": "@RAMPALLY X ROADS",
 
 
-
         // AS PER FARE SAMPLE SHEET
-        "POLICE LINES": "15-20",
-        "BEGUMPET": "20-25",
-        "MIYAPUR X ROADS": "35-35",
         "BALANAGAR": "25-30",
-        "MEHDIPATNAM": "30-30",
-        "RTC X ROADS": "15-20",
+        "BEGUMPET": "20-25",
+        "CHERLAPALLY": "30-35",
         "LAKDI KA PUL": "20-30",
-    }
+        "MEHDIPATNAM": "30-30",
+        "MIYAPUR X ROADS": "35-35",
+        "POLICE LINES": "15-20",
+        "RTC X ROADS": "15-20",
+    },
 
+    // AS PER FARE SAMPLE SHEET
+
+    "AFZALGUNJ": {
+        "CITY BUS STATION": "10-10",
+    },
+
+    "AMEERPET": {
+        "PANJAGUTTA": "10-10",
+        "NIMS HOSPITAL": "10-10",
+        "MYTHRIVANAM": "10-10",
+        "SR NAGAR": "10-10",
+
+
+    },
+
+    "BAHUDURPALLY X ROADS": {
+        "GANDIMAISAMMA": "10-10"
+    },
+
+    "BANK STREET (KOTI)": {
+        "KOTI WOMENS COLLEGE": "10-10",
+    },
+
+    "CHERLAPALLY": {
+        "SECUNDERABAD": "30-35",
+    },
+
+    "CHINTAL": {
+        "BALANAGAR": "15-20",
+    },
+
+    "DELHI TUBES": {
+        "TARNAKA": "15-20",
+    },
+
+    "ECIL X ROADS": {
+        "RAMPALLY X ROADS": "20-25",
+        "OFFICERs COLONY": "10-10",
+    },
+
+    "ERRAGADDA": {
+        "BALANAGAR": "15-20",
+    },
+
+    "HABSIGUDA": {
+        "TARNAKA": "10-10",
+    },
+
+    "HMT NAGAR": {
+        "TARNAKA": "10-10",
+    },
+
+    "KACHEGUDA X ROADS": {
+        "KOTI WOMENS COLLEGE": "10-10",
+        "KOTI MEDICAL COLLEGE": "10-10",
+    },
+
+    "KPHB MAIN ROAD": {
+        "NIMS HOSPITAL": "25-30",
+        "PANJAGUTTA": "25-30",
+        "SR NAGAR": "20-30",
+        "HYDER NAGAR": "10-10",
+    },
+
+    "LADIES HOSTEL": {
+        "TARNAKA": "10-10",
+    },
+
+    "LAKDI KA PUL": {
+        "SR NAGAR": "20-25",
+        "MYTHRIVANAM": "20-25",
+    },
+
+    "LB NAGAR X ROADS": {
+        "UPPAL RING ROAD": "20-30",
+        "UPPAL X ROADS": "20-30",
+    },
+
+    "LINGAMPALLY": {
+        "MIYAPUR": "15-20",
+    },
+
+    "MASAB TANK": {
+        "MEHDIPATNAM": "10-10",
+    },
+
+    "MEHDIPATNAM": {
+        "PANJAGUTTA": "20-25",
+    },
+
+    "MIYAPUR X ROADS": {
+        "KUKATPALLY": "20-25",
+    },
+
+    "NAGOLE X ROADS": {
+        "TARNAKA": "20-30",
+        "UPPAL RING ROAD": "15-20",
+        "UPPAL X ROADS": "15-20",
+    },
+
+    "NARAYANAGUDA": {
+        "TILAK NAGAR": "10-10",
+    },
+
+    "PANJAGUTTA": {
+        "MEHDIPATNAM": "20-25",
+        "POLICE LINES": "15-20",
+    },
+
+    "POLICE LINES": {
+        "PANJAGUTTA": "15-20",
+    },
+
+    "SHANKARMUTT": {
+        "TARNAKA": "15-20",
+    },
+
+    "SHRIRAM NAGAR": {
+        "PANJAGUTTA": "20-25",
+        "NIMS HOSPITAL": "20-25",
+    },
+
+    "SR NAGAR": {
+        "SECUNDERABAD": "20-30",
+    },
+
+    "TARNAKA": {
+        "NGRI": "10-10",
+        "HMT NAGAR": "10-10",
+        "HABSIGUDA": "10-10",
+        "UPPAL": "10-10",
+        "UPPAL RING ROAD": "20-25",
+        "UPPAL X ROADS": "20-25",
+    },
+
+    "UPPAL RING ROAD": {
+        "UPPAL": "10-10",
+        "TARNAKA": "20-25",
+    },
+
+    "UPPAL": {
+        "UPPAL X ROADS": "10-10",
+        "TARNAKA": "20-25",
+    },
+
+    "UPPERPALLY": {
+        "MEHDIPATNAM": "20-25",
+    },
+
+    "VENKATAGIRI": {
+        "FILM NAGAR": "15-0",
+    },
+
+    "YOUSUFGUDA CHECK POST": {
+        "SR NAGAR": "15-20",
+    },
 
 
 };
-
-
