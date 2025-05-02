@@ -536,7 +536,7 @@ let DetailedRoutesUP = [
         getStops(SRPT_MNBD, "SECUNDERABAD", "MEHDIPATNAM"),
         getStops(CRPL_LGPL, 'RETHIBOWLI', 'BIO DIVERSITY'),
         getStops(BLNR_MLPT, 'MIND SPACE', 'CYBER GATEWAY'),
-        getStops(BLNR_MLPT, 'CYBER TOWERS', 'KOTHAGUDA X ROADS'),
+        getStops(BLNR_MLPT, 'HITECH CITY', 'KOTHAGUDA X ROADS'),
         SHD[496]
     ),
     ["5K/188"].concat(
@@ -585,7 +585,7 @@ let DetailedRoutesUP = [
     ["6L/281"].concat(
         SHD[496],
         getStops(MLPT_BLNR, 'KOTHAGUDA X ROADS', 'HITEX KAMAN'),
-        getStops(MLPT_BLNR, 'CYBER TOWERS', 'MIND SPACE'),
+        getStops(MLPT_BLNR, 'HITECH CITY', 'MIND SPACE'),
         getStops(LGPL_CRPL, 'BIO DIVERSITY', 'RETHIBOWLI'),
         getStops(MNBD_SRPT, 'MEHDIPATNAM', 'SECRETARIATE'),
         getStops(TailsDOWN, 'LIBERTY', 'BARKATPURA'),
@@ -2856,7 +2856,7 @@ let DetailedRoutesUP = [
     ["113M/281"].concat(
         SHD[496],
         getStops(MLPT_BLNR, 'KOTHAGUDA X ROADS', 'HITEX KAMAN'),
-        getStops(MLPT_BLNR, 'CYBER TOWERS', 'MIND SPACE'),
+        getStops(MLPT_BLNR, 'HITECH CITY', 'MIND SPACE'),
         getStops(LGPL_CRPL, 'BIO DIVERSITY', 'RETHIBOWLI'),
         getStops(MNBD_SRPT, 'MEHDIPATNAM', 'SECRETARIATE'),
         getStops(TailsDOWN, 'LIBERTY', 'BARKATPURA'),
@@ -3027,7 +3027,7 @@ let DetailedRoutesUP = [
     ["125/5K"].concat(
         SHD[496],
         getStops(MLPT_BLNR, 'KOTHAGUDA X ROADS', 'HITEX KAMAN'),
-        getStops(MLPT_BLNR, 'CYBER TOWERS', 'MIND SPACE'),
+        getStops(MLPT_BLNR, 'HITECH CITY', 'MIND SPACE'),
         getStops(LGPL_CRPL, 'BIO DIVERSITY', 'RETHIBOWLI'),
         getStops(MNBD_SRPT, "MEHDIPATNAM", "SECUNDERABAD")
     ),
@@ -3576,7 +3576,7 @@ let DetailedRoutesUP = [
         getStops(SECB_SKPL, 'ARAMGHAR', 'RETHIBOWLI'),
         getStops(CRPL_LGPL, 'NANAL NAGAR', 'BIO DIVERSITY'),
         getStops(BLNR_MLPT, 'MIND SPACE', 'CYBER GATEWAY'),
-        getStops(BLNR_MLPT, 'CYBER TOWERS', 'KOTHAGUDA X ROADS'),
+        getStops(BLNR_MLPT, 'HITECH CITY', 'KOTHAGUDA X ROADS'),
         SHD[496]
     ),
 
@@ -3604,7 +3604,7 @@ let DetailedRoutesUP = [
     ["216MP"].concat(
         getStops(CRPL_LGPL, 'MEHDIPATNAM', 'BIO DIVERSITY'),
         getStops(BLNR_MLPT, 'MIND SPACE', 'CYBER GATEWAY'),
-        getStops(BLNR_MLPT, 'CYBER TOWERS', 'KOTHAGUDA X ROADS'),
+        getStops(BLNR_MLPT, 'HITECH CITY', 'KOTHAGUDA X ROADS'),
         getStops(ADBT_MDCL, 'KONDAPUR', 'ALLWYN X ROADS'),
         getStops(GTKS_PTCR, 'MADINAGUDA', 'BEERAMGUDA'),
         getStops(TailsUP, 'BEERAMGUDA VILLAGE', 'PATEL GUDA')
@@ -4584,7 +4584,7 @@ let DetailedRoutesUP = [
         getStops(SRPT_MNBD, 'SECRETARIATE', 'MEHDIPATNAM'),
         getStops(CRPL_LGPL, 'RETHIBOWLI', 'BIO DIVERSITY'),
         getStops(BLNR_MLPT, 'MIND SPACE', 'CYBER GATEWAY'),
-        getStops(BLNR_MLPT, 'CYBER TOWERS', 'KOTHAGUDA X ROADS'),
+        getStops(BLNR_MLPT, 'HITECH CITY', 'KOTHAGUDA X ROADS'),
         SHD[496]
     ),
     ["281/16C"].concat(
@@ -4614,7 +4614,7 @@ let DetailedRoutesUP = [
         getStops(SRPT_MNBD, 'SECRETARIATE', 'MEHDIPATNAM'),
         getStops(CRPL_LGPL, 'RETHIBOWLI', 'BIO DIVERSITY'),
         getStops(BLNR_MLPT, 'MIND SPACE', 'CYBER GATEWAY'),
-        getStops(BLNR_MLPT, 'CYBER TOWERS', 'KOTHAGUDA X ROADS'),
+        getStops(BLNR_MLPT, 'HITECH CITY', 'KOTHAGUDA X ROADS'),
         SHD[496]
     ),
     ["281/250"].concat(
@@ -4642,7 +4642,7 @@ let DetailedRoutesUP = [
         getStops(SRPT_MNBD, 'SECRETARIATE', 'MEHDIPATNAM'),
         getStops(CRPL_LGPL, 'RETHIBOWLI', 'BIO DIVERSITY'),
         getStops(BLNR_MLPT, 'MIND SPACE', 'CYBER GATEWAY'),
-        getStops(BLNR_MLPT, 'CYBER TOWERS', 'KOTHAGUDA X ROADS'),
+        getStops(BLNR_MLPT, 'HITECH CITY', 'KOTHAGUDA X ROADS'),
         SHD[496]
     ),
 
@@ -5659,7 +5659,7 @@ let DetailedRoutesDOWN = [
     ["5K/125"].concat(
         SHD[496],
         getStops(MLPT_BLNR, 'KOTHAGUDA X ROADS', 'HITEX KAMAN'),
-        getStops(MLPT_BLNR, 'CYBER TOWERS', 'MIND SPACE'),
+        getStops(MLPT_BLNR, 'HITECH CITY', 'MIND SPACE'),
         getStops(LGPL_CRPL, 'BIO DIVERSITY', 'RETHIBOWLI'),
         getStops(MNBD_SRPT, "MEHDIPATNAM", "SECUNDERABAD")
     ),
@@ -5713,7 +5713,7 @@ let DetailedRoutesDOWN = [
         getStops(SRPT_MNBD, 'SECRETARIATE', 'MEHDIPATNAM'),
         getStops(CRPL_LGPL, 'RETHIBOWLI', 'BIO DIVERSITY'),
         getStops(BLNR_MLPT, 'MIND SPACE', 'CYBER GATEWAY'),
-        getStops(BLNR_MLPT, 'CYBER TOWERS', 'KOTHAGUDA X ROADS'),
+        getStops(BLNR_MLPT, 'HITECH CITY', 'KOTHAGUDA X ROADS'),
         SHD[496]
     ),
     ["6M/3K"].concat(
@@ -8030,7 +8030,7 @@ let DetailedRoutesDOWN = [
         getStops(SRPT_MNBD, 'SECRETARIATE', 'MEHDIPATNAM'),
         getStops(CRPL_LGPL, 'RETHIBOWLI', 'BIO DIVERSITY'),
         getStops(BLNR_MLPT, 'MIND SPACE', 'CYBER GATEWAY'),
-        getStops(BLNR_MLPT, 'CYBER TOWERS', 'KOTHAGUDA X ROADS'),
+        getStops(BLNR_MLPT, 'HITECH CITY', 'KOTHAGUDA X ROADS'),
         SHD[496]
     ),
     ["113M/288"].concat(
@@ -8197,7 +8197,7 @@ let DetailedRoutesDOWN = [
         getStops(SRPT_MNBD, "SECUNDERABAD", "MEHDIPATNAM"),
         getStops(CRPL_LGPL, 'RETHIBOWLI', 'BIO DIVERSITY'),
         getStops(BLNR_MLPT, 'MIND SPACE', 'CYBER GATEWAY'),
-        getStops(BLNR_MLPT, 'CYBER TOWERS', 'KOTHAGUDA X ROADS'),
+        getStops(BLNR_MLPT, 'HITECH CITY', 'KOTHAGUDA X ROADS'),
         SHD[496]
     ),
 
@@ -8754,7 +8754,7 @@ let DetailedRoutesDOWN = [
     ["215"].concat(
         SHD[496],
         getStops(MLPT_BLNR, 'KOTHAGUDA X ROADS', 'HITEX KAMAN'),
-        getStops(MLPT_BLNR, 'CYBER TOWERS', 'MIND SPACE'),
+        getStops(MLPT_BLNR, 'HITECH CITY', 'MIND SPACE'),
         getStops(LGPL_CRPL, 'BIO DIVERSITY', 'NANAL NAGAR'),
         getStops(SKPL_SECB, 'RETHIBOWLI', 'ARAMGHAR')
     ),
@@ -8783,7 +8783,7 @@ let DetailedRoutesDOWN = [
         getStops(PTCR_GTKS, 'BEERAMGUDA', 'MADINAGUDA'),
         getStops(MDCL_ADBT, 'ALLWYN X ROADS', 'KONDAPUR'),
         getStops(MLPT_BLNR, 'KOTHAGUDA X ROADS', 'HITEX KAMAN'),
-        getStops(MLPT_BLNR, 'CYBER TOWERS', 'MIND SPACE'),
+        getStops(MLPT_BLNR, 'HITECH CITY', 'MIND SPACE'),
         getStops(LGPL_CRPL, 'BIO DIVERSITY', 'MEHDIPATNAM')
     ),
 
@@ -9749,7 +9749,7 @@ let DetailedRoutesDOWN = [
     ["281/6L"].concat(
         SHD[496],
         getStops(MLPT_BLNR, 'KOTHAGUDA X ROADS', 'HITEX KAMAN'),
-        getStops(MLPT_BLNR, 'CYBER TOWERS', 'MIND SPACE'),
+        getStops(MLPT_BLNR, 'HITECH CITY', 'MIND SPACE'),
         getStops(LGPL_CRPL, 'BIO DIVERSITY', 'RETHIBOWLI'),
         getStops(MNBD_SRPT, 'MEHDIPATNAM', 'SECRETARIATE'),
         getStops(TailsDOWN, 'LIBERTY', 'BARKATPURA'),
@@ -9778,7 +9778,7 @@ let DetailedRoutesDOWN = [
     ["281/113M"].concat(
         SHD[496],
         getStops(MLPT_BLNR, 'KOTHAGUDA X ROADS', 'HITEX KAMAN'),
-        getStops(MLPT_BLNR, 'CYBER TOWERS', 'MIND SPACE'),
+        getStops(MLPT_BLNR, 'HITECH CITY', 'MIND SPACE'),
         getStops(LGPL_CRPL, 'BIO DIVERSITY', 'RETHIBOWLI'),
         getStops(MNBD_SRPT, 'MEHDIPATNAM', 'SECRETARIATE'),
         getStops(TailsDOWN, 'LIBERTY', 'BARKATPURA'),
@@ -9804,7 +9804,7 @@ let DetailedRoutesDOWN = [
     ["282K"].concat(
         SHD[496],
         getStops(MLPT_BLNR, 'KOTHAGUDA X ROADS', 'HITEX KAMAN'),
-        getStops(MLPT_BLNR, 'CYBER TOWERS', 'MIND SPACE'),
+        getStops(MLPT_BLNR, 'HITECH CITY', 'MIND SPACE'),
         getStops(LGPL_CRPL, 'BIO DIVERSITY', 'RETHIBOWLI'),
         getStops(MNBD_SRPT, 'MEHDIPATNAM', 'SECRETARIATE'),
         getStops(TailsDOWN, 'LIBERTY', 'BARKATPURA'),
@@ -16856,6 +16856,8 @@ function fillNewUIrouteListNEW(route, direction) {
                 substopName.innerHTML = "Sez Technologies Exam Center";
             } else if (route[i] == "TEMPLE KAMAN") {
                 substopName.innerHTML = "Laxman IT Academy Exam Center";
+            } else if (route[i] == "HITECH CITY") {
+                substopName.innerHTML = "Cyber Towers";
             }
 
             graphics.appendChild(circle);
@@ -17812,9 +17814,14 @@ function showSuggesions(ref) {
     filteredArray = suggessionsArray.filter((item) =>
         item.toUpperCase().startsWith(filterValue)
     );
+
     if (feature == 1) {
         displayList(filteredArray, ref.id);
     } else {
+        const ref1 = ref.value.toLowerCase();
+        if ("cyber towers".toLowerCase().startsWith(ref1)) {
+            filteredArray.push("HITECH CITY");
+        }
         displayList(filteredArray.sort(), ref.id);
     }
 }
