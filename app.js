@@ -10527,10 +10527,15 @@ function menuItemsClick(ref) {
 }
 
 function fetchLiveUpdates() {
-    class Bus {
+    const spinner = getId("loadingSpinner");
+    const screen = getId("liveUpdatesScreen");
 
+    spinner.style.display = "flex"; 
+    screen.innerHTML = "";
+
+    class Bus {
         print() {
-            console.log(`Bus ${this.id} -> Route: ${this.route}, ST: ${this.oc}`);
+            console.log(`Bus ${this.busNo} -> Route: ${this.route}, ST: ${this.status}`);
         }
 
         constructor(id, data) {
@@ -10600,31 +10605,32 @@ function fetchLiveUpdates() {
 
     db.ref("/").on("value", (snapshot) => {
         const data = snapshot.val();
-        const busList = []; // Reset the array on every update
-        getId('liveUpdatesScreen').innerHTML = "";
+        screen.innerHTML = ""; // Clear screen again just in case
+        spinner.style.display = "none"; // Hide spinner
+
         if (data) {
             Object.entries(data).forEach(([id, details]) => {
                 const bus = new Bus(id, details);
                 const busElement = bus.createHTMLElement();
-                getId('liveUpdatesScreen').appendChild(busElement);
+                screen.appendChild(busElement);
             });
 
             console.clear();
-            console.log("Realtime Update Received:");
-            busList.forEach(bus => bus.print());
+            console.log("Realtime Update Received");
         } else {
-            let notFoundScreen = document.createElement('div');
-            let p = document.createElement('p');
+            const notFoundScreen = document.createElement('div');
+            const p = document.createElement('p');
             notFoundScreen.classList.add('notFoundScreen');
             p.innerHTML = "No Buses Found <br> Please try again Later";
             notFoundScreen.appendChild(p);
-            getId('liveUpdatesScreen').appendChild(notFoundScreen);
+            screen.appendChild(notFoundScreen);
         }
     }, (error) => {
         console.error("Listener Error:", error);
+        spinner.style.display = "none"; // Hide spinner on error too
     });
-
 }
+
 
 function displayOtherSections(screen, heading) {
     getId('busPassInfoScreen').classList.add('hide');
@@ -10704,7 +10710,7 @@ function viewRoute(ref) {
     Android.changeStatusBarColor(primary);
 
 
-    console.log(AppBackState);
+    // console.log(AppBackState);
 }
 
 let introPartUP, introPartDOWN;
