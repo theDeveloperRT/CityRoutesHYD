@@ -1726,6 +1726,12 @@ let DetailedRoutesUP = [
         SHD[264], SHD[593], SHD[633], SHD[736], SHD[572], SHD[573], SHD[562],
         getStops(GWRL_HCLX, "AS RAO NAGAR", "ECIL X ROADS")
     ),
+    ["20/250C"].concat(
+        getStops(MNBD_SRPT, 'SECRETARIATE', 'TANK BUND'),
+        SHD[473], SHD[777], SHD[131],
+        getStops(SKPL_SECB, 'MUSHEERABAD', 'CHILKALGUDA X ROADS'),
+        getStops(LGPL_CRPL, 'ALUGADDA BHAVI', 'CHERLAPALLY')
+    ),
     ["20/280"].concat(
         getStops(MNBD_SRPT, 'SECRETARIATE', 'TANK BUND'),
         SHD[473], SHD[777], SHD[131],
@@ -2514,6 +2520,14 @@ let DetailedRoutesUP = [
         getStops(DNGL_IBP, "TARNAKA", "LB NAGAR X ROADS"),
         getStops(SECB_SKPL, 'SAGAR RING ROAD', 'PAISAL BANDA'),
         getStops(MDCL_ADBT, 'MIDHANI COMPANY', 'BADANGPET')
+    ),
+    ["90BK"].concat(
+        SHD[448],
+        SHD[754],
+        SHD[898],
+        getStops(DNGL_IBP, "CHILKALGUDA X ROADS", "NAGOLE X ROADS"),
+        getStops(HCLX_GWRL, 'OLD NAGOLE', 'KUNTLOOR X ROAD'),
+        SHD[1474]
     ),
     ["90L"].concat(
         getStops(IBP_DNGL, "LB NAGAR X ROADS", "SECUNDERABAD"),
@@ -4221,6 +4235,12 @@ let DetailedRoutesUP = [
         getStops(GWRL_HCLX, 'ECIL X ROADS', 'HCL X ROADS'),
         getStops(CRPL_LGPL, 'ASHOK NAGAR (NFC)', 'MEHDIPATNAM'),
         "MEHDIPATNAM DEPOT", "GUDIMALKAPUR", "SHIV BAGH", "SHARADA NAGAR (MP)", "TALLAGADDA"
+    ),
+    ["250C/20"].concat(
+        getStops(CRPL_LGPL, "CHERLAPALLY", "CHILKALGUDA X ROADS"),
+        getStops(SECB_SKPL, 'BOIGUDA', 'MUSHEERABAD'),
+        SHD[131], SHD[777], SHD[473],
+        getStops(SRPT_MNBD, 'TANK BUND', 'SECRETARIATE')
     ),
     ["250C/49M"].concat(
         getStops(CRPL_LGPL, 'CHERLAPALLY', 'MEHDIPATNAM')
@@ -6899,6 +6919,12 @@ let DetailedRoutesDOWN = [
         SHD[131], SHD[777], SHD[473],
         getStops(SRPT_MNBD, 'TANK BUND', 'SECRETARIATE')
     ),
+    ["20/250C"].concat(
+        getStops(CRPL_LGPL, "CHERLAPALLY", "CHILKALGUDA X ROADS"),
+        getStops(SECB_SKPL, 'BOIGUDA', 'MUSHEERABAD'),
+        SHD[131], SHD[777], SHD[473],
+        getStops(SRPT_MNBD, 'TANK BUND', 'SECRETARIATE')
+    ),
     ["20/280"].concat(
         getStops(GTKS_PTCR, "GHATKESAR", "UPPAL RING ROAD"),
         getStops(IBP_DNGL, "UPPAL RING ROAD", "CHILKALGUDA X ROADS"),
@@ -7699,6 +7725,13 @@ let DetailedRoutesDOWN = [
         getStops(SKPL_SECB, 'PAISAL BANDA', 'SAGAR RING ROAD'),
         getStops(IBP_DNGL, "LB NAGAR X ROADS", "HABSIGUDA"),
         getStops(SHMB_KSR, 'TARNAKA', 'ECIL X ROADS')
+    ),
+    ["90BK"].concat(
+        SHD[1474],
+        getStops(GWRL_HCLX, 'KUNTLOOR X ROAD', 'OLD NAGOLE'),
+        getStops(IBP_DNGL, "NAGOLE X ROADS", "SECUNDERABAD"),
+        SHD[754],
+        SHD[448]
     ),
     ["90L"].concat(
         SHD[448],
@@ -9410,6 +9443,12 @@ let DetailedRoutesDOWN = [
         "TALLAGADDA", "SHARADA NAGAR (MP)", "SHIV BAGH", "GUDIMALKAPUR", "MEHDIPATNAM DEPOT", SHD[620],
         getStops(LGPL_CRPL, "MEHDIPATNAM", "ASHOK NAGAR (NFC)"),
         getStops(HCLX_GWRL, 'HCL X ROADS', 'ECIL X ROADS')
+    ),
+    ["250C/20"].concat(
+        getStops(MNBD_SRPT, 'SECRETARIATE', 'TANK BUND'),
+        SHD[473], SHD[777], SHD[131],
+        getStops(SKPL_SECB, 'MUSHEERABAD', 'CHILKALGUDA X ROADS'),
+        getStops(LGPL_CRPL, 'ALUGADDA BHAVI', 'CHERLAPALLY')
     ),
     ["250C/49M"].concat(
         getStops(LGPL_CRPL, "MEHDIPATNAM", "CHERLAPALLY"),
@@ -11282,6 +11321,14 @@ function setRouteOutputContent(routeNoI) {
             DistanceDown = "36.1";
             break;
 
+        case "3KC":
+            note = 0;
+            starting = "AFZALGUNJ";
+            destination = "CHERLAPALLY";
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
         case "3KJ":
             note = 0;
             starting = "ECIL X ROADS";
@@ -11684,6 +11731,26 @@ function setRouteOutputContent(routeNoI) {
             secBad_SS_DN = RSA_SS;
             DistanceUP = "16.9";
             DistanceDown = "18.4";
+            break;
+
+        case "8A/67L":
+            note = 0;
+            starting = "SECUNDERABAD";
+            destination = "LALITHA BAGH";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
+        case "8A/75R":
+            note = 0;
+            starting = "SECUNDERABAD";
+            destination = "RAJANNA BHAVI";
+            secBad_SS_UP = RSA_SS;
+            secBad_SS_DN = RSA_SS;
+            DistanceUP = "";
+            DistanceDown = "";
             break;
 
         case "8A/85":
@@ -12754,6 +12821,16 @@ function setRouteOutputContent(routeNoI) {
             DistanceDown = "16.1";
             break;
 
+        case "17HC":
+            note = 0;
+            starting = "SECUNDERABAD";
+            destination = "CHERLAPALLY";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
         case "17S":
             note = 0;
             starting = "SECUNDERABAD";
@@ -13069,8 +13146,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "SECRETARIATE";
             destination = "CHERLAPALLY";
-            DistanceUP = "";
-            DistanceDown = "";
+            DistanceUP = "21.2";
+            DistanceDown = "21.1";
             break;
 
         case "20/280":
@@ -14095,6 +14172,15 @@ function setRouteOutputContent(routeNoI) {
             DistanceDown = "";
             break;
 
+        // HD67 SERIES
+        case "67L/8A":
+            note = 0;
+            starting = "LALITHA BAGH";
+            destination = "SECUNDERABAD";
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
         // HD70 SERIES
         case "70/8A":
             note = 0;
@@ -14186,6 +14272,15 @@ function setRouteOutputContent(routeNoI) {
             destination = "NGO's COLONY";
             DistanceUP = "14.8";
             DistanceDown = "14.3";
+            break;
+
+        // HD75 SERIES
+        case "75R/8A":
+            note = 0;
+            starting = "RAJANNA BHAVI";
+            destination = "SECUNDERABAD";
+            DistanceUP = "";
+            DistanceDown = "";
             break;
 
         // HD83 SERIES
@@ -14336,8 +14431,8 @@ function setRouteOutputContent(routeNoI) {
             destination = "KUNTLOOR";
             secBad_SS_UP = ORTF_SS;
             secBad_SS_DN = RSA_SS;
-            DistanceUP = "";
-            DistanceDown = "";
+            DistanceUP = "21.8";
+            DistanceDown = "22.2";
             break;
 
         case "90DL":
@@ -15993,6 +16088,14 @@ function setRouteOutputContent(routeNoI) {
             DistanceDown = "57.5";
             break;
 
+        case "217/300":
+            note = 0;
+            starting = "PATANCHEURVU";
+            destination = "LB NAGAR";
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
         case "217C":
             note = 0;
             starting = "CBS";
@@ -16691,6 +16794,16 @@ function setRouteOutputContent(routeNoI) {
             DistanceDown = "33.5";
             break;
 
+        case "241C":
+            note = 0;
+            starting = "SECUNDERABAD";
+            destination = "NARASIMHA SWAMY TEMPLE";
+            secBad_SS_UP = BSH_SS;
+            secBad_SS_DN = BSH_SS;
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
         // HD242 SERIES
         case "242":
             note = 0;
@@ -16906,8 +17019,8 @@ function setRouteOutputContent(routeNoI) {
             note = 0;
             starting = "CHERLAPALLY";
             destination = "SECRETARIATE";
-            DistanceUP = "";
-            DistanceDown = "";
+            DistanceUP = "21.1";
+            DistanceDown = "21.2";
             break;
 
         case "250C/49M":
@@ -18011,6 +18124,14 @@ function setRouteOutputContent(routeNoI) {
             DistanceDown = "40.9";
             break;
 
+        case "300/217":
+            note = 0;
+            starting = "LB NAGAR";
+            destination = "PATANCHERUVU";
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
         case "300/251":
             note = 0;
             starting = "UPPAL X ROADS";
@@ -18076,6 +18197,22 @@ function setRouteOutputContent(routeNoI) {
             destination = "RAVULAPALLY";
             DistanceUP = "35";
             DistanceDown = "35";
+            break;
+
+        case "452":
+            note = 0;
+            starting = "AFZALGUNJ";
+            destination = "MAHESHWARAM";
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
+        case "453":
+            note = 0;
+            starting = "AFZALGUNJ";
+            destination = "GUDUR";
+            DistanceUP = "";
+            DistanceDown = "";
             break;
 
         case "458":
@@ -18243,6 +18380,14 @@ function setRouteOutputContent(routeNoI) {
             DistanceDown = "58.6";
             break;
 
+        case "511":
+            note = 0;
+            starting = "SECUNDERABAD";
+            destination = "NARSAPUR";
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
         case "523K":
             note = 0;
             starting = "KOTI W.COLLEGE";
@@ -18283,6 +18428,22 @@ function setRouteOutputContent(routeNoI) {
             secBad_SS_DN = RSA_SS;
             DistanceUP = "45.7";
             DistanceDown = "43.8";
+            break;
+
+        case "532S":
+            note = 0;
+            starting = "AFZALGUNJ";
+            destination = "SIDHDHAPUR";
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
+        case "532V":
+            note = 0;
+            starting = "AFZALGUNJ";
+            destination = "KONDAREDDIPALLY";
+            DistanceUP = "";
+            DistanceDown = "";
             break;
 
         case "537":
@@ -20551,5 +20712,3 @@ function resetBackPress() {
     backPressCount = 0;
     clearTimeout(backPressTimer);
 }
-
-
