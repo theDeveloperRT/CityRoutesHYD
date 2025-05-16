@@ -2383,6 +2383,11 @@ let DetailedRoutesUP = [
         getStops(TailsUP, 'NTR STATUE (BDUPL)', 'CGCL GRAMPANCHAYATH'),
         SHD[195]
     ),
+    ["71AC"].concat(
+        getStops(PTCR_GTKS, 'AFZALGUNJ', 'CHENGICHERLA X ROADS'),
+        getStops(TailsUP, 'AYODHYA COLONY', 'CHENGICHERLA'),
+        "IOC X ROADS", "CHERLAPALLY STATION"
+    ),
     ["71K"].concat(
         getStops(PTCR_GTKS, 'AFZALGUNJ', 'KACHEGUDA KAMELA'),
         SHD[454]
@@ -3098,6 +3103,12 @@ let DetailedRoutesUP = [
         getStops(KOTI_MCRL, 'ANDHRA JYOTHI', 'LV PRASAD'),
         getStops(ADBT_MDCL, 'JUBLIE HILLS CHECK POST', 'KONDAPUR')
     ),
+    ["147W"].concat(
+        getStops(HCLX_GWRL, 'ECIL X ROADS', 'NEREDMET X ROADS'),
+        SHD[317], SHD[850], SHD[54], "ECHS POLYCLINIC", SHD[1016],
+        getStops(SRPT_MNBD, 'HANUMAN TEMPLE', 'PATNY'),
+        getStops(w47_UP, 'PARADISE', 'WAVEROCK')
+    ),
 
     // 156 SERIES
     ["156/205F"].concat(
@@ -3648,6 +3659,12 @@ let DetailedRoutesUP = [
         getStops(MDCL_MHRM, 'SALARJUNG MUSEUM', 'THUKKUGUDA'),
         SHD[835], SHD[885], SHD[790]
     ),
+    ["217/300"].concat(
+        getStops(PTCR_GTKS, 'PATANCHERUVU', 'JYOTHI NAGAR (LGMPLY)'),
+        getStops(LGPL_CRPL, 'LINGAMPALLY', 'RETHIBOWLI'),
+        getStops(SKPL_SECB, 'LAXMI NAGAR (MP)', 'SAGAR RING ROAD'),
+        SHD[552]
+    ),
     ["217C"].concat(
         getStops(GTKS_PTCR, 'CITY BUS STATION', 'LAKDI KA PUL'),
         getStops(SRPT_MNBD, 'MAHAVIR HOSPITAL', 'MEHDIPATNAM'),
@@ -4108,6 +4125,13 @@ let DetailedRoutesUP = [
         getStops(DNGL_IBP, "ALUGADDA BHAVI", "TARNAKA"),
         getStops(SHMB_KSR, 'WHITE HOUSE', 'CHERIYAL X ROADS'),
         getStops(OSK_Stops_DOWN, 'CHIRYALA VILLAGE', 'DHARMAVARAM')
+    ),
+    ["241C"].concat(
+        SHD[898],
+        getStops(DNGL_IBP, "ALUGADDA BHAVI", "TARNAKA"),
+        getStops(SHMB_KSR, 'WHITE HOUSE', 'CHERIYAL X ROADS'),
+        getStops(OSK_Stops_DOWN, 'CHIRYALA VILLAGE', 'CHIRYALA'),
+        "LAKSHMI NARASIMHA SWAMY TEMPLE"
     ),
 
     // 242 SERIES
@@ -4976,6 +5000,12 @@ let DetailedRoutesUP = [
         getStops(SECB_SKPL, "SAGAR RING ROAD", "RETHIBOWLI"),
         getStops(CRPL_LGPL, 'NANAL NAGAR', 'BIO DIVERSITY'),
         getStops(BLNR_MLPT, 'MIND SPACE', 'JNTU COLLEGE')
+    ),
+     ["300/217"].concat(
+        SHD[552],
+        getStops(SECB_SKPL, 'SAGAR RING ROAD', 'LAXMI NAGAR (MP)'),
+        getStops(CRPL_LGPL, 'RETHIBOWLI', 'LINGAMPALLY'),
+        getStops(GTKS_PTCR, 'JYOTHI NAGAR (LGMPLY)', 'PATANCHERUVU')
     ),
     ["300/251"].concat(
         getStops(DNGL_IBP, 'UPPAL RING ROAD', 'LB NAGAR X ROADS'),
@@ -7589,6 +7619,11 @@ let DetailedRoutesDOWN = [
         getStops(TailsDOWN, 'CGCL GRAMPANCHAYATH', 'NTR STATUE (BDUPL)'),
         getStops(GTKS_PTCR, 'BODUPPAL X ROADS', 'AFZALGUNJ')
     ),
+    ["71AC"].concat(
+        "CHERLAPALLY STATION", "IOC X ROADS",
+        getStops(TailsDOWN, 'CHENGICHERLA', 'AYODHYA COLONY'),
+        getStops(GTKS_PTCR, 'CHENGICHERLA X ROADS', 'AFZALGUNJ')
+    ),
     ["71K"].concat(
         SHD[454],
         getStops(GTKS_PTCR, 'KACHEGUDA KAMELA', 'AFZALGUNJ')
@@ -8300,6 +8335,12 @@ let DetailedRoutesDOWN = [
         SHD[1016], SHD[923], SHD[54], SHD[850], SHD[317],
         getStops(GWRL_HCLX, 'NEREDMET X ROADS', 'ECIL X ROADS')
     ),
+    ["147W"].concat(
+        getStops(w47_DN, 'WAVEROCK', 'PARADISE'),
+        getStops(MNBD_SRPT, 'PATNY', 'HANUMAN TEMPLE'),
+        SHD[1016], SHD[923], SHD[54], SHD[850], SHD[317],
+        getStops(GWRL_HCLX, 'NEREDMET X ROADS', 'ECIL X ROADS')
+    ),
 
     // 156 SERIES
     ["156/205F"].concat(
@@ -8857,6 +8898,12 @@ let DetailedRoutesDOWN = [
         getStops(SRPT_MNBD, 'MAHAVIR HOSPITAL', 'MEHDIPATNAM'),
         getStops(CRPL_LGPL, 'RETHIBOWLI', 'LINGAMPALLY')
     ),
+    ["217/300"].concat(
+        SHD[552],
+        getStops(SECB_SKPL, 'SAGAR RING ROAD', 'LAXMI NAGAR (MP)'),
+        getStops(CRPL_LGPL, 'RETHIBOWLI', 'LINGAMPALLY'),
+        getStops(GTKS_PTCR, 'JYOTHI NAGAR (LGMPLY)', 'PATANCHERUVU')
+    ),
     ["217C"].concat(
         getStops(PTCR_GTKS, 'PATANCHERUVU', 'JYOTHI NAGAR (LGMPLY)'),
         getStops(LGPL_CRPL, 'LINGAMPALLY', 'RETHIBOWLI'),
@@ -9302,6 +9349,14 @@ let DetailedRoutesDOWN = [
     // 241 SERIES
     ["241T"].concat(
         getStops(OSK_Stops, 'DHARMAVARAM', 'CHIRYALA VILLAGE'),
+        getStops(KSR_SHMB, "CHERIYAL X ROADS", "TARNAKA"),
+        getStops(IBP_DNGL, "RAILWAY DEGREE COLLEGE", "ALUGADDA BHAVI"),
+        SHD[878],
+        SHD[898]
+    ),
+    ["241C"].concat(
+        "LAKSHMI NARASIMHA SWAMY TEMPLE",
+        getStops(OSK_Stops, 'CHIRYALA', 'CHIRYALA VILLAGE'),
         getStops(KSR_SHMB, "CHERIYAL X ROADS", "TARNAKA"),
         getStops(IBP_DNGL, "RAILWAY DEGREE COLLEGE", "ALUGADDA BHAVI"),
         SHD[878],
@@ -10155,6 +10210,12 @@ let DetailedRoutesDOWN = [
         getStops(MLPT_BLNR, 'JNTU COLLEGE', 'MIND SPACE'),
         getStops(LGPL_CRPL, 'BIO DIVERSITY', 'NANAL NAGAR'),
         getStops(SKPL_SECB, "RETHIBOWLI", "SAGAR RING ROAD"),
+        SHD[552]
+    ),
+    ["300/217"].concat(
+        getStops(PTCR_GTKS, 'PATANCHERUVU', 'JYOTHI NAGAR (LGMPLY)'),
+        getStops(LGPL_CRPL, 'LINGAMPALLY', 'RETHIBOWLI'),
+        getStops(SKPL_SECB, 'LAXMI NAGAR (MP)', 'SAGAR RING ROAD'),
         SHD[552]
     ),
     ["300/251"].concat(
@@ -15249,6 +15310,14 @@ function setRouteOutputContent(routeNoI) {
             DistanceDown = "29.6";
             break;
 
+        case "147W":
+            note = 0;
+            starting = "ECIL X ROADS";
+            destination = "WAVEROCK";
+            DistanceUP = "";
+            DistanceDown = "";
+            break;
+
         // HD156 SERIES
         case "156/205F":
             note = 0;
@@ -16800,8 +16869,8 @@ function setRouteOutputContent(routeNoI) {
             destination = "NARASIMHA SWAMY TEMPLE";
             secBad_SS_UP = BSH_SS;
             secBad_SS_DN = BSH_SS;
-            DistanceUP = "";
-            DistanceDown = "";
+            DistanceUP = "22.9";
+            DistanceDown = "23.7";
             break;
 
         // HD242 SERIES
